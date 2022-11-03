@@ -21,7 +21,10 @@ module.exports = (sequelize, DataTypes) => {
     transactionStatus: DataTypes.STRING,
     VolunteerId: DataTypes.INTEGER,
     email: DataTypes.STRING,
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    external_id: DataTypes.STRING,
+    paid_at: DataTypes.DATE,
+    payment_method: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Invoice',

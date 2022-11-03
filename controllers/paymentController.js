@@ -1,6 +1,5 @@
-const { createInvoice } = require("../helpers/createInvoicejs");
-
-
+const { createInvoice } = require("../helpers/createInvoice.js");
+const { Donation } = require("../models")
 class paymentController {
 
   static async acceptCallback(req, res, next) {
@@ -34,13 +33,25 @@ class paymentController {
       let invoiceStatus = callback.status
 
       if (invoiceStatus === `PAID`) {
-        console.log(`masuk paid`);
         createInvoice(req.body)
       } else {
         throw { name: `INVOICE_NOT_PAID` }
       }
 
 
+    } catch (err) {
+      next(err)
+    }
+  }
+
+  static async getDonations(req, res, next) {
+    try {
+      let data = await Donation.findAll({
+        attributes: {
+          exclude: [`createdAt`, `updatedAt`]
+        }
+      })
+      res.status(200).json(data)
     } catch (err) {
       next(err)
     }

@@ -2,6 +2,7 @@ const { Invoice } = require(`../models`)
 
 async function createInvoice(payload) {
   try {
+    console.log(`masuk helper`);
     console.log(payload)
     // {
     //   id: '636412beae529bf6136a373d',
@@ -30,22 +31,21 @@ async function createInvoice(payload) {
     //   },
     //   payment_destination: '8860810751976'
     // }
-    // console.log(`masuk helper`);
 
-    let { amount, status, external_id, on_demand_payload, paid_at, payment_method } = payload
-
+    let { amount, status, paid_at, external_id, payment_method, on_demand_payload } = payload
     let { email, first_name } = on_demand_payload
 
-    // let data = await Invoice.create({
-    //   DonationId: DonationId,
-    //   amount,
-    //   transactionStatus: status,
-    //   //! VolunteerId nanti pake req.user hasil authen
-    //   email,
-    //   name: first_name
-    // })
-
-    // console.log(`ya masuk`, data)
+    let data = await Invoice.create({
+      DonationId: 1, //! masih di hardcode, cari tau biar bisa dinamis gmn
+      amount,
+      transactionStatus: status,
+      VolunteerId: 1, //! masih di hardcode, nanti pake authentication req.user.id
+      email,
+      name: first_name,
+      external_id,
+      paid_at,
+      payment_method
+    })
   } catch (err) {
     next(err)
   }
