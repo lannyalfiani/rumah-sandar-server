@@ -1,14 +1,22 @@
 const express = require('express')
 const router = express.Router()
-const userRouter = require("./user")
+const volunteerRouter = require("./volunteer")
+const orphanRouter = require("./orphan")
+const orphanagesRouter = require('./orphanage')
+const categoryRouter = require('./category')
+const adminRouter = require('./admin')
 
 router.get(`/`, (req, res) => {
   res.status(200).json({ message: `Rumah Sandar, server up!` })
 })
 
-router.use("/user", userRouter)
-// router.use("/", apiRouter)
-// router.use("/transaction", transactionRouter)
+router.use('/', categoryRouter)
+router.use("/", orphanagesRouter)
+router.use('/admin', adminRouter)
+router.use("/volunteer", volunteerRouter)
+router.use("/orphan", orphanRouter)
+
+
 
 
 
