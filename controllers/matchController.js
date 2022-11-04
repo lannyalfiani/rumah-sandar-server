@@ -6,6 +6,7 @@ const {
   ClassCategory,
   Orphan,
   sequelize,
+  Volunteer,
 } = require("../models/");
 
 class matchController {
@@ -29,15 +30,23 @@ class matchController {
     const t = await sequelize.transaction();
     try {
       let { matchId } = req.params;
-      let VolunteerId = 1;
-      //   let {date} = req.body
-      let { startDate } = req.body;
+      // let VolunteerId = 1;
+      let { startDate, hour, VolunteerId } = req.body;
+      let volunteerMatch = await Volunteer.findByPk(VolunteerId, {
+        include: [Match],
+      });
+      if (volunteerMatch.Match) {
+        throw { name: "Kakak already has Adik" };
+      }
       let matchData = await Match.findByPk(matchId, { transaction: t });
       if (!matchData) {
         throw { name: "Data Not Found" };
       }
+      if (matchData.VolunteerId) {
+        throw { name: "Adik already been choose by other kakak" };
+      }
       await Match.update(
-        { VolunteerId },
+        { VolunteerId, OrphanId: matchData.OrphanId, startDate, hour },
         {
           where: {
             id: matchId,

@@ -28,6 +28,7 @@ class classController {
   static async getScheduleClass(req, res, next) {
     console.log(req.body);
     try {
+      //nanti pake req.user
       let { VolunteerId, OrphanId, role } = req.body;
       if (role === "kakak") {
         let schedule = await Match.findAll({
