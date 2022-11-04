@@ -32,7 +32,7 @@ class volunteerController {
       if (!volunteer) throw { name: "Invalid Email/Password" };
       let isValid = compareHashWithPassword(password, volunteer.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
-      const access_token = signPayloadToToken({ id: volunteer.id });
+      const access_token = signPayloadToToken({ id: volunteer.id, role : volunteer.role });
       res.status(200).json({ access_token });
     } catch (err) {
       next(err);

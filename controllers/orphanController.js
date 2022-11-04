@@ -33,7 +33,7 @@ const {
         if (!orphan) throw { name: "Invalid Email/Password" };
         let isValid = compareHashWithPassword(password, orphan.password);
         if (!isValid) throw { name: "Invalid Email/Password" };
-        const access_token = signPayloadToToken({ id: orphan.id });
+        const access_token = signPayloadToToken({ id: orphan.id, role : orphan.role });
         res.status(200).json({ access_token });
       } catch (err) {
         next(err);
