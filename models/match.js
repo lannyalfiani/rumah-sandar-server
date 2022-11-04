@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Match.belongsTo(models.Orphan)
       Match.belongsTo(models.Volunteer)
+      Match.hasMany(models.Class)
     }
   }
   Match.init({

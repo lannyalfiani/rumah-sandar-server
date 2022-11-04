@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Volunteer.hasOne(models.Match)
-      Volunteer.hasMany(models.Invoice)
+      // Volunteer.hasMany(models.Invoice)
     }
   }
   Volunteer.init({

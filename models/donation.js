@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     totalAmount: DataTypes.INTEGER,
     validUntil: DataTypes.DATE,
-    imgUrl: DataTypes.STRING
+    imgUrl: DataTypes.STRING,
+    on_demand_link: DataTypes.STRING,
+    paymentLinkURL: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Donation',
