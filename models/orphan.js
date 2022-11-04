@@ -16,11 +16,74 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Orphan.init({
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    fullName: DataTypes.STRING,
-    imageUrl: DataTypes.STRING,
-    OrphanageId: DataTypes.INTEGER,
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique : true,
+      validate: {
+        notNull : {
+          msg : "Email required"
+        },
+        notEmpty : {
+          msg : "Email required"
+        },
+        isEmail : {
+          msg : "Wrong format"
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull : {
+          msg : "Password required"
+        },
+        notEmpty : {
+          msg : "Password required"
+        },
+        len: {
+          args : [5, 20],
+          msg : "Password must be at least 5 character"
+        }
+      }
+    },
+    fullName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull : {
+          msg : "Full Name required"
+        },
+        notEmpty : {
+          msg : "Full Name required"
+        }
+      }
+    },
+    imageUrl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull : {
+          msg : "Image Url required"
+        },
+        notEmpty : {
+          msg : "Image Url required"
+        }
+      }
+    },
+    OrphanageId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull : {
+          msg : "OrphanageId required"
+        },
+        notEmpty : {
+          msg : "OrphanageId required"
+        }
+      }
+    },
     role: DataTypes.STRING,
     verified: DataTypes.BOOLEAN
   }, {

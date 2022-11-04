@@ -1,58 +1,18 @@
 [
     {
-        "name": "Matematika",
+        "name": "English",
         "link": "url",
-        "imgUrl": ""
+        "imgUrl": "https://ibb.co/xGRcZJB"
     },
     {
-        "name": "IPA",
+        "name": "Science",
         "link": "url",
-        "imgUrl": "https://thumbs.dreamstime.com/z/logo-science-school-subject-hand-drawn-icon-microscope-title-emblem-pop-art-style-vector-illustration-sticker-193315835.jpg"
+        "imgUrl": "https://ibb.co/KwQ7mV8"
     },
     {
-        "name": "IPA",
+        "name": "Math",
         "link": "url",
-        "imgUrl": "https://thumbs.dreamstime.com/z/logo-science-school-subject-hand-drawn-icon-microscope-title-emblem-pop-art-style-vector-illustration-sticker-193315835.jpg"
-    },
-    {
-        "name": "IPA",
-        "link": "url",
-        "imgUrl": "https://thumbs.dreamstime.com/z/logo-science-school-subject-hand-drawn-icon-microscope-title-emblem-pop-art-style-vector-illustration-sticker-193315835.jpg"
-    },
-    {
-        "name": "IPA",
-        "link": "url",
-        "imgUrl": "https://thumbs.dreamstime.com/z/logo-science-school-subject-hand-drawn-icon-microscope-title-emblem-pop-art-style-vector-illustration-sticker-193315835.jpg"
-    },
-    {
-        "name": "IPA",
-        "link": "url",
-        "imgUrl": "https://thumbs.dreamstime.com/z/logo-science-school-subject-hand-drawn-icon-microscope-title-emblem-pop-art-style-vector-illustration-sticker-193315835.jpg"
-    },
-    {
-        "name": "IPA",
-        "link": "url",
-        "imgUrl": "https://thumbs.dreamstime.com/z/logo-science-school-subject-hand-drawn-icon-microscope-title-emblem-pop-art-style-vector-illustration-sticker-193315835.jpg"
-    },
-    {
-        "name": "IPA",
-        "link": "url",
-        "imgUrl": "https://thumbs.dreamstime.com/z/logo-science-school-subject-hand-drawn-icon-microscope-title-emblem-pop-art-style-vector-illustration-sticker-193315835.jpg"
-    },
-    {
-        "name": "IPA",
-        "link": "url",
-        "imgUrl": "https://thumbs.dreamstime.com/z/logo-science-school-subject-hand-drawn-icon-microscope-title-emblem-pop-art-style-vector-illustration-sticker-193315835.jpg"
-    },
-    {
-        "name": "IPA",
-        "link": "url",
-        "imgUrl": "https://thumbs.dreamstime.com/z/logo-science-school-subject-hand-drawn-icon-microscope-title-emblem-pop-art-style-vector-illustration-sticker-193315835.jpg"
-    },
-    {
-        "name": "IPA",
-        "link": "url",
-        "imgUrl": "https://thumbs.dreamstime.com/z/logo-science-school-subject-hand-drawn-icon-microscope-title-emblem-pop-art-style-vector-illustration-sticker-193315835.jpg"
+        "imgUrl": "https://ibb.co/7yrdYcT"
     }
-
+    
 ]

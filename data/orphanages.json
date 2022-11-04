@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Panti Asuhan Yayasan Alpha Indonesia (YAI)",
+        "address": "Jl. Subur Pertamina RT. 005 RW. 002 No. 27 Kelurahan Pondok Ranggon Kecamatan Cipayung Jakarta Timur.",
+        "personInCharge": "Fadhillah Ihsan",
+        "imageUrl": "https://yayasanalphaindonesia.org/wp-content/uploads/2019/09/IMG-20190909-WA0042.jpg"
+    },
+    {
+        "name": "Panti Asuhan Si Boncel",
+        "address": "Jl. Boncel No.05, RT.7/RW.6, Srengseng Sawah, Kec. Jagakarsa, Kota Jakarta Selatan.",
+        "personInCharge": "Suster Dominikanes",
+        "imageUrl": ""
+    },
+    {
+        "name": "Panti Asuhan Dorkas",
+        "address": "Jl. Kramat Sentiong No.20, RT.5/RW.7, Kramat, Senen, Jakarta Pusat.",
+        "personInCharge": "",
+        "imageUrl": "https://cdn-cas.orami.co.id/parenting/images/Panti_Asuhan_Dorkas_Jakarta.width-1000.jpg"
+    },
+    {
+        "name": "Pondok Yatim & Dhuafa",
+        "address": "Jl. Kedoya Sel., Kec. Kebuk Jeruk, Kota Jakarta Barat, Daerah Khusus Ibukota.",
+        "personInCharge": "",
+        "imageUrl": ""
+    },
+    {
+        "name": "Panti Asuhan Al-Aqsha ",
+        "address": "Jl. Sutra Ungu D6 No.30-31, RT.12/RW.10, Klp. Gading Tim., Jkt Utara, Daerah Khusus Ibukota Jakarta.",
+        "personInCharge": "Drs. KH. Ahmad Rofi'i, M.Ag.",
+        "imageUrl": "https://cdn-cas.orami.co.id/parenting/images/Al_Aqsa_Panti_Asuhan.width-1000.jpg"
+    },
+    {
+        "name": "Panti Yatim Indonesia",
+        "address": "Jl. Kemang Utara No.21A, Bangka, Mampang Prpt., Kota Jakarta Selatan.",
+        "personInCharge": "",
+        "imageUrl": "https://pantiyatim.or.id/wp-content/uploads/2021/09/WhatsApp-Image-2021-08-20-at-09.34.46-1.jpeg"
+    },
+    {
+        "name": "Yayasan Mizan Amanah",
+        "address": "Jalan Cilandak Tengah No 15, Cilandak Barat, Jakarta Selatan.",
+        "personInCharge": "",
+        "imageUrl": "https://cfd-v1.mizanamanah.or.id/admin/assets/media/foto-program/Users_6304601bb3e90.jpg?auto=format&fit=max&w=1920"
+    },
+    {
+        "name": "Panti Asuhan Vincentius Putri",
+        "address": "Jl. Kramat Raya No. 134, Jakrta Pusat",
+        "personInCharge": "",
+        "imageUrl": ""
+    },
+    {
+        "name": "Panti Asuhan Vincentius Putra",
+        "address": "Jl. Otto Iskandardinata No. 76 Jakarta Timur",
+        "personInCharge": "",
+        "imageUrl": ""
+    }
+
+]
