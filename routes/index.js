@@ -7,7 +7,7 @@ const orphanagesRouter = require('./orphanage')
 const categoryRouter = require('./category')
 const adminRouter = require('./admin')
 
-const userRouter = require("./user")
+// const userRouter = require("./user")
 const paymentRouter = require("./payments")
 
 router.get(`/`, (req, res) => {
@@ -19,7 +19,7 @@ router.use("/", orphanagesRouter)
 router.use('/admin', adminRouter)
 router.use("/volunteer", volunteerRouter)
 router.use("/orphan", orphanRouter)
-router.use("/user", userRouter)
+// router.use("/user", userRouter)
 router.use("/payment", paymentRouter)
 
 
