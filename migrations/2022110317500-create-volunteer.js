@@ -35,6 +35,9 @@ module.exports = {
       verified: {
         type: Sequelize.BOOLEAN
       },
+      matchStatus: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

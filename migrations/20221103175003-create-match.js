@@ -32,6 +32,9 @@ module.exports = {
       hour: {
         type: Sequelize.TIME
       },
+      endDate: {
+        type: Sequelize.DATE
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

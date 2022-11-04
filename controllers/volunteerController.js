@@ -7,8 +7,24 @@ const { Volunteer } = require("../models");
 class volunteerController {
   static async registerVolunteer(req, res, next) {
     try {
-      const { fullName, email, password, imageUrl } = req.body;
-      if (!fullName || !email || !password || !imageUrl)
+      const {
+        fullName,
+        email,
+        password,
+        imageUrl,
+        linkedinUrl,
+        curriculumVitae,
+        lastEducation,
+      } = req.body;
+      if (
+        !fullName ||
+        !email ||
+        !password ||
+        !imageUrl ||
+        !linkedinUrl ||
+        !curriculumVitae ||
+        !lastEducation
+      )
         throw { name: "required" };
       await Volunteer.create({
         fullName,
@@ -16,6 +32,10 @@ class volunteerController {
         password,
         imageUrl,
         role: "volunteer",
+        linkedinUrl,
+        curriculumVitae,
+        lastEducation,
+        matchStatus: "notMatch"
       });
 
       res.status(201).json({ message: "Register Success" });

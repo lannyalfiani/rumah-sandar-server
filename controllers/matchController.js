@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { bulkSchedule } = require("../helpers/getEach7Day");
+const { bulkSchedule, getEach7Day } = require("../helpers/getEach7Day");
 const {
   Match,
   Class,
@@ -32,21 +32,23 @@ class matchController {
       let { matchId } = req.params;
       // let VolunteerId = 1;
       let { startDate, hour, VolunteerId } = req.body;
+      let endDate = getEach7Day(startDate, 11);
       let volunteerMatch = await Volunteer.findByPk(VolunteerId, {
         include: [Match],
       });
-      if (volunteerMatch.Match) {
+      if (volunteerMatch.matchStatus !== "notMatch") {
         throw { name: "Kakak already has Adik" };
       }
       let matchData = await Match.findByPk(matchId, { transaction: t });
       if (!matchData) {
         throw { name: "Data Not Found" };
       }
-      if (matchData.VolunteerId) {
+      let orphanMatch = await Orphan.findByPk(matchData.OrphanId);
+      if (orphanMatch.matchStatus !== "notMatch") {
         throw { name: "Adik already been choose by other kakak" };
       }
       await Match.update(
-        { VolunteerId, OrphanId: matchData.OrphanId, startDate, hour },
+        { VolunteerId, OrphanId: matchData.OrphanId, startDate, hour, endDate },
         {
           where: {
             id: matchId,
