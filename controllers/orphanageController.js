@@ -1,4 +1,4 @@
-const {Orphanage} = require('../models')
+const { Orphanage } = require('../models')
 
 
 class orphanageController {
@@ -12,7 +12,6 @@ class orphanageController {
             
         } catch (error) {
             next(error)
-            
         }
     }
 

@@ -1,18 +1,7 @@
 const orphanageController = require('../controllers/orphanageController')
-// const authentication = require('../middleware/authentication')
-
 
 const router = require('express').Router()
 
-
-router.get("/orphanages", orphanageController.getOrphanages)
-
-
-
-
-
-
-
-
+router.get("/", orphanageController.getOrphanages)
 
 module.exports = router
