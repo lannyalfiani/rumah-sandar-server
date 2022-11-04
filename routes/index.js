@@ -6,9 +6,7 @@ const orphanagesRouter = require('./orphanage')
 const categoryRouter = require('./category')
 const adminRouter = require('./admin')
 
-router.get(`/`, (req, res) => {
-  res.status(200).json({ message: `Rumah Sandar, server up!` })
-})
+
 
 router.use('/', categoryRouter)
 router.use("/", orphanagesRouter)
