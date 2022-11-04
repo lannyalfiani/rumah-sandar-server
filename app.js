@@ -12,10 +12,10 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(errorHandler)
 
 
 app.use(`/`, router)
+app.use(errorHandler)
 
 app.listen(port, () =>
   console.log(`RUMAH SANDAR listening on port http://localhost:${port}!`)
