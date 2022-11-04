@@ -8,20 +8,23 @@ const orphanRouter = require("./orphan")
 const orphanagesRouter = require('./orphanage')
 const categoryRouter = require('./category')
 const adminRouter = require('./admin')
-const paymentRouter = require("./payments")
+const paymentRouter = require("./payments");
+const authentication = require('../middlewares/authentication');
 
 router.get(`/`, (req, res) => {
   res.status(200).json({ message: `Rumah Sandar, server up!` });
 });
 
+router.use("/volunteer", volunteerRouter)
+router.use("/orphan", orphanRouter)
+router.use('/admin', adminRouter)
+
+router.use(authentication)
+router.use("/match", matchRouter);
 
 router.use('/categories', categoryRouter)
 router.use("orphanages/", orphanagesRouter)
-router.use('/admin', adminRouter)
-router.use("/volunteer", volunteerRouter)
-router.use("/orphan", orphanRouter)
 router.use("/payment", paymentRouter)
-router.use("/match", matchRouter);
 router.use("/classes", classRouter);
 
 module.exports = router;

@@ -37,6 +37,7 @@ class orphanController {
       const access_token = signPayloadToToken({ id: orphan.id });
       res.status(200).json({ access_token });
     } catch (err) {
+      console.log(err)
       next(err);
     }
   }

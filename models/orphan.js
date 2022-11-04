@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { createHashPassword } = require('../helpers/helpers');
 module.exports = (sequelize, DataTypes) => {
   class Orphan extends Model {
     /**
