@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { createHashPassword } = require('../helpers/helpers')
 module.exports = (sequelize, DataTypes) => {
   class Volunteer extends Model {
     /**
@@ -11,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Volunteer.hasOne(models.Match)
-      Volunteer.hasMany(models.Invoice)
+      // Volunteer.hasMany(models.Invoice)
     }
   }
   Volunteer.init({
@@ -25,5 +26,12 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Volunteer',
   });
+
+  Volunteer.beforeCreate((instance) => {
+    instance.password = createHashPassword(instance.password)
+    instance.verified = false
+  })
+
+
   return Volunteer;
 };

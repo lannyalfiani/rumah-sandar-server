@@ -27,5 +27,12 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Orphan',
   });
+
+  Orphan.beforeCreate((instance) => {
+    instance.password = createHashPassword(instance.password)
+    instance.verified = false
+  })
+
+
   return Orphan;
 };
