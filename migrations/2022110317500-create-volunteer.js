@@ -20,6 +20,15 @@ module.exports = {
       imageUrl: {
         type: Sequelize.STRING
       },
+      linkedinUrl :{
+        type: Sequelize.STRING
+      },
+      curriculumVitae :{
+        type: Sequelize.STRING
+      },
+      lastEducation :{
+        type: Sequelize.STRING
+      },
       role: {
         type: Sequelize.STRING
       },
