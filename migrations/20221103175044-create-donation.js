@@ -20,6 +20,16 @@ module.exports = {
       imgUrl: {
         type: Sequelize.STRING
       },
+      on_demand_link: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
+      },
+      paymentLinkURL: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
