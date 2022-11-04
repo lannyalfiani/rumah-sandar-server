@@ -31,6 +31,12 @@ function errorHandler(err, req, res, next) {
   } else if (err.name == "SequelizeValidationError") {
     code = 400;
     msg = err.errors[0].message;
+  } else if (err.name == "Forbidden") {
+    code = 403;
+    msg = "Forbidden";
+  } else if (err.name == "SequelizeUniqueConstraintError") {
+    code = 400;
+    msg = "email already been used";
   }
 
   res.status(code).json({ message: msg });

@@ -10,6 +10,35 @@ const {
 } = require("../models/");
 
 class matchController {
+  static async RequestToMatch(req, res, next) {
+    const t = await sequelize.transaction();
+    try {
+      let { id } = req.user;
+      await Match.create(
+        {
+          OrphanId: id,
+        },
+        { transaction: t }
+      );
+      await Orphan.update(
+        {
+          matchStatus: "alreadyMatch",
+        },
+        {
+          where: {
+            id,
+          },
+        },
+        { transaction: t }
+      );
+      t.commit();
+      res.status(201).json({ message: "Create Request Success" });
+    } catch (error) {
+      t.rollback();
+      next(error);
+    }
+  }
+
   static async getAllMatch(req, res, next) {
     try {
       let response = await Match.findAll({
@@ -56,12 +85,23 @@ class matchController {
         },
         { transaction: t }
       );
+      await Volunteer.update(
+        {
+          matchStatus: "alreadyMatch",
+        },
+        {
+          where: {
+            id: volunteerMatch.id,
+          },
+        },
+        { transaction: t }
+      );
       let schedule = bulkSchedule(matchId, startDate);
       await Class.bulkCreate(schedule, { transaction: t });
       await t.commit();
       res
         .status(201)
-        .json({ message: "Add Data Success, and Schedule has been created" });
+        .json({ message: "Submit Success, and Schedule has been created" });
     } catch (error) {
       await t.rollback();
       next(error);

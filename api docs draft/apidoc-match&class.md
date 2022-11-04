@@ -50,7 +50,7 @@ req.user = {
 
 ```js
 {
-    "message": "Add Data Success, and Schedule has been created"
+    "message": "Submit Success, and Schedule has been created"
 }
 ```
 

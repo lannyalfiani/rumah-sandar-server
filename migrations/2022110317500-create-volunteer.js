@@ -1,54 +1,55 @@
-'use strict';
+"use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Volunteers', {
+    await queryInterface.createTable("Volunteers", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true,
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       fullName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       imageUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
-      linkedinUrl :{
-        type: Sequelize.STRING
+      linkedinUrl: {
+        type: Sequelize.STRING,
       },
-      curriculumVitae :{
-        type: Sequelize.STRING
+      curriculumVitae: {
+        type: Sequelize.STRING,
       },
-      lastEducation :{
-        type: Sequelize.STRING
+      lastEducation: {
+        type: Sequelize.STRING,
       },
       role: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       verified: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
       },
       matchStatus: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Volunteers');
-  }
+    await queryInterface.dropTable("Volunteers");
+  },
 };

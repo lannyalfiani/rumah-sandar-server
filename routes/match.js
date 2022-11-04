@@ -1,8 +1,10 @@
-const express = require('express')
-const matchController = require('../controllers/matchController')
-const router = express.Router()
+const express = require("express");
+const matchController = require("../controllers/matchController");
+const { AuthorizationRequestMatch } = require("../middlewares/authorization");
+const router = express.Router();
 
-router.get("/", matchController.getAllMatch)
-router.put("/:matchId", matchController.AddVolunteerToMatch)
+router.get("/", matchController.getAllMatch);
+router.post("/", AuthorizationRequestMatch, matchController.RequestToMatch);
+router.put("/:matchId", matchController.AddVolunteerToMatch);
 
-module.exports = router
+module.exports = router;

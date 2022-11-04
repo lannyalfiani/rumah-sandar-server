@@ -2,7 +2,7 @@ const {
   compareHashWithPassword,
   signPayloadToToken,
 } = require("../helpers/helpers");
-const { Orphan } = require("../models");
+const { Orphan, Volunteer } = require("../models");
 
 class orphanController {
   static async registerOrphan(req, res, next) {
@@ -10,6 +10,10 @@ class orphanController {
     if (!fullName || !email || !password || !imageUrl || !OrphanageId)
       throw { name: "required" };
     try {
+      let checkVolunteerEmail = await Volunteer.findOne({ where: { email } });
+      if (checkVolunteerEmail) {
+        throw { name: "SequelizeUniqueConstraintError" };
+      }
       await Orphan.create({
         fullName,
         email,
@@ -37,7 +41,7 @@ class orphanController {
       const access_token = signPayloadToToken({ id: orphan.id });
       res.status(200).json({ access_token });
     } catch (err) {
-      console.log(err)
+      console.log(err);
       next(err);
     }
   }
