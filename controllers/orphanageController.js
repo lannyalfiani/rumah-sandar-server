@@ -7,7 +7,7 @@ class orphanageController {
         try {
             let orphanages = await Orphanage.findAll()
             if(!orphanages) throw { name : "Not Found"}
-            res.staus(200).json(orphanages)
+            res.status(200).json(orphanages)
         } catch (error) {
             next(error)
         }

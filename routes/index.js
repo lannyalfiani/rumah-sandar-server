@@ -18,12 +18,12 @@ router.get(`/`, (req, res) => {
 router.use("/volunteer", volunteerRouter)
 router.use("/orphan", orphanRouter)
 router.use('/admin', adminRouter)
+router.use("/orphanages", orphanagesRouter)
 
 router.use(authentication)
 router.use("/match", matchRouter);
 
 router.use('/categories', categoryRouter)
-router.use("orphanages/", orphanagesRouter)
 router.use("/payment", paymentRouter)
 router.use("/classes", classRouter);
 
