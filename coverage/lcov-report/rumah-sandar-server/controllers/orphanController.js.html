@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">13.04% </span>
+                <span class="strong">56.52% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/23</span>
+                <span class='fraction'>13/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>6/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/20</span>
+                <span class='fraction'>12/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -110,16 +110,16 @@
 <a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,21 +128,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -150,7 +135,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const {
     compareHashWithPassword,
     signPayloadToToken,
@@ -158,10 +158,10 @@
   const {Orphan} = require("../models");
   
   class orphanController {
-<span class="fstat-no" title="function not covered" >    st</span>atic async registerOrphan(req, res, next) {
-      const { fullName, email, password, imageUrl, OrphanageId} = <span class="cstat-no" title="statement not covered" >req.body;</span>
-<span class="cstat-no" title="statement not covered" >      if (!fullName || !email || !password || !imageUrl || !OrphanageId)</span>
-<span class="cstat-no" title="statement not covered" >        throw { name: "required" };</span>
+    static async registerOrphan(req, res, next) {
+      const { fullName, email, password, imageUrl, OrphanageId} = req.body;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!fullName || <span class="branch-1 cbranch-no" title="branch not covered" >!email </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >!password </span>|| <span class="branch-3 cbranch-no" title="branch not covered" >!imageUrl </span>|| <span class="branch-4 cbranch-no" title="branch not covered" >!OrphanageId)</span>
+        throw { name: "required" };
 <span class="cstat-no" title="statement not covered" >      try {</span>
 <span class="cstat-no" title="statement not covered" >        await Orphan.create({</span>
           fullName,
@@ -178,18 +178,18 @@
       }
     }
   
-<span class="fstat-no" title="function not covered" >    st</span>atic async loginOrphan(req, res, next) {
-      const { email, password } = <span class="cstat-no" title="statement not covered" >req.body;</span>
-<span class="cstat-no" title="statement not covered" >      if (!email || !password) <span class="cstat-no" title="statement not covered" >throw { name: "required" };</span></span>
-<span class="cstat-no" title="statement not covered" >      try {</span>
-        let orphan = <span class="cstat-no" title="statement not covered" >await Orphan.findOne({ where: { email } });</span>
-<span class="cstat-no" title="statement not covered" >        if (!orphan) <span class="cstat-no" title="statement not covered" >throw { name: "Invalid Email/Password" };</span></span>
+    static async loginOrphan(req, res, next) {
+      const { email, password } = req.body;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!email || !password) <span class="cstat-no" title="statement not covered" >throw { name: "required" };</span>
+      try {
+        let orphan = await Orphan.findOne({ where: { email } });
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!orphan) throw { name: "Invalid Email/Password" };
         let isValid = <span class="cstat-no" title="statement not covered" >compareHashWithPassword(password, orphan.password);</span>
 <span class="cstat-no" title="statement not covered" >        if (!isValid) <span class="cstat-no" title="statement not covered" >throw { name: "Invalid Email/Password" };</span></span>
-        const access_token = <span class="cstat-no" title="statement not covered" >signPayloadToToken({ id: orphan.id });</span>
+        const access_token = <span class="cstat-no" title="statement not covered" >signPayloadToToken({ id: orphan.id, role : orphan.role });</span>
 <span class="cstat-no" title="statement not covered" >        res.status(200).json({ access_token });</span>
       } catch (err) {
-<span class="cstat-no" title="statement not covered" >        next(err);</span>
+        next(err);
       }
     }
   }
@@ -202,7 +202,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-04T16:10:02.854Z
+                at 2022-11-04T19:39:54.040Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
