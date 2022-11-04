@@ -23,15 +23,15 @@ module.exports = {
       transactionStatus: {
         type: Sequelize.STRING
       },
-      VolunteerId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: `Volunteers`,
-          key: `id`
-        },
-        onDelete: `cascade`,
-        onUpdate: `cascade`
-      },
+      // VolunteerId: {
+      //   type: Sequelize.INTEGER,
+        // references: {
+        //   model: `Volunteers`,
+        //   key: `id`
+        // },
+        // onDelete: `cascade`,
+        // onUpdate: `cascade`
+      // },
       email: {
         type: Sequelize.STRING
       },
