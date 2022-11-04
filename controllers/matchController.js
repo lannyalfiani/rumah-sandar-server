@@ -20,17 +20,6 @@ class matchController {
         },
         { transaction: t }
       );
-      await Orphan.update(
-        {
-          matchStatus: "alreadyMatch",
-        },
-        {
-          where: {
-            id,
-          },
-        },
-        { transaction: t }
-      );
       t.commit();
       res.status(201).json({ message: "Create Request Success" });
     } catch (error) {
@@ -42,7 +31,7 @@ class matchController {
   static async getAllMatch(req, res, next) {
     try {
       let response = await Match.findAll({
-        include: [Orphan],
+        include: [Orphan, Volunteer],
         where: {
           VolunteerId: {
             [Op.is]: null,
@@ -59,13 +48,14 @@ class matchController {
     const t = await sequelize.transaction();
     try {
       let { matchId } = req.params;
-      // let VolunteerId = 1;
-      let { startDate, hour, VolunteerId } = req.body;
+      let VolunteerId = req.user.id;
+      let { startDate, hour } = req.body;
+      if (!startDate || !hour) throw { name: "required" };
       let endDate = getEach7Day(startDate, 11);
       let volunteerMatch = await Volunteer.findByPk(VolunteerId, {
         include: [Match],
       });
-      if (volunteerMatch.matchStatus !== "notMatch") {
+      if (volunteerMatch.matchStatus === "alreadyMatch") {
         throw { name: "Kakak already has Adik" };
       }
       let matchData = await Match.findByPk(matchId, { transaction: t });
@@ -73,7 +63,7 @@ class matchController {
         throw { name: "Data Not Found" };
       }
       let orphanMatch = await Orphan.findByPk(matchData.OrphanId);
-      if (orphanMatch.matchStatus !== "notMatch") {
+      if (orphanMatch.matchStatus === "alreadyMatch") {
         throw { name: "Adik already been choose by other kakak" };
       }
       await Match.update(
@@ -82,8 +72,8 @@ class matchController {
           where: {
             id: matchId,
           },
-        },
-        { transaction: t }
+          transaction: t,
+        }
       );
       await Volunteer.update(
         {
@@ -93,8 +83,19 @@ class matchController {
           where: {
             id: volunteerMatch.id,
           },
+          transaction: t,
+        }
+      );
+      await Orphan.update(
+        {
+          matchStatus: "alreadyMatch",
         },
-        { transaction: t }
+        {
+          where: {
+            id: orphanMatch.id,
+          },
+          transaction: t,
+        }
       );
       let schedule = bulkSchedule(matchId, startDate);
       await Class.bulkCreate(schedule, { transaction: t });
@@ -104,6 +105,7 @@ class matchController {
         .json({ message: "Submit Success, and Schedule has been created" });
     } catch (error) {
       await t.rollback();
+      console.log(error);
       next(error);
     }
   }
