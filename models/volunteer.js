@@ -20,10 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
         validate: {
-          // unique: {
-          //   msg: "Email must be unique",
-          // },
-
           notNull: {
             msg: "Email required",
           },
@@ -75,8 +71,45 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      linkedinUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Linkedin Url required",
+          },
+          notEmpty: {
+            msg: "Linkedin Url required",
+          },
+        },
+      },
+      curriculumVitae: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Curriculum Vitae required",
+          },
+          notEmpty: {
+            msg: "Curriculum Vitae required",
+          },
+        },
+      },
+      lastEducation: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Last Education required",
+          },
+          notEmpty: {
+            msg: "Last Education required",
+          },
+        },
+      },
       role: DataTypes.STRING,
       verified: DataTypes.BOOLEAN,
+      matchStatus: DataTypes.STRING
     },
     {
       sequelize,

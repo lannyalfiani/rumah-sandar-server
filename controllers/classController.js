@@ -30,7 +30,7 @@ class classController {
     try {
       //nanti pake req.user
       let { VolunteerId, OrphanId, role } = req.body;
-      if (role === "kakak") {
+      if (role === "volunteer") {
         let schedule = await Match.findAll({
           where: {
             VolunteerId,
@@ -38,7 +38,7 @@ class classController {
           include: [{ model: Class, order: [["date", "DESC"]] }],
         });
         res.status(200).json(schedule);
-      } else if (role === "adik") {
+      } else if (role === "orphan") {
         let schedule = await Match.findAll({
           where: {
             OrphanId,

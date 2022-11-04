@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    let data = require("../database/classCategory.json");
+    let data = require("../data/classCategory.json");
     data.map((el) => {
       el.createdAt = new Date();
       el.updatedAt = new Date();

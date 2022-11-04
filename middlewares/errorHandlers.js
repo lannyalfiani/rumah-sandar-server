@@ -1,28 +1,23 @@
 function errorHandler(err, req, res, next) {
-  console.log(err);
-  let code = 500
-  let msg = `Internal Server Error`
-  if(err.name === "required"){
-    code = 400,
-    msg = "All Field Required "
-  } else if(err.name === "Invalid Email/Password"){
-    code = 401,
-    msg = "Invalid Email/Password"
-  } else if (
-    err.name === "SequelizeValidationError" ||
-    err.name === "SequelizeUniqueConstraintError"
-  ) {
-    code = 400;
-    message = err.errors[0].message;
-  }else if (err.name === `INVOICE_NOT_PAID`) {
-    code = 401
-    msg = `Callback is received but the invoice is not paid`
+  let code = 500;
+  let msg = `Internal Server Error`;
+  if (err.name === "required") {
+    (code = 404), (msg = "All Field Required ");
   } else if (err.name === "Invalid Email/Password") {
-    code = 401,
-      msg = "Invalid Email/Password"
+    (code = 401), (msg = "Invalid Email/Password");
+  }
+
+  if (err.name === `INVOICE_NOT_PAID`) {
+    code = 401;
+    msg = `Callback is received but the invoice is not paid`;
+  }
+  if (err.name === "required") {
+    (code = 404), (msg = "All Field Required ");
+  } else if (err.name === "Invalid Email/Password") {
+    (code = 401), (msg = "Invalid Email/Password");
   } else if (err.name === `INVOICE_NOT_PAID`) {
-    code = 401
-    msg = `Callback is received but the invoice is not paid`
+    code = 401;
+    msg = `Callback is received but the invoice is not paid`;
   } else if (err.name == "Data Not Found") {
     code = 404;
     msg = "Data Not Found";
@@ -32,6 +27,15 @@ function errorHandler(err, req, res, next) {
   } else if (err.name == "Kakak already has Adik") {
     code = 400;
     msg = "Kakak already has Adik";
+  } else if (err.name == "SequelizeValidationError") {
+    code = 400;
+    msg = err.errors[0].message;
+  } else if (err.name == "Forbidden") {
+    code = 403;
+    msg = "Forbidden";
+  } else if (err.name == "SequelizeUniqueConstraintError") {
+    code = 400;
+    msg = "email already been used";
   }
 
   res.status(code).json({ message: msg });

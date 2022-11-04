@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { createHashPassword } = require('../helpers/helpers');
 module.exports = (sequelize, DataTypes) => {
   class Orphan extends Model {
     /**
@@ -85,7 +86,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     role: DataTypes.STRING,
-    verified: DataTypes.BOOLEAN
+    verified: DataTypes.BOOLEAN,
+    matchStatus: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Orphan',
