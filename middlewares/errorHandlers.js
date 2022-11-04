@@ -11,6 +11,11 @@ function errorHandler(err, req, res, next) {
 
 
 
+  if (err.name === `INVOICE_NOT_PAID`) {
+    code = 401
+    msg = `Callback is received but the invoice is not paid`
+  }
+
   res.status(code).json({ message: msg })
 }
 

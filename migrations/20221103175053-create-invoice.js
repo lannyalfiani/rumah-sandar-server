@@ -23,19 +23,28 @@ module.exports = {
       transactionStatus: {
         type: Sequelize.STRING
       },
-      VolunteerId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: `Volunteers`,
-          key: `id`
-        },
-        onDelete: `cascade`,
-        onUpdate: `cascade`
-      },
+      // VolunteerId: {
+      //   type: Sequelize.INTEGER,
+        // references: {
+        //   model: `Volunteers`,
+        //   key: `id`
+        // },
+        // onDelete: `cascade`,
+        // onUpdate: `cascade`
+      // },
       email: {
         type: Sequelize.STRING
       },
       name: {
+        type: Sequelize.STRING
+      },
+      external_id: {
+        type: Sequelize.STRING
+      },
+      paid_at: {
+        type: Sequelize.DATE
+      },
+      payment_method: {
         type: Sequelize.STRING
       },
       createdAt: {
