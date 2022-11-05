@@ -24,14 +24,7 @@ class adminController {
         },
         { where: { id: orphanId } }
       );
-
-
-      await Match.create({
-        OrphanId : foundOrphan.id
-      })
-
       
-
 
       res.status(200).json({ message: `Verify Success` });
     } catch (error) {
