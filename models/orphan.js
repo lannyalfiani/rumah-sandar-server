@@ -63,15 +63,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     imageUrl: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull : {
-          msg : "Image Url required"
-        },
-        notEmpty : {
-          msg : "Image Url required"
-        }
-      }
+      // allowNull: false,
+      // validate: {
+      //   notNull : {
+      //     msg : "Image Url required"
+      //   },
+      //   notEmpty : {
+      //     msg : "Image Url required"
+      //   }
+      // }
     },
     OrphanageId: {
       type: DataTypes.INTEGER,

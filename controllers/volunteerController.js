@@ -2,8 +2,9 @@ const {
   compareHashWithPassword,
   signPayloadToToken,
 } = require("../helpers/helpers");
-const { Volunteer, Orphan } = require("../models");
 
+const { Volunteer, Orphan } = require("../models");
+const cloudinary = require("cloudinary")
 class volunteerController {
   static async registerVolunteer(req, res, next) {
     try {
@@ -14,11 +15,28 @@ class volunteerController {
         linkedinUrl,
         lastEducation, } = req.body;
 
-      let imageUrl = req.files.imageUrl[0].fieldname
-      let curriculumVitae = req.files.curriculumVitae[0].fieldname
+      let imageUrl = req.files.imageUrl[0]
+      let curriculumVitae = req.files.curriculumVitae[0]
+      let imageTODB = ""
+      let CVTODB = ""
 
-      // console.log(req.files.imageUrl[0].fieldname);
-      // console.log(req.files.curriculumVitae[0].fieldname);
+      await cloudinary.v2.uploader
+        .upload(imageUrl.path, { folder: "RumahSandar/Volunteer/Images" })
+        .then(result => {
+          imageTODB = result.url
+        })
+        .catch(err => {
+          throw { name: { err } }
+        })
+
+      await cloudinary.v2.uploader
+        .upload(curriculumVitae.path, { folder: "RumahSandar/Volunteer/CVs" })
+        .then(result => {
+          CVTODB = result.url
+        })
+        .catch(err => {
+          throw { name: { err } }
+        })
 
       if (
         !fullName ||
@@ -30,23 +48,24 @@ class volunteerController {
         throw { name: "required" };
 
       let checkOrphanEmail = await Orphan.findOne({ where: { email } });
+
       if (checkOrphanEmail) {
         throw { name: "SequelizeUniqueConstraintError" };
       }
+
       await Volunteer.create({
         fullName,
         email,
         password,
-        imageUrl,
+        imageUrl: imageTODB,
         role: "volunteer",
         linkedinUrl,
-        curriculumVitae,
+        curriculumVitae: CVTODB,
         lastEducation,
         matchStatus: "notMatch",
       });
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }
