@@ -2,19 +2,44 @@ const {
   compareHashWithPassword,
   signPayloadToToken,
 } = require("../helpers/helpers");
-const { Volunteer } = require("../models");
+const { Volunteer, Orphan } = require("../models");
+
 class volunteerController {
   static async registerVolunteer(req, res, next) {
     try {
-      const { fullName, email, password, imageUrl, volunteerPhoto } = req.body;
-      if (!fullName || !email || !password || !imageUrl)
+      const {
+        fullName,
+        email,
+        password,
+        imageUrl,
+        linkedinUrl,
+        curriculumVitae,
+        lastEducation,
+        volunteerPhoto } = req.body;
+      if (
+        !fullName ||
+        !email ||
+        !password ||
+        !imageUrl ||
+        !linkedinUrl ||
+        !curriculumVitae ||
+        !lastEducation
+      )
         throw { name: "required" };
+      let checkOrphanEmail = await Orphan.findOne({ where: { email } });
+      if (checkOrphanEmail) {
+        throw { name: "SequelizeUniqueConstraintError" };
+      }
       await Volunteer.create({
         fullName,
         email,
         password,
         imageUrl,
         role: "volunteer",
+        linkedinUrl,
+        curriculumVitae,
+        lastEducation,
+        matchStatus: "notMatch",
       });
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
@@ -31,7 +56,11 @@ class volunteerController {
       if (!volunteer) throw { name: "Invalid Email/Password" };
       let isValid = compareHashWithPassword(password, volunteer.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
-      const access_token = signPayloadToToken({ id: volunteer.id, role: volunteer.role });
+
+      const access_token = signPayloadToToken({
+        id: volunteer.id,
+        role: volunteer.role,
+      });
       res.status(200).json({ access_token });
     } catch (err) {
       next(err);

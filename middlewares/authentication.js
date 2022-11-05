@@ -9,22 +9,22 @@ const authentication = async (req, res, next) => {
     const payload = verifyTokenToPayload(access_token);
 
     if (payload.role === "volunteer") {
-      const volunteer = Volunteer.findByPk(payload.id);
+      const volunteer = await Volunteer.findByPk(payload.id);
       if (!volunteer) throw { name: "Invalid Email/Password" };
-
-      req.volunteer = {
+      // di ubah ke req user biar general, karna hanya bisa satu login
+      req.user = {
         id: volunteer.id,
-        fullname: volunteer.fullname,
+        fullname: volunteer.fullName,
         email: volunteer.email,
         role: volunteer.role,
       };
     } else {
-      const orphan = Orphan.findByPk(payload.id);
+      const orphan = await Orphan.findByPk(payload.id);
       if (!orphan) throw { name: "Invalid Email/Password" };
-
-      req.orphan = {
+      // di ubah ke req user biar general, karna hanya bisa satu login
+      req.user = {
         id: orphan.id,
-        fullname: orphan.fullname,
+        fullname: orphan.fullName,
         email: orphan.email,
         role: orphan.role,
       };

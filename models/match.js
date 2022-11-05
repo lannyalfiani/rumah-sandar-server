@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Match extends Model {
     /**
@@ -10,19 +8,23 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Match.belongsTo(models.Orphan)
-      Match.belongsTo(models.Volunteer)
-      Match.hasMany(models.Class)
+      Match.belongsTo(models.Orphan);
+      Match.belongsTo(models.Volunteer);
+      Match.hasMany(models.Class);
     }
   }
-  Match.init({
-    VolunteerId: DataTypes.INTEGER,
-    OrphanId: DataTypes.INTEGER,
-    startDate: DataTypes.DATE,
-    hour: DataTypes.TIME
-  }, {
-    sequelize,
-    modelName: 'Match',
-  });
+  Match.init(
+    {
+      VolunteerId: DataTypes.INTEGER,
+      OrphanId: DataTypes.INTEGER,
+      startDate: DataTypes.DATE,
+      hour: DataTypes.TIME,
+      endDate: DataTypes.DATE,
+    },
+    {
+      sequelize,
+      modelName: "Match",
+    }
+  );
   return Match;
 };
