@@ -7,7 +7,6 @@ const express = require("express");
 const cors = require("cors");
 const router = require("./routes");
 const errorHandler = require("./middlewares/errorHandlers");
-const job = require("./cron/every_10_minutes");
 const app = express();
 
 app.use(cors());
