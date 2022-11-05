@@ -1,11 +1,11 @@
 const volunteerController = require('../controllers/volunteerController')
-// const authentication = require('../middleware/authentication')
+const  upload  = require("../multer/multer")
 
 
 const router = require('express').Router()
 
 
-router.post("/register", volunteerController.registerVolunteer)
+router.post("/register", upload.single("volunteerPhoto"), volunteerController.registerVolunteer)
 router.post("/login", volunteerController.loginVolunteer)
 
 

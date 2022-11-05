@@ -15,7 +15,7 @@ class volunteerController {
         linkedinUrl,
         curriculumVitae,
         lastEducation,
-      } = req.body;
+        volunteerPhoto } = req.body;
       if (
         !fullName ||
         !email ||
@@ -41,9 +41,9 @@ class volunteerController {
         lastEducation,
         matchStatus: "notMatch",
       });
-
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -56,6 +56,7 @@ class volunteerController {
       if (!volunteer) throw { name: "Invalid Email/Password" };
       let isValid = compareHashWithPassword(password, volunteer.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
+
       const access_token = signPayloadToToken({
         id: volunteer.id,
         role: volunteer.role,
