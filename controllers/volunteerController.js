@@ -3,11 +3,10 @@ const {
   signPayloadToToken,
 } = require("../helpers/helpers");
 const { Volunteer } = require("../models");
-
 class volunteerController {
   static async registerVolunteer(req, res, next) {
     try {
-      const { fullName, email, password, imageUrl } = req.body;
+      const { fullName, email, password, imageUrl, volunteerPhoto } = req.body;
       if (!fullName || !email || !password || !imageUrl)
         throw { name: "required" };
       await Volunteer.create({
@@ -17,9 +16,9 @@ class volunteerController {
         imageUrl,
         role: "volunteer",
       });
-
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -32,7 +31,7 @@ class volunteerController {
       if (!volunteer) throw { name: "Invalid Email/Password" };
       let isValid = compareHashWithPassword(password, volunteer.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
-      const access_token = signPayloadToToken({ id: volunteer.id, role : volunteer.role });
+      const access_token = signPayloadToToken({ id: volunteer.id, role: volunteer.role });
       res.status(200).json({ access_token });
     } catch (err) {
       next(err);
