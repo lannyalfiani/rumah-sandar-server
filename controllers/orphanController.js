@@ -2,6 +2,7 @@ const {
   compareHashWithPassword,
   signPayloadToToken,
 } = require("../helpers/helpers");
+const cloudinary = require("cloudinary")
 const { Orphan, Volunteer } = require("../models");
 
 class orphanController {
