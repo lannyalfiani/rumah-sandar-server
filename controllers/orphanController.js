@@ -1,25 +1,49 @@
-const {
-  compareHashWithPassword,
-  signPayloadToToken,
-} = require("../helpers/helpers");
+const { compareHashWithPassword, signPayloadToToken } = require("../helpers/helpers");
 const cloudinary = require("cloudinary")
 const { Orphan, Volunteer } = require("../models");
 
 class orphanController {
+
   static async registerOrphan(req, res, next) {
-    const { fullName, email, password, imageUrl, OrphanageId } = req.body;
-    if (!fullName || !email || !password || !imageUrl || !OrphanageId)
-      throw { name: "required" };
     try {
+      const {
+        fullName,
+        email,
+        password,
+        OrphanageId
+      } = req.body;
+
+      let imageUrl = req.files.imageUrl[0]
+      let imageTODB = ""
+
+      await cloudinary.v2.uploader
+        .upload(imageUrl.path, { folder: "RumahSandar/Orphans" })
+        .then(result => {
+          imageTODB = result.url
+        })
+        .catch(err => {
+          throw { name: { err } }
+        })
+
+      if (!fullName
+        || !email
+        || !password
+        || !imageUrl
+        || !OrphanageId
+      )
+        throw { name: "required" };
+
       let checkVolunteerEmail = await Volunteer.findOne({ where: { email } });
+
       if (checkVolunteerEmail) {
         throw { name: "SequelizeUniqueConstraintError" };
       }
+
       await Orphan.create({
         fullName,
         email,
         password,
-        imageUrl,
+        imageUrl: imageTODB,
         role: "orphan",
         OrphanageId,
         matchStatus: "notMatch",

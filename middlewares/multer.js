@@ -6,7 +6,7 @@ let upload = multer({
   storage
 })
 
-const uploadFiles = upload.fields([
+const volunteerFiles = upload.fields([
   {
     name: "imageUrl",
     maxCount: 1
@@ -17,4 +17,14 @@ const uploadFiles = upload.fields([
   }
 ])
 
-module.exports = uploadFiles;
+const orphanImage = upload.fields([
+  {
+    name: "imageUrl",
+    maxCount: 1
+  }
+])
+
+module.exports = {
+  volunteerFiles,
+  orphanImage
+};

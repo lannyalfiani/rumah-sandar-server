@@ -1,20 +1,8 @@
-const orphanController = require('../controllers/orphanController')
-// const authentication = require('../middleware/authentication')
-
-
 const router = require('express').Router()
+const { orphanImage } = require("../middlewares/multer")
+const orphanController = require('../controllers/orphanController')
 
-
-router.post("/register", orphanController.registerOrphan)
+router.post("/register", orphanImage, orphanController.registerOrphan)
 router.post("/login", orphanController.loginOrphan)
-// router.patch("/")
-
-
-
-
-
-
-
-
 
 module.exports = router
