@@ -4,15 +4,11 @@ class paymentController {
 
   static async acceptCallback(req, res, next) {
     try {
-      //! VALIDASI callbacknya beneran dari Xendit,  samain x-callback-token
-      // TODO nanti masukin .env
-      let ourCallbackToken = "41ko7EXrtTiqrud6eV9QuXMped6a8CXuqfH1C5gQkWjqW2AJ"
+      let ourCallbackToken = process.env.XENDITCALLBACKTOKEN
       if (ourCallbackToken === req.headers['x-callback-token']) {
 
-        //! respon dulu ke Xendit kalo kita udh terima callbacknya
         res.status(200).json({ message: `Callback received!` })
 
-        //! VALIDASI statusnya harus paid buat create invoice ke DB
         let callback = req.body
         let invoiceStatus = callback.status
 
@@ -38,7 +34,7 @@ class paymentController {
       })
       res.status(200).json(data)
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       next(err)
     }
   }
