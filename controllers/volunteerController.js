@@ -2,8 +2,9 @@ const {
   compareHashWithPassword,
   signPayloadToToken,
 } = require("../helpers/helpers");
+const imagekit = require("../imagekit/imagekitConfig");
 const { Volunteer, Orphan } = require("../models");
-
+var fs = require('fs');
 class volunteerController {
   static async registerVolunteer(req, res, next) {
     try {
@@ -14,36 +15,51 @@ class volunteerController {
         linkedinUrl,
         lastEducation, } = req.body;
 
-      let imageUrl = req.files.imageUrl[0].fieldname
-      let curriculumVitae = req.files.curriculumVitae[0].fieldname
+      let image = req.files.imageUrl[0]
+      let curriculumVitae = req.files.curriculumVitae[0]
 
-      // console.log(req.files.imageUrl[0].fieldname);
-      // console.log(req.files.curriculumVitae[0].fieldname);
+      console.log(curriculumVitae);
 
-      if (
-        !fullName ||
-        !email ||
-        !password ||
-        !linkedinUrl ||
-        !lastEducation
-      )
-        throw { name: "required" };
+      if (curriculumVitae) {
+        fs.readFile(curriculumVitae.path, function (err, data) {
+          if (err) throw err; // Fail if the file can't be read.
+          imagekit.upload({
+            file: curriculumVitae.path, //required
+            fileName: curriculumVitae.filename, //required
+            tags: ["tag1", "tag2"]
+          }, function (error, result) {
+            if (error) console.log(error);
+            else console.log(result);
+          });
+        });
 
-      let checkOrphanEmail = await Orphan.findOne({ where: { email } });
-      if (checkOrphanEmail) {
-        throw { name: "SequelizeUniqueConstraintError" };
       }
-      await Volunteer.create({
-        fullName,
-        email,
-        password,
-        imageUrl,
-        role: "volunteer",
-        linkedinUrl,
-        curriculumVitae,
-        lastEducation,
-        matchStatus: "notMatch",
-      });
+
+
+      // if (
+      //   !fullName ||
+      //   !email ||
+      //   !password ||
+      //   !linkedinUrl ||
+      //   !lastEducation
+      // )
+      //   throw { name: "required" };
+
+      // let checkOrphanEmail = await Orphan.findOne({ where: { email } });
+      // if (checkOrphanEmail) {
+      //   throw { name: "SequelizeUniqueConstraintError" };
+      // }
+      // await Volunteer.create({
+      //   fullName,
+      //   email,
+      //   password,
+      //   imageUrl,
+      //   role: "volunteer",
+      //   linkedinUrl,
+      //   curriculumVitae,
+      //   lastEducation,
+      //   matchStatus: "notMatch",
+      // });
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
       console.log(err);
