@@ -11,21 +11,24 @@ class volunteerController {
         fullName,
         email,
         password,
-        imageUrl,
         linkedinUrl,
-        curriculumVitae,
-        lastEducation,
-        volunteerPhoto } = req.body;
+        lastEducation, } = req.body;
+
+      let imageUrl = req.files.imageUrl[0].fieldname
+      let curriculumVitae = req.files.curriculumVitae[0].fieldname
+
+      // console.log(req.files.imageUrl[0].fieldname);
+      // console.log(req.files.curriculumVitae[0].fieldname);
+
       if (
         !fullName ||
         !email ||
         !password ||
-        !imageUrl ||
         !linkedinUrl ||
-        !curriculumVitae ||
         !lastEducation
       )
         throw { name: "required" };
+
       let checkOrphanEmail = await Orphan.findOne({ where: { email } });
       if (checkOrphanEmail) {
         throw { name: "SequelizeUniqueConstraintError" };
