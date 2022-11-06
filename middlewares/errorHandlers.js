@@ -2,18 +2,13 @@ function errorHandler(err, req, res, next) {
   console.log(err);
   let code = 500;
   let msg = `Internal Server Error`;
-  if (err.name === "required") {
-    (code = 404), (msg = "All Field Required ");
-  } else if (err.name === "Invalid Email/Password") {
-    (code = 401), (msg = "Invalid Email/Password");
-  }
 
   if (err.name === `INVOICE_NOT_PAID`) {
     code = 401;
     msg = `Callback is received but the invoice is not paid`;
   }
   if (err.name === "required") {
-    (code = 404), (msg = "All Field Required ");
+    (code = 400), (msg = "All Field Required");
   } else if (err.name === "Invalid Email/Password") {
     (code = 401), (msg = "Invalid Email/Password");
   } else if (err.name === `INVOICE_NOT_PAID`) {
@@ -37,6 +32,10 @@ function errorHandler(err, req, res, next) {
   } else if (err.name == "SequelizeUniqueConstraintError") {
     code = 400;
     msg = "email already been used";
+  } else if(err.name ==='JsonWebTokenError') {
+    code = 401
+    msg = "Unauthorized"
+
   }
 
   res.status(code).json({ message: msg });

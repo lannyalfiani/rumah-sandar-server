@@ -6,10 +6,10 @@ const { Orphan, Volunteer } = require("../models");
 
 class orphanController {
   static async registerOrphan(req, res, next) {
-    const { fullName, email, password, imageUrl, OrphanageId } = req.body;
-    if (!fullName || !email || !password || !imageUrl || !OrphanageId)
-      throw { name: "required" };
     try {
+      const { fullName, email, password, imageUrl, OrphanageId } = req.body;
+      if (!fullName || !email || !password || !imageUrl || !OrphanageId)
+        throw { name: "required" };
       let checkVolunteerEmail = await Volunteer.findOne({ where: { email } });
       if (checkVolunteerEmail) {
         throw { name: "SequelizeUniqueConstraintError" };
@@ -26,6 +26,7 @@ class orphanController {
 
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -41,7 +42,6 @@ class orphanController {
       const access_token = signPayloadToToken({ id: orphan.id });
       res.status(200).json({ access_token });
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }

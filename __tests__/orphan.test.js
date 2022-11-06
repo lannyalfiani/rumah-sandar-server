@@ -1,28 +1,39 @@
 const app = require("../app");
 const request = require("supertest");
-const { Orphan, Orphanage } = require("../models");
+const { Orphan, sequelize } = require("../models");
+const { queryInterface } = sequelize;
+
+const OrphanagesData = require("../data/orphanages.json").map((el) => {
+  el.createdAt = new Date();
+  el.updatedAt = new Date();
+  return el;
+});
+
+beforeAll(async () => {
+  await queryInterface.bulkInsert(`Orphanages`, OrphanagesData, {});
+});
+
+afterAll(async () => {
+  await queryInterface.bulkDelete(`Orphanages`, null, {
+    truncate: true,
+    restartIdentity: true,
+    cascade: true,
+  });
+
+  await Orphan.destroy({
+    truncate: true,
+    cascade: true,
+    restartIdentity: true,
+  });
+});
 
 const orphan1 = {
+  fullName: "User Test",
   email: "user.test@mail.com",
-  name: "User Test",
   password: "usertest",
+  imageUrl: "test",
+  OrphanageId: 1,
 };
-
-// afterAll(done => {
-//     Orphan.destroy({ truncate: true, cascade: true, restartIdentity: true})
-//     .then(_ => {
-//       return Hero.destroy({ truncate: true, cascade: true, restartIdentity: true})
-//     })
-//     .then(_ => {
-//       return MyHero.destroy({ truncate: true, cascade: true, restartIdentity: true})
-//     })
-//     .then(_ => {
-//       done();
-//     })
-//     .catch(err => {
-//       done(err);
-//     });
-// });
 
 describe("Orphan Routes Test", () => {
   describe("POST /orphan/register - create new user", () => {
@@ -35,8 +46,7 @@ describe("Orphan Routes Test", () => {
           const { body, status } = res;
 
           expect(status).toBe(201);
-          expect(body).toHaveProperty("id", expect.any(Number));
-          expect(body).toHaveProperty("email", orphan1.email);
+          expect(body).toHaveProperty("message", "Register Success");
           return done();
         });
     });
@@ -45,14 +55,18 @@ describe("Orphan Routes Test", () => {
       request(app)
         .post("/orphan/register")
         .send({
-          password: "qweqwe",
+          fullName: "User Test",
+          password: "usertest",
+          email:'' ,
+          imageUrl: "test",
+          OrphanageId: 1,
         })
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
 
           expect(status).toBe(400);
-          expect(body).toHaveProperty("message", "Email is required");
+          expect(body).toHaveProperty("message", "All Field Required");
           return done();
         });
     });
@@ -66,7 +80,7 @@ describe("Orphan Routes Test", () => {
           const { body, status } = res;
 
           expect(status).toBe(400);
-          expect(body).toHaveProperty("message", "Email must be unique");
+          expect(body).toHaveProperty("message", "email already been used");
           return done();
         });
     });
@@ -75,16 +89,18 @@ describe("Orphan Routes Test", () => {
       request(app)
         .post("/orphan/register")
         .send({
-          email: "random",
-          name: "Sample User",
-          password: "qweqwe",
+          fullName: "User Test",
+          email: "email",
+          password: "usertest",
+          imageUrl: "test",
+          OrphanageId: 1,
         })
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
 
           expect(status).toBe(400);
-          expect(body).toHaveProperty("message", "Invalid email format");
+          expect(body).toHaveProperty("message", "Wrong format");
           return done();
         });
     });
@@ -117,7 +133,7 @@ describe("Orphan Routes Test", () => {
           const { body, status } = res;
 
           expect(status).toBe(401);
-          expect(body).toHaveProperty("message", "Invalid email/password");
+          expect(body).toHaveProperty("message", "Invalid Email/Password");
           return done();
         });
     });

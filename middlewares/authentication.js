@@ -1,6 +1,6 @@
 const { verifyTokenToPayload } = require("../helpers/helpers");
 
-const { Volunteer, Orphan } = require("../models");
+const { Volunteer, Orphan, Admin } = require("../models");
 
 const authentication = async (req, res, next) => {
   try {
@@ -18,7 +18,7 @@ const authentication = async (req, res, next) => {
         email: volunteer.email,
         role: volunteer.role,
       };
-    } else {
+    } else if (payload.role === "orphan"){
       const orphan = await Orphan.findByPk(payload.id);
       if (!orphan) throw { name: "Invalid Email/Password" };
       // di ubah ke req user biar general, karna hanya bisa satu login
@@ -28,8 +28,15 @@ const authentication = async (req, res, next) => {
         email: orphan.email,
         role: orphan.role,
       };
+    } else {
+      const admin = await Admin.findByPk(payload.id)
+      if (!admin) throw { name: "Invalid Email/Password" };
+      req.user = {
+        id: admin.id,
+        email: admin.email,
+        role: admin.role,
+      };
     }
-
     next();
   } catch (error) {
     next(error);
