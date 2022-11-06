@@ -1,6 +1,13 @@
 const app = require("../app");
 const request = require("supertest");
-const { Volunteer, Admin, Orphan, Orphanage, Match, sequelize } = require("../models");
+const {
+  Volunteer,
+  Admin,
+  Orphan,
+  Orphanage,
+  Match,
+  sequelize,
+} = require("../models");
 const { signPayloadToToken } = require("../helpers/helpers");
 
 const { queryInterface } = sequelize;
@@ -47,8 +54,8 @@ beforeAll((done) => {
           personInCharge: "Fadhillah Ihsan",
           imageUrl:
             "https://yayasanalphaindonesia.org/wp-content/uploads/2019/09/IMG-20190909-WA0042.jpg",
-            createdAt: new Date(),
-            updatedAt: new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ]);
     })
@@ -140,11 +147,11 @@ describe("PATCH /orphan/:orphanId", () => {
     describe("Updating with valid token", () => {
       it("Should return status code 200", async () => {
         const response = await request(app)
-          .put("/admin/orphan/1")
-          .set( "access_token", validToken );
+          .patch("/admin/orphan/1")
+          .set("access_token", validToken);
         const { body, status } = response;
         expect(status).toBe(200);
-        expect(body).toHaveProperty("msg", expect.any(String));
+        expect(body).toHaveProperty("message", expect.any(String));
       });
     });
   });
@@ -152,8 +159,8 @@ describe("PATCH /orphan/:orphanId", () => {
     describe("Updating with invalid token", () => {
       it("Should return statuc code 401", async () => {
         const response = await request(app)
-          .put("/admin/orphan/1")
-          .set( "access_token", invalidToken );
+          .patch("/admin/orphan/1")
+          .set("access_token", invalidToken);
         expect(response.status).toBe(401);
         expect(response.body).toHaveProperty("message", "Unauthorized");
       });
@@ -161,11 +168,22 @@ describe("PATCH /orphan/:orphanId", () => {
     describe("Updating with empty params or the content is not found", () => {
       it("Should return status code 404", async () => {
         const response = await request(app)
-          .put("/admin/orphan/10")
-          .set( "access_token", validToken );
+          .patch("/admin/orphan/10")
+          .set("access_token", validToken);
         const { body, status } = response;
         expect(status).toBe(404);
-        expect(body).toHaveProperty("message", expect.any(String));
+        expect(body).toHaveProperty("message", "Data Not Found");
+      });
+    });
+
+    describe("Updating with empty params or the content is not found or invalid token", () => {
+      it("Should return status code 404", async () => {
+        const response = await request(app)
+          .patch("/admin/orphan/10")
+          .set("access_token", invalidToken);
+        const { body, status } = response;
+        expect(status).toBe(401);
+        expect(body).toHaveProperty("message", "Unauthorized");
       });
     });
   });

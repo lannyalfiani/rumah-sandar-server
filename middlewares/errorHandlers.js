@@ -1,5 +1,4 @@
 function errorHandler(err, req, res, next) {
-  console.log(err);
   let code = 500;
   let msg = `Internal Server Error`;
   if (err.name === "required") {
@@ -16,7 +15,7 @@ function errorHandler(err, req, res, next) {
   } else if (err.name === `INVOICE_NOT_PAID`) {
     code = 401;
     msg = `Callback is received but the invoice is not paid`;
-  } else if (err.name == "Data Not Found") {
+  } else if (err.name == "Not Found") {
     code = 404;
     msg = "Data Not Found";
   } else if (err.name == "Adik already been choose by other kakak") {
