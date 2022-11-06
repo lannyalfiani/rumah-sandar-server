@@ -39,9 +39,6 @@ class volunteerController {
           throw { name: { err } }
         })
 
-      if (!fullName || !email || !password || !linkedinUrl || !lastEducation)
-        throw { name: "required" };
-
       let checkOrphanEmail = await Orphan.findOne({ where: { email } });
 
       if (checkOrphanEmail) {
@@ -90,6 +87,17 @@ class volunteerController {
       res.status(200).json({ access_token, sendData });
     } catch (err) {
       next(err);
+    }
+  }
+  static async getVolunteerById(req, res, next) {
+    try {
+      const {id} = req.params
+      const volunteers = await Volunteer.findByPk(id);
+      if (!volunteers) throw { name: "Not Found" };
+
+      res.status(200).json(volunteers);
+    } catch (error) {
+      next(error);
     }
   }
 }

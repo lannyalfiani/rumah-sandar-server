@@ -1,37 +1,26 @@
-const { compareHashWithPassword, signPayloadToToken } = require("../helpers/helpers");
-const cloudinary = require("cloudinary")
+const {
+  compareHashWithPassword,
+  signPayloadToToken,
+} = require("../helpers/helpers");
+const cloudinary = require("cloudinary");
 const { Orphan, Volunteer } = require("../models");
 
 class orphanController {
-
   static async registerOrphan(req, res, next) {
     try {
-      const {
-        fullName,
-        email,
-        password,
-        OrphanageId
-      } = req.body;
+      const { fullName, email, password, OrphanageId } = req.body;
 
-      let imageUrl = req.files.imageUrl[0]
-      let imageTODB = ""
+      let imageUrl = req.files.imageUrl[0];
+      let imageTODB = "";
 
       await cloudinary.v2.uploader
         .upload(imageUrl.path, { folder: "RumahSandar/Orphans" })
-        .then(result => {
-          imageTODB = result.url
+        .then((result) => {
+          imageTODB = result.url;
         })
-        .catch(err => {
-          throw { name: { err } }
-        })
-
-      if (!fullName
-        || !email
-        || !password
-        || !imageUrl
-        || !OrphanageId
-      )
-        throw { name: "required" };
+        .catch((err) => {
+          throw { name: { err } };
+        });
 
       let checkVolunteerEmail = await Volunteer.findOne({ where: { email } });
 
@@ -62,13 +51,24 @@ class orphanController {
     try {
       let orphan = await Orphan.findOne({ where: { email } });
       if (!orphan) throw { name: "Invalid Email/Password" };
-      if(!orphan.verified) throw { name: "You are not verified" }
+      if (!orphan.verified) throw { name: "You are not verified" };
       let isValid = compareHashWithPassword(password, orphan.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
       const access_token = signPayloadToToken({ id: orphan.id });
       res.status(200).json({ access_token });
     } catch (err) {
       next(err);
+    }
+  }
+  static async getOrphanById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const Orphans = await Orphan.findByPk(id);
+      if (!Orphans) throw { name: "Not Found" };
+
+      res.status(200).json(Orphans);
+    } catch (error) {
+      next(error);
     }
   }
 }
