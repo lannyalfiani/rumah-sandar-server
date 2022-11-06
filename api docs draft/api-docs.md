@@ -17,6 +17,7 @@ List of Available Endpoints:
 14. `GET /categories`
 15. `POST /payment/xendit-callback`
 16. `GET /payment/donations`
+17. `POST /admin/login`
 
  <br> 
 
@@ -80,10 +81,24 @@ _Response 200 - OK_
 - Body
     ```json
       {
-        "access_token": String
+        "access_token": String,
+        "sendData": {
+          "id": Integer,
+          "role": String,
+          "fullName": String,
+          "verified": Boolean,
+          "matchStatus": String
+        }
       }
   ```
 _Response 400 - Bad Request_
+- Body
+  ```json
+    {
+      "message": String
+    }
+    ```
+_Response 401 - Unauthorized_
 - Body
   ```json
     {
@@ -238,9 +253,9 @@ _Response 200 - OK_
 
  <br> 
 
-## 7. PATCH admin/orphan/:volunteerId
+## 7. PATCH admin/volunteer/:volunteerId
 ### Description
-- XXXXXXX
+- Verify a registered volunteer account
 
 ### Request
 - Headers
@@ -251,7 +266,7 @@ _Response 200 - OK_
 - Body
     ```json
   {
-      XXXXXXX
+      "message": String
   }
   ```
 ### Response
@@ -556,7 +571,7 @@ _Response 200 - OK_
     },
     ```
 
-## 15. GET /payment/donations
+## 16. GET /payment/donations
 
 ### Description
 - Get all data for donations
@@ -581,3 +596,44 @@ _Response 200 - OK_
         },
     ]
     ```
+
+## 17. POST /admin/login
+### Description
+- Login to an admin account
+
+### Request
+- Body
+    ```json
+  {
+      "email": String,
+      "password": String,
+  }
+  ```
+### Response
+_Response 200 - OK_
+- Body
+    ```json
+      {
+        "access_token": String
+      }
+  ```
+_Response 400 - Bad Request_
+- Body
+  ```json
+    {
+      "message": String
+    }
+    ```
+_Response 401 - Unauthorized_
+- Body
+  ```json
+    {
+      "message": String
+    }
+    ```
+
+ <br> 
+
+---
+
+ <br> 
