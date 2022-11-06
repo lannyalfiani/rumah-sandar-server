@@ -1,18 +1,8 @@
+const router = require('express').Router()
+const { orphanImage } = require("../middlewares/multer")
 const orphanController = require('../controllers/orphanController')
 
-
-const router = require('express').Router()
-
-
-router.post("/register", orphanController.registerOrphan)
+router.post("/register", orphanImage, orphanController.registerOrphan)
 router.post("/login", orphanController.loginOrphan)
-
-
-
-
-
-
-
-
 
 module.exports = router

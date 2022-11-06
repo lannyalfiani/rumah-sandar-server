@@ -11,6 +11,7 @@ const authentication = async (req, res, next) => {
     if (payload.role === "volunteer") {
       const volunteer = await Volunteer.findByPk(payload.id);
       if (!volunteer) throw { name: "Invalid Email/Password" };
+      if(!volunteer.verified) throw { name: "You are not verified" }
       // di ubah ke req user biar general, karna hanya bisa satu login
       req.user = {
         id: volunteer.id,
@@ -21,6 +22,7 @@ const authentication = async (req, res, next) => {
     } else if (payload.role === "orphan"){
       const orphan = await Orphan.findByPk(payload.id);
       if (!orphan) throw { name: "Invalid Email/Password" };
+      if(!orphan.verified) throw { name: "You are not verified" }
       // di ubah ke req user biar general, karna hanya bisa satu login
       req.user = {
         id: orphan.id,

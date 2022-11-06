@@ -1,10 +1,21 @@
 const express = require("express");
 const matchController = require("../controllers/matchController");
-const { AuthorizationRequestMatch } = require("../middlewares/authorization");
+const {
+  AuthorizationRequestMatch,
+  AuthorizationVolunteerRequestAndGet,
+} = require("../middlewares/authorization");
 const router = express.Router();
 
-router.get("/", matchController.getAllMatch);
+router.get(
+  "/",
+  AuthorizationVolunteerRequestAndGet,
+  matchController.getAllMatch
+);
 router.post("/", AuthorizationRequestMatch, matchController.RequestToMatch);
-router.put("/:matchId", matchController.AddVolunteerToMatch);
+router.put(
+  "/:matchId",
+  AuthorizationVolunteerRequestAndGet,
+  matchController.AddVolunteerToMatch
+);
 
 module.exports = router;

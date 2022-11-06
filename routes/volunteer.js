@@ -1,11 +1,8 @@
-const adminController = require("../controllers/adminController");
-const volunteerController = require("../controllers/volunteerController");
+const router = require('express').Router()
+const { volunteerFiles } = require("../middlewares/multer")
+const volunteerController = require('../controllers/volunteerController')
 
-const router = require("express").Router();
+router.post("/register", volunteerFiles, volunteerController.registerVolunteer)
+router.post("/login", volunteerController.loginVolunteer)
 
-router.post("/login", adminController.adminLogin)
-router.post("/register", volunteerController.registerVolunteer);
-router.post("/login", volunteerController.loginVolunteer);
-
-
-module.exports = router;
+module.exports = router
