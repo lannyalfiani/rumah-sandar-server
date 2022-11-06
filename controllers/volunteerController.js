@@ -3,7 +3,7 @@ const {
   signPayloadToToken,
 } = require("../helpers/helpers");
 const { Volunteer, Orphan } = require("../models");
-
+const main = require("../helpers/nodemailer");
 class volunteerController {
   static async registerVolunteer(req, res, next) {
     try {
@@ -55,6 +55,7 @@ class volunteerController {
       if (!email || !password) throw { name: "required" };
       let volunteer = await Volunteer.findOne({ where: { email } });
       if (!volunteer) throw { name: "Invalid Email/Password" };
+      if(!volunteer.verified) throw { name: "You are not verified" }
       let isValid = compareHashWithPassword(password, volunteer.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
 

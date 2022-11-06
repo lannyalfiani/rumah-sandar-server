@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const { bulkSchedule, getEach7Day } = require("../helpers/getEach7Day");
+const main = require("../helpers/nodemailer");
 const {
   Match,
   Class,
@@ -62,10 +63,12 @@ class matchController {
       if (!matchData) {
         throw { name: "Data Not Found" };
       }
-      let orphanMatch = await Orphan.findByPk(matchData.OrphanId);
+      let orphanMatch = await Orphan.findByPk(matchData.OrphanId, { transaction: t });
       if (orphanMatch.matchStatus === "alreadyMatch") {
         throw { name: "Adik already been choose by other kakak" };
       }
+      console.log(orphanMatch.matchStatus);
+      console.log(orphanMatch.fullName);
       await Match.update(
         { VolunteerId, OrphanId: matchData.OrphanId, startDate, hour, endDate },
         {
@@ -100,6 +103,17 @@ class matchController {
       let schedule = bulkSchedule(matchId, startDate);
       await Class.bulkCreate(schedule, { transaction: t });
       await t.commit();
+      
+      main(
+        volunteerMatch.email,
+        "Match Success",
+        `volunteer ${volunteerMatch.fullName} anda telah memiliki adik ajar bernama ${orphanMatch.fullName} semoga kalian dapat berkembang dengan baik`
+      );
+      main(
+        orphanMatch.email,
+        "Match Success",
+        `volunteer ${volunteerMatch.fullName} anda telah memiliki adik ajar bernama ${orphanMatch.fullName} semoga kalian dapat berkembang dengan baik`
+      );
       res
         .status(201)
         .json({ message: "Submit Success, and Schedule has been created" });

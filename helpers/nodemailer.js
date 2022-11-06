@@ -58,6 +58,17 @@ async function main(email, subject, message) {
       <p>silahkan klik link :<span><a href="https://google.com">Ruang kelas</a></span></p>
   </div>`,
     });
+  } else if (subject === "Match Success") {
+    let info = await transporter.sendMail({
+      from: process.env.EMAIL, // sender address
+      to: email, // list of receivers
+      subject: subject, // Subject line
+      html: ` <div>
+      <h1> Selamat </h1>
+      <p>${message}</p>
+      <p>untuk daftar schedulenya dapat mengklik Link berikut: <span><a href="https://google.com">Jadwal</a> </p> 
+  </div>`,
+    });
   }
   // send mail with defined transport object
 
