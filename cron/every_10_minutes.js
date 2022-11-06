@@ -50,8 +50,11 @@ let job = new CronJob(
         console.log(element.date);
         console.log(today);
         console.log(OneDayBefore);
+        let message = `Jangan Lupa pada tanggal ${element.date} terdapat mata pembelajaran : ${element.ClassCategory.name} mohon untuk dapat hadir` 
+        main(element.Match.Orphan.email, "Schedule-Orphan", message);
+        main(element.Match.Volunteer.email, "Schedule-Volunteer", message);
         console.log(
-          `Ada kelas kelompok : ${element.MatchId} dengan mata pembelajaran : ${element.ClassCategory.name} dikirim ke email orphan : ${element.Match.Orphan.email} dan dikirim ke email volunteer : ${element.Match.Volunteer.email}`
+          
         );
       }
     });

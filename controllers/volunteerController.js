@@ -12,21 +12,18 @@ class volunteerController {
         email,
         password,
         linkedinUrl,
-        lastEducation, } = req.body;
+        lastEducation,
+        imageUrl,
+        curriculumVitae,
+      } = req.body;
 
-      let imageUrl = req.files.imageUrl[0].fieldname
-      let curriculumVitae = req.files.curriculumVitae[0].fieldname
+      // let imageUrl = req.files.imageUrl[0].fieldname
+      // let curriculumVitae = req.files.curriculumVitae[0].fieldname
 
       // console.log(req.files.imageUrl[0].fieldname);
       // console.log(req.files.curriculumVitae[0].fieldname);
 
-      if (
-        !fullName ||
-        !email ||
-        !password ||
-        !linkedinUrl ||
-        !lastEducation
-      )
+      if (!fullName || !email || !password || !linkedinUrl || !lastEducation)
         throw { name: "required" };
 
       let checkOrphanEmail = await Orphan.findOne({ where: { email } });
@@ -44,6 +41,7 @@ class volunteerController {
         lastEducation,
         matchStatus: "notMatch",
       });
+      main(email, "Registrasi");
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
       console.log(err);
@@ -64,7 +62,14 @@ class volunteerController {
         id: volunteer.id,
         role: volunteer.role,
       });
-      res.status(200).json({ access_token });
+      const sendData = {
+        id: volunteer.id,
+        role: volunteer.role,
+        fullName: volunteer.fullName,
+        verified: volunteer.verified,
+        matchStatus: volunteer.matchStatus,
+      };
+      res.status(200).json({ access_token, sendData });
     } catch (err) {
       next(err);
     }

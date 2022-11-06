@@ -23,7 +23,7 @@ class orphanController {
         OrphanageId,
         matchStatus: "notMatch",
       });
-
+      main(email, "Registrasi");
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
       next(err);
