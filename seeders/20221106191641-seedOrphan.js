@@ -10,6 +10,7 @@ module.exports = {
       el.password = createHashPassword(`${el.password}`)
       el.role = "orphan"
       el.matchStatus = "notMatch"
+      el.verified = true
       return el
     })
     await queryInterface.bulkInsert('Orphans', data, {})

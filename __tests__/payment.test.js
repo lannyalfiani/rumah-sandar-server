@@ -1,5 +1,5 @@
 const request = require(`supertest`)
-const { Invoice, Donation, sequelize } = require("../models")
+const { sequelize } = require("../models")
 const { queryInterface } = sequelize
 const app = require("../app")
 
