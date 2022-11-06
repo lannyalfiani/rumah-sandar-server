@@ -1,7 +1,7 @@
-const orphanageController = require('../controllers/orphanageController')
+const orphanageController = require("../controllers/orphanageController");
 
-const router = require('express').Router()
+const router = require("express").Router();
 
-router.get("/", orphanageController.getOrphanages)
+router.get("/", orphanageController.getOrphanages);
 
-module.exports = router
+module.exports = router;

@@ -1,4 +1,5 @@
 function errorHandler(err, req, res, next) {
+  console.log(err);
   let code = 500;
   let msg = `Internal Server Error`;
   if (err.name === "required") {
@@ -36,6 +37,10 @@ function errorHandler(err, req, res, next) {
   } else if (err.name == "You are not verified") {
     code = 401;
     msg = "You are not verified";
+  } else if(err.name ==='JsonWebTokenError') {
+    code = 401
+    msg = "Unauthorized"
+
   }
 
   res.status(code).json({ message: msg });

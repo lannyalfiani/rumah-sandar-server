@@ -1,7 +1,30 @@
+const { compareHashWithPassword , signPayloadToToken} = require("../helpers/helpers");
+const { Volunteer, Admin, Orphan, Match } = require("../models");
 const main = require("../helpers/nodemailer");
-const { Volunteer, Orphan, Match } = require("../models");
 
 class adminController {
+
+
+  static async adminLogin(req, res, next) {
+    try {
+      const { email, password } = req.body;
+      if (!email || !password) throw { name: "required" };
+      let admin = await Admin.findOne({ where: { email } });
+      console.log(admin, 'adminya dapet gak')
+      if (!admin) throw { name: "Invalid Email/Password" };
+      let isValid = compareHashWithPassword(password, admin.password);
+      if (!isValid) throw { name: "Invalid Email/Password" };
+      const access_token = signPayloadToToken({
+        id: admin.id,
+        role: admin.role,
+      });
+      res.status(200).json({ access_token });
+    } catch (err) {
+      // console.log(err);
+      next(err);
+    }
+  }
+
   static async getVolunteers(req, res, next) {
     try {
       const volunteers = await Volunteer.findAll();
@@ -9,6 +32,7 @@ class adminController {
 
       res.status(200).json(volunteers);
     } catch (error) {
+      // console.log(error);
       next(error);
     }
   }

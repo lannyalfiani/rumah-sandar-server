@@ -19,12 +19,12 @@ router.use("/volunteer", volunteerRouter);
 router.use("/orphan", orphanRouter);
 router.use("/admin", adminRouter);
 router.use("/payment", paymentRouter);
+router.use("/orphanages", orphanagesRouter);
 
 router.use(authentication);
 router.use("/match", matchRouter);
 router.use("/classes", classRouter);
 router.use("/categories", categoryRouter);
 
-router.use("/orphanages", orphanagesRouter);
 
 module.exports = router;
