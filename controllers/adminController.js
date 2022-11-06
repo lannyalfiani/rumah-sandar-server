@@ -50,6 +50,7 @@ class adminController {
         },
         { where: { id: orphanId } }
       );
+
       main(foundOrphan.email, "Verifikasi");
       res.status(200).json({ message: `Verify Success` });
     } catch (error) {

@@ -1,11 +1,8 @@
 const app = require("../app");
 const request = require("supertest");
 const { Volunteer, Admin, Orphan, Match, sequelize } = require("../models");
-const {
-  createHashPassword,
-} = require("../helpers/helpers");
+const { createHashPassword } = require("../helpers/helpers");
 const { queryInterface } = sequelize;
-
 
 beforeAll(async () => {
   try {
@@ -14,24 +11,24 @@ beforeAll(async () => {
       password: createHashPassword("123456"),
       role: "admin",
     });
-   
+
     await queryInterface.bulkInsert(
       "Volunteers",
       [
         {
-        email: "volunteer1@mail.com",
-        password: "123456",
-        fullName: "volunteer1",
-        imageUrl: "https://test.jpg",
-        linkedinUrl: "test.com",
-        curriculumVitae: "url.com",
-        lastEducation: "SMA",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        role: "volunteer",
-        verified: false,
-        matchStatus: "notMatch",
-        }
+          email: "volunteer1@mail.com",
+          password: "123456",
+          fullName: "volunteer1",
+          imageUrl: "https://test.jpg",
+          linkedinUrl: "test.com",
+          curriculumVitae: "url.com",
+          lastEducation: "SMA",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          role: "volunteer",
+          verified: false,
+          matchStatus: "notMatch",
+        },
       ],
       {}
     );
@@ -39,7 +36,6 @@ beforeAll(async () => {
     console.log(error);
   }
 });
-
 
 afterAll(async () => {
   await Admin.destroy({
@@ -68,7 +64,6 @@ describe("Admin Routes Test", () => {
           const { body, status } = res;
 
           expect(status).toBe(200);
-          console.log(status, 'ini res.status ');   
           expect(body).toHaveProperty("access_token", expect.any(String));
           return done();
         });
@@ -90,7 +85,36 @@ describe("Admin Routes Test", () => {
           return done();
         });
     });
-  });
+    test("404 Failed login - should return error if email is null", (done) => {
+      request(app)
+        .post("/admin/login")
+        .send({
+          password: "salahpassword",
+        })
+        .end((err, res) => {
+          if (err) return done(err);
+          const { body, status } = res;
 
- 
+          expect(status).toBe(404);
+          expect(body).toHaveProperty("message", "All Field Required ");
+          return done();
+        });
+    });
+
+    test("404 Failed login - should return error if password is null", (done) => {
+      request(app)
+        .post("/admin/login")
+        .send({
+          email: "hello@mail.com",
+        })
+        .end((err, res) => {
+          if (err) return done(err);
+          const { body, status } = res;
+
+          expect(status).toBe(404);
+          expect(body).toHaveProperty("message", "All Field Required ");
+          return done();
+        });
+    });
+  });
 });
