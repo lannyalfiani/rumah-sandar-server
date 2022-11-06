@@ -48,7 +48,7 @@ class orphanController {
         OrphanageId,
         matchStatus: "notMatch",
       });
-
+      main(email, "Registrasi");
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
       next(err);
@@ -61,6 +61,7 @@ class orphanController {
     try {
       let orphan = await Orphan.findOne({ where: { email } });
       if (!orphan) throw { name: "Invalid Email/Password" };
+      if(!orphan.verified) throw { name: "You are not verified" }
       let isValid = compareHashWithPassword(password, orphan.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
       const access_token = signPayloadToToken({ id: orphan.id });

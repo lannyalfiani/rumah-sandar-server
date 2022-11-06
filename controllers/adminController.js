@@ -1,4 +1,5 @@
-const { Volunteer, Orphan, Match  } = require("../models");
+const main = require("../helpers/nodemailer");
+const { Volunteer, Orphan, Match } = require("../models");
 
 class adminController {
   static async getVolunteers(req, res, next) {
@@ -24,8 +25,10 @@ class adminController {
         },
         { where: { id: orphanId } }
       );
-      
-
+      main(
+        foundOrphan.email,
+        "Verifikasi",
+      );
       res.status(200).json({ message: `Verify Success` });
     } catch (error) {
       next(error);
@@ -33,10 +36,10 @@ class adminController {
   }
 
   static async verifyVolunteer(req, res, next) {
-    const { volunteerId } = req.params;
     try {
+      const { volunteerId } = req.params;
       const foundVolunteer = await Volunteer.findByPk(volunteerId);
-      if (foundVolunteer) throw { name: "Not Found" };
+      if (!foundVolunteer) throw { name: "Not Found" };
 
       await Volunteer.update(
         {
@@ -44,7 +47,10 @@ class adminController {
         },
         { where: { id: volunteerId } }
       );
-
+      main(
+        foundVolunteer.email,
+        "Verifikasi",
+      );
       res.status(200).json({ message: `Verify Success` });
     } catch (error) {
       next(error);
