@@ -1,16 +1,17 @@
-const { compareHashWithPassword , signPayloadToToken} = require("../helpers/helpers");
+const {
+  compareHashWithPassword,
+  signPayloadToToken,
+} = require("../helpers/helpers");
 const { Volunteer, Admin, Orphan, Match } = require("../models");
 const main = require("../helpers/nodemailer");
 
 class adminController {
-
-
   static async adminLogin(req, res, next) {
     try {
       const { email, password } = req.body;
       if (!email || !password) throw { name: "required" };
       let admin = await Admin.findOne({ where: { email } });
-      console.log(admin, 'adminya dapet gak')
+      console.log(admin, "adminya dapet gak");
       if (!admin) throw { name: "Invalid Email/Password" };
       let isValid = compareHashWithPassword(password, admin.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
@@ -49,10 +50,8 @@ class adminController {
         },
         { where: { id: orphanId } }
       );
-      // main(
-      //   foundOrphan.email,
-      //   "Verifikasi",
-      // );
+
+      main(foundOrphan.email, "Verifikasi");
       res.status(200).json({ message: `Verify Success` });
     } catch (error) {
       next(error);
@@ -71,12 +70,20 @@ class adminController {
         },
         { where: { id: volunteerId } }
       );
-      main(
-        foundVolunteer.email,
-        "Verifikasi",
-      );
+      main(foundVolunteer.email, "Verifikasi");
       res.status(200).json({ message: `Verify Success` });
     } catch (error) {
+      next(error);
+    }
+  }
+  static async getOrphans(req, res, next) {
+    try {
+      const Orphans = await Orphan.findAll();
+      if (!Orphans) throw { name: "Not Found" };
+
+      res.status(200).json(Orphans);
+    } catch (error) {
+      // console.log(error);
       next(error);
     }
   }
