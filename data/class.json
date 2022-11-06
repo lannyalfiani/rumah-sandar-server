@@ -1,0 +1,32 @@
+[
+  {
+    "MatchId": 1,
+    "description": "This is Bahasa Indonesia Class",
+    "ClassCategoryId": 1
+  },
+  {
+    "MatchId": 1,
+    "description": "This is Matemathic Class",
+    "ClassCategoryId": 2
+  },
+  {
+    "MatchId": 1,
+    "description": "This is Physic Class",
+    "ClassCategoryId": 3
+  },
+  {
+    "MatchId": 1,
+    "description": "This is Pancasila Class",
+    "ClassCategoryId": 4
+  },
+  {
+    "MatchId": 1,
+    "description": "This is History Class",
+    "ClassCategoryId": 5
+  },
+  {
+    "MatchId": 1,
+    "description": "This is Culture Class",
+    "ClassCategoryId": 6
+  }
+]

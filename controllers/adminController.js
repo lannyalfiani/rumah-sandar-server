@@ -11,7 +11,7 @@ class adminController {
       const { email, password } = req.body;
       if (!email || !password) throw { name: "required" };
       let admin = await Admin.findOne({ where: { email } });
-      console.log(admin, "adminya dapet gak");
+      // console.log(admin, "adminya dapet gak");
       if (!admin) throw { name: "Invalid Email/Password" };
       let isValid = compareHashWithPassword(password, admin.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
@@ -76,6 +76,7 @@ class adminController {
       next(error);
     }
   }
+  
   static async getOrphans(req, res, next) {
     try {
       const Orphans = await Orphan.findAll();
