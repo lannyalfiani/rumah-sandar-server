@@ -7,7 +7,7 @@ let job = new CronJob(
   // sec, minute, hour, day of month, month, day of week
   "* * */23 * * *",
   async function () {
-    // console.log("tes")
+    console.log("tes")
     let today = new Date();
     let tesEndDay = new Date("2023-01-21 08:00:00.000 +0700");
     let AllMatch = await Match.findAll({
@@ -63,3 +63,4 @@ let job = new CronJob(
 );
 // Use this if the 4th param is default value(false)
 job.start();
+module.exports = job
