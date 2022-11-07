@@ -5,38 +5,18 @@ const {
 const { Volunteer, Orphan } = require("../models");
 const main = require("../helpers/nodemailer");
 const cloudinary = require("cloudinary");
-const CloudinaryCloud = require("./CloudinaryCloud");
+const CloudinaryCloud = require("../helpers/CloudinaryCloud");
 class volunteerController {
   static async registerVolunteer(req, res, next) {
     try {
       const { fullName, email, password, linkedinUrl, lastEducation } =
         req.body;
 
-      // console.log(req.files);
+      let imageUrl = req.files.imageUrl[0]
+      let curriculumVitae = req.files.curriculumVitae[0]
 
-      let imageUrl = req.files.imageUrl[0];
-      let curriculumVitae = req.files.curriculumVitae[0];
-
-      let imageTODB = await CloudinaryCloud.uploadImageVolunteer(imageUrl);
-      let CVTODB = await CloudinaryCloud.uploadCV(curriculumVitae);
-
-      // await cloudinary.v2.uploader
-      //   .upload(imageUrl.path, { folder: "RumahSandar/Volunteer/Images" })
-      //   .then(result => {
-      //     imageTODB = result.url
-      //   })
-      //   .catch(err => {
-      //     throw { name: { err } }
-      //   })
-
-      // await cloudinary.v2.uploader
-      //   .upload(curriculumVitae.path, { folder: "RumahSandar/Volunteer/CVs" })
-      //   .then(result => {
-      //     CVTODB = result.url
-      //   })
-      //   .catch(err => {
-      //     throw { name: { err } }
-      //   })
+      let imageTODB = await CloudinaryCloud.uploadImageVolunteer(imageUrl)
+      let CVTODB = await CloudinaryCloud.uploadCV(curriculumVitae)
 
       let checkOrphanEmail = await Orphan.findOne({ where: { email } });
 
@@ -64,6 +44,7 @@ class volunteerController {
   }
 
   static async loginVolunteer(req, res, next) {
+    console.log(req.body)
     try {
       console.log(req.body, "ini di controller");
       const { email, password } = req.body;
@@ -88,6 +69,7 @@ class volunteerController {
       };
       res.status(200).json({ access_token, sendData });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }

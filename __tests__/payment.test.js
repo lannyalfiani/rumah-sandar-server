@@ -30,7 +30,6 @@ describe("GET /payment/donations", () => {
       .get("/payment/donations")
       .then((response) => {
         const { body, status } = response;
-
         expect(status).toBe(200);
         expect(Array.isArray(body)).toBeTruthy();
         expect(body.length).toBeGreaterThan(0);
@@ -46,7 +45,7 @@ describe("POST /payment/xendit-callback", () => {
   test("200 success accepting callback from Xendit with our callback token", (done) => {
     request(app)
       .post("/payment/xendit-callback")
-      .set("x-callback-token", "41ko7EXrtTiqrud6eV9QuXMped6a8CXuqfH1C5gQkWjqW2AJ")
+      .set("x-callback-token", `${process.env.XENDITCALLBACKTOKEN}`)
       .send({
         "id": "6364b998eb10cf89a9053653",
         "amount": 50000,
@@ -77,6 +76,7 @@ describe("POST /payment/xendit-callback", () => {
       .then((response) => {
         const { body, status } = response;
         expect(status).toBe(200);
+        expect(body).toHaveProperty("message", "Callback received!");
         done();
       })
       .catch((err) => {
@@ -84,10 +84,10 @@ describe("POST /payment/xendit-callback", () => {
       });
   });
 
-  test("401 receive callback with UNPAID invoice", (done) => {
+  test("401 receive callback with PENDING invoice", (done) => {
     request(app)
       .post("/payment/xendit-callback")
-      .set("x-callback-token", "41ko7EXrtTiqrud6eV9QuXMped6a8CXuqfH1C5gQkWjqW2AJ")
+      .set("x-callback-token", `${process.env.XENDITCALLBACKTOKEN}`)
       .send({
         "id": "6364b998eb10cf89a9053653",
         "amount": 50000,
@@ -118,6 +118,7 @@ describe("POST /payment/xendit-callback", () => {
       .then((response) => {
         const { body, status } = response;
         expect(status).toBe(401);
+        expect(body).toHaveProperty("message", "Callback is received but the invoice is not paid");
         done();
       })
       .catch((err) => {
@@ -125,7 +126,7 @@ describe("POST /payment/xendit-callback", () => {
       });
   });
 
-  test("403 callback received but not from Xendit", (done) => {
+  test("403 callback received without a Xendit callback token", (done) => {
     request(app)
       .post("/payment/xendit-callback")
       .send({
@@ -158,6 +159,7 @@ describe("POST /payment/xendit-callback", () => {
       .then((response) => {
         const { body, status } = response;
         expect(status).toBe(403);
+        expect(body).toHaveProperty("message", "Callback is not from Xendit");
         done();
       })
       .catch((err) => {

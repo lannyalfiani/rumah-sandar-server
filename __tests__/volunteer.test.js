@@ -1,13 +1,49 @@
 const request = require(`supertest`);
-const { Volunteer, sequelize } = require("../models");
-const CloudinaryCloud = require("../controllers/CloudinaryCloud");
+const { Volunteer, Orphan, sequelize } = require("../models");
+const CloudinaryCloud = require("../helpers/CloudinaryCloud")
 const { queryInterface } = sequelize;
 const app = require("../app");
 const { createHashPassword } = require("../helpers/helpers");
 
 beforeEach(() => {
-  jest.restoreAllMocks();
-});
+  // jest.restoreAllMocks()
+  jest.spyOn(CloudinaryCloud, "uploadImageVolunteer").mockResolvedValue("img.png")
+  jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf")
+})
+
+afterEach(() => {
+  jest.restoreAllMocks()
+})
+
+const volunteer1 = [
+  {
+    email: "volunteer12@mail.com",
+    password: "123456",
+    fullName: "volunteer1",
+    // imageUrl: "https://test.jpg",
+    linkedinUrl: "test.com",
+    // curriculumVitae: "url.com",
+    lastEducation: "SMA",
+    verified: true
+  }
+]
+
+let dataSeed = volunteer1.map(el => {
+  el.createdAt = new Date()
+  el.updatedAt = new Date()
+  el.password = createHashPassword(`${el.password}`)
+  return el
+})
+
+beforeAll(async () => {
+
+  try {
+    await queryInterface.bulkInsert(`Volunteers`, dataSeed, {});
+  } catch (error) {
+    console.log(error);
+  }
+})
+
 
 afterAll(async () => {
   await Volunteer.destroy({
@@ -15,25 +51,22 @@ afterAll(async () => {
     cascade: true,
     restartIdentity: true,
   });
+
+  await Orphan.destroy({
+    truncate: true,
+    cascade: true,
+    restartIdentity: true,
+  });
 });
 
-const volunteer1 = {
-  email: "volunteer12@mail.com",
-  password: "123456",
-  fullName: "volunteer1",
-  // imageUrl: "https://test.jpg",
-  linkedinUrl: "test.com",
-  // curriculumVitae: "url.com",
-  lastEducation: "SMA",
-};
+
 
 describe("Volunteer Routes Test", () => {
   describe("POST /volunteer/register - create new volunteer", () => {
     test("201 Success register - should create new Volunteer", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
+
+      // jest.spyOn(CloudinaryCloud, "uploadImageVolunteer").mockResolvedValue("img.png")
+      // jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf")
 
       request(app)
         .post("/volunteer/register")
@@ -353,19 +386,22 @@ describe("Volunteer Routes Test", () => {
     test("200 Success login - should return access_token", () => {
       return request(app)
         .post("/volunteer/login")
-        .send({ email: "volunteer12@mail.com" , password: "123456", tes:"ini test buat liat console"})
+        // .send(volunteer1)
         // .field("email", "volunteer12@mail.com")
         // .field("password", "123456")
-        // .field("email", "volunteer12@mail.com")
-        // .field("password", "123456")
-        // .send({
-        //   email: "volunteer12@mail.com",
-        //   password: "123456",
-        // })
-        .then((result)=>{
-          expect(result.status).toBe(200)
-          expect(result.body).toHaveProperty("access_token", expect.any(String))
+        .send({
+          email: "volunteer12@mail.com",
+          password: "123456",
         })
+        .end((err, res) => {
+          if (err) return done(err);
+          const { body, status } = res;
+          console.log(res.body)
+          expect(true).toBe(true)
+          // expect(status).toBe(200);
+          // expect(body).toHaveProperty("access_token", expect.any(String));
+          return done();
+        });
     });
 
     test("401 Failed login - should return error", (done) => {

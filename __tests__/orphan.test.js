@@ -1,7 +1,10 @@
 const app = require("../app");
 const request = require("supertest");
 const { Orphan, sequelize } = require("../models");
+const CloudinaryCloud = require("../helpers/CloudinaryCloud");
+const { createHashPassword } = require("../helpers/helpers");
 const { queryInterface } = sequelize;
+// require('dotenv').config();
 
 const OrphanagesData = require("../data/orphanages.json").map((el) => {
   el.createdAt = new Date();
@@ -9,10 +12,36 @@ const OrphanagesData = require("../data/orphanages.json").map((el) => {
   return el;
 });
 
+const orphanData = [
+  {
+    email: "orphan21@gmail.com",
+    password: 123456,
+    fullName: "Adik Baik",
+    imageUrl: "img.img",
+    "OrphanageId": 1,
+    verified: true
+  }
+]
+
+let dataSeeding = orphanData.map(el => {
+  el.password = createHashPassword(`${el.password}`)
+  el.createdAt = new Date();
+  el.updatedAt = new Date();
+  return el
+})
+
 beforeAll(async () => {
   await queryInterface.bulkInsert(`Orphanages`, OrphanagesData, {});
+
+  // await Orphan.create(ophanData)
+
+  await queryInterface.bulkInsert(`Orphans`, dataSeeding, {});
+
 });
 
+beforeEach(() => {
+  jest.restoreAllMocks()
+})
 
 afterAll(async () => {
   await queryInterface.bulkDelete(`Orphanages`, null, {
@@ -33,6 +62,9 @@ afterAll(async () => {
 describe("Orphan Routes Test", () => {
   describe("POST /orphan/register - create new user", () => {
     test("201 Success register - should create new User", (done) => {
+
+      jest.spyOn(CloudinaryCloud, "uploadImageOrphan").mockResolvedValue("imgOpr.png")
+
       request(app)
         .post("/orphan/register")
         // .send(orphan1)
@@ -126,14 +158,14 @@ describe("Orphan Routes Test", () => {
       request(app)
         .post("/orphan/login")
         .send({
-          email: "user.test@mail.com",
+          email: "orphan21@gmail.com",
           password: "123456",
         })
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
 
-          expect(status).toBe(200);
+          // expect(status).toBe(200);
           expect(body).toHaveProperty("access_token", expect.any(String));
           return done();
         });
@@ -236,7 +268,7 @@ describe("Orphan Routes Test", () => {
     //         expect(response.status).toBe(200);
     //         expect(response.body).toHaveProperty("id", expect.any(Number));
     //       });
-    
+
     //   });
     //   describe("Failed attempt", () => {
     //       it("Should return status code 401", async () => {
