@@ -38,7 +38,7 @@ let OrphanData = require("../data/orphan.json").map((el) => {
 
 let VolunteerTest = {
   email: "volunteer@gmail.com",
-  password: "12345",
+  password: 12345,
 };
 let OrphanTest = {
   email: "orphan@gmail.com",
