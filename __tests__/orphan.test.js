@@ -40,7 +40,8 @@ describe("Orphan Routes Test", () => {
     test("201 Success register - should create new User", (done) => {
       request(app)
         .post("/orphan/register")
-        .send(orphan1)
+        // .send(orphan1)
+        
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
