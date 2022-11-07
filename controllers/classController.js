@@ -7,6 +7,7 @@ const {
 } = require("../models/");
 
 class classController {
+  //! di comment karena ga dipake di FE
   // static async getOneMatchSchedule(req, res, next) {
   //   try {
   //     let { matchId } = req.params;

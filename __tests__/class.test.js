@@ -204,6 +204,7 @@ afterAll(async () => {
 
 //! Match route
 describe("Match Routes Test", () => {
+
   //! Create a match
   describe("POST /match/ - create new match", () => {
     test("201 Request Success - should create new match", (done) => {
@@ -245,7 +246,7 @@ describe("Match Routes Test", () => {
 //! Class route
 describe("Class Routes Test", () => {
 
-  describe("GET /classes - success with valid token", () => {
+  describe("GET /classes - success with valid volunteer token", () => {
     test("Should return status code 200", () => {
       return request(app)
         .get("/classes")
@@ -258,13 +259,14 @@ describe("Class Routes Test", () => {
     });
   });
 
-  describe("GET /classes - failed with no token", () => {
+  describe("GET /classes - success with valid orphan token", () => {
     test("Should return status code 401", () => {
       return request(app)
         .get("/classes")
+        .set("access_token", OrphanToken)
         .then((result) => {
-          expect(result.status).toBe(401);
-          expect(result.body).toBeInstanceOf(Object);
+          expect(result.status).toBe(200);
+          expect(result.body).toBeInstanceOf(Array);
         })
     });
   });

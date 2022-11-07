@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1667790961083" clover="3.2.0">
-  <project timestamp="1667790961083" name="All files">
-    <metrics statements="504" coveredstatements="294" conditionals="129" coveredconditionals="28" methods="61" coveredmethods="34" elements="694" coveredelements="356" complexity="0" loc="504" ncloc="504" packages="6" files="36" classes="36"/>
+<coverage generated="1667800414089" clover="3.2.0">
+  <project timestamp="1667800414089" name="All files">
+    <metrics statements="504" coveredstatements="289" conditionals="129" coveredconditionals="27" methods="61" coveredmethods="33" elements="694" coveredelements="349" complexity="0" loc="504" ncloc="504" packages="6" files="36" classes="36"/>
     <package name="rumah-sandar-server">
       <metrics statements="15" coveredstatements="15" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
       <file name="app.js" path="/Users/lannyalfiani/Documents/Hacktiv8/rumah-sandar-server/app.js">
@@ -24,7 +24,7 @@
       </file>
     </package>
     <package name="rumah-sandar-server.controllers">
-      <metrics statements="209" coveredstatements="62" conditionals="62" coveredconditionals="6" methods="25" coveredmethods="3"/>
+      <metrics statements="209" coveredstatements="66" conditionals="62" coveredconditionals="8" methods="25" coveredmethods="3"/>
       <file name="adminController.js" path="/Users/lannyalfiani/Documents/Hacktiv8/rumah-sandar-server/controllers/adminController.js">
         <metrics statements="40" coveredstatements="4" conditionals="16" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
@@ -80,22 +80,22 @@
         <line num="20" count="1" type="stmt"/>
       </file>
       <file name="classController.js" path="/Users/lannyalfiani/Documents/Hacktiv8/rumah-sandar-server/controllers/classController.js">
-        <metrics statements="15" coveredstatements="9" conditionals="4" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="15" coveredstatements="13" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="33" count="1" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="34" count="1" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
-        <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
-        <line num="61" count="1" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
       </file>
       <file name="matchController.js" path="/Users/lannyalfiani/Documents/Hacktiv8/rumah-sandar-server/controllers/matchController.js">
         <metrics statements="42" coveredstatements="32" conditionals="8" coveredconditionals="5" methods="3" coveredmethods="2"/>
@@ -291,7 +291,7 @@
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="10" count="6" type="stmt"/>
-        <line num="11" count="3" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
       </file>
       <file name="nodemailer.js" path="/Users/lannyalfiani/Documents/Hacktiv8/rumah-sandar-server/helpers/nodemailer.js">
@@ -313,31 +313,31 @@
       </file>
     </package>
     <package name="rumah-sandar-server.middlewares">
-      <metrics statements="91" coveredstatements="53" conditionals="46" coveredconditionals="15" methods="4" coveredmethods="4"/>
+      <metrics statements="91" coveredstatements="44" conditionals="46" coveredconditionals="12" methods="4" coveredmethods="3"/>
       <file name="authentication.js" path="/Users/lannyalfiani/Documents/Hacktiv8/rumah-sandar-server/middlewares/authentication.js">
-        <metrics statements="23" coveredstatements="20" conditionals="16" coveredconditionals="9" methods="1" coveredmethods="1"/>
+        <metrics statements="23" coveredstatements="19" conditionals="16" coveredconditionals="8" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="4" type="stmt"/>
         <line num="7" count="4" type="stmt"/>
-        <line num="8" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="11" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="11" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="12" count="2" type="stmt"/>
         <line num="13" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="14" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="16" count="2" type="stmt"/>
-        <line num="22" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="24" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="25" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="27" count="1" type="stmt"/>
+        <line num="22" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="25" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="27" count="2" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
         <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="36" count="0" type="stmt"/>
-        <line num="42" count="3" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
       </file>
       <file name="authorization.js" path="/Users/lannyalfiani/Documents/Hacktiv8/rumah-sandar-server/middlewares/authorization.js">
@@ -368,16 +368,16 @@
         <line num="35" count="1" type="stmt"/>
       </file>
       <file name="errorHandlers.js" path="/Users/lannyalfiani/Documents/Hacktiv8/rumah-sandar-server/middlewares/errorHandlers.js">
-        <metrics statements="38" coveredstatements="9" conditionals="22" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="cond" truecount="1" falsecount="1"/>
+        <metrics statements="38" coveredstatements="1" conditionals="22" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
-        <line num="8" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -405,7 +405,7 @@
         <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="36" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
         <line num="43" count="1" type="stmt"/>
       </file>
       <file name="multer.js" path="/Users/lannyalfiani/Documents/Hacktiv8/rumah-sandar-server/middlewares/multer.js">
