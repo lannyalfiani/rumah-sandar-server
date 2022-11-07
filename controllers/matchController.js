@@ -41,7 +41,6 @@ class matchController {
       });
       res.status(200).json(response);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
@@ -56,19 +55,16 @@ class matchController {
       let volunteerMatch = await Volunteer.findByPk(VolunteerId, {
         include: [Match],
       });
-      if (volunteerMatch.matchStatus === "alreadyMatch") {
-        throw { name: "Kakak already has Adik" };
-      }
       let matchData = await Match.findByPk(matchId, { transaction: t });
       if (!matchData) {
-        throw { name: "Data Not Found" };
+        throw { name: "Not Found" };
       }
-      let orphanMatch = await Orphan.findByPk(matchData.OrphanId, { transaction: t });
+      let orphanMatch = await Orphan.findByPk(matchData.OrphanId, {
+        transaction: t,
+      });
       if (orphanMatch.matchStatus === "alreadyMatch") {
         throw { name: "Adik already been choose by other kakak" };
       }
-      console.log(orphanMatch.matchStatus);
-      console.log(orphanMatch.fullName);
       await Match.update(
         { VolunteerId, OrphanId: matchData.OrphanId, startDate, hour, endDate },
         {
@@ -103,7 +99,7 @@ class matchController {
       let schedule = bulkSchedule(matchId, startDate);
       await Class.bulkCreate(schedule, { transaction: t });
       await t.commit();
-      
+
       main(
         volunteerMatch.email,
         "Match Success",
@@ -119,7 +115,6 @@ class matchController {
         .json({ message: "Submit Success, and Schedule has been created" });
     } catch (error) {
       await t.rollback();
-      console.log(error);
       next(error);
     }
   }
