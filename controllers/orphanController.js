@@ -47,13 +47,14 @@ class orphanController {
   }
 
   static async loginOrphan(req, res, next) {
-    const { email, password } = req.body;
-    if (!email || !password) throw { name: "required" };
     try {
+      const { email, password } = req.body;
+      if (!email || !password) throw { name: "required" };
       let orphan = await Orphan.findOne({ where: { email } });
       if (!orphan) throw { name: "Invalid Email/Password" };
       if (!orphan.verified) throw { name: "You are not verified" };
       let isValid = compareHashWithPassword(password, orphan.password);
+      console.log(isValid);
       if (!isValid) throw { name: "Invalid Email/Password" };
       const access_token = signPayloadToToken({
         id: orphan.id,
@@ -72,17 +73,17 @@ class orphanController {
       next(err);
     }
   }
-  static async getOrphanById(req, res, next) {
-    try {
-      const { id } = req.params;
-      const Orphans = await Orphan.findByPk(id);
-      if (!Orphans) throw { name: "Not Found" };
+  // static async getOrphanById(req, res, next) {
+  //   try {
+  //     const { id } = req.params;
+  //     const Orphans = await Orphan.findByPk(id);
+  //     if (!Orphans) throw { name: "Not Found" };
 
-      res.status(200).json(Orphans);
-    } catch (error) {
-      next(error);
-    }
-  }
+  //     res.status(200).json(Orphans);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
 }
 
 module.exports = orphanController;
