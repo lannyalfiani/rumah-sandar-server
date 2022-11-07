@@ -15,6 +15,7 @@ class matchController {
     const t = await sequelize.transaction();
     try {
       let { id } = req.user;
+
       await Match.create(
         {
           OrphanId: id,
@@ -114,8 +115,8 @@ class matchController {
         .status(201)
         .json({ message: "Submit Success, and Schedule has been created" });
     } catch (error) {
-      await t.rollback();
       next(error);
+      await t.rollback();
     }
   }
 }

@@ -56,9 +56,10 @@ class volunteerController {
         lastEducation,
         matchStatus: "notMatch",
       });
-      main(email, "Registrasi");
+      main(email, "Registrasi", fullName);
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
+      // console.log(err);
       next(err);
     }
   }
@@ -69,7 +70,7 @@ class volunteerController {
       if (!email || !password) throw { name: "required" };
       let volunteer = await Volunteer.findOne({ where: { email } });
       if (!volunteer) throw { name: "Invalid Email/Password" };
-      if(!volunteer.verified) throw { name: "You are not verified" }
+      if (!volunteer.verified) throw { name: "You are not verified" }
       let isValid = compareHashWithPassword(password, volunteer.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
 
@@ -91,7 +92,7 @@ class volunteerController {
   }
   static async getVolunteerById(req, res, next) {
     try {
-      const {id} = req.params
+      const { id } = req.params
       const volunteers = await Volunteer.findByPk(id);
       if (!volunteers) throw { name: "Not Found" };
 
