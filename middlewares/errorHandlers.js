@@ -1,11 +1,12 @@
 function errorHandler(err, req, res, next) {
-  // console.log(err);
+  console.log(err, `<<< err handler`);
   let code = 500;
   let msg = `Internal Server Error`;
   if (err.name === "required") {
     code = 401;
     msg = "All Field Required ";
   } else if (err.name === "Invalid Email/Password") {
+    console.log(err)
     code = 401;
     msg = "Invalid Email/Password";
   } else if (err.name === `INVOICE_NOT_PAID`) {

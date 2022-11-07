@@ -44,6 +44,7 @@ class volunteerController {
   }
 
   static async loginVolunteer(req, res, next) {
+    console.log(req.body)
     try {
       const { email, password } = req.body;
       if (!email || !password) throw { name: "required" };
@@ -67,6 +68,7 @@ class volunteerController {
       };
       res.status(200).json({ access_token, sendData });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
