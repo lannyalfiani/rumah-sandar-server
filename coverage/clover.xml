@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1667800414089" clover="3.2.0">
-  <project timestamp="1667800414089" name="All files">
+<coverage generated="1667801948684" clover="3.2.0">
+  <project timestamp="1667801948684" name="All files">
     <metrics statements="504" coveredstatements="289" conditionals="129" coveredconditionals="27" methods="61" coveredmethods="33" elements="694" coveredelements="349" complexity="0" loc="504" ncloc="504" packages="6" files="36" classes="36"/>
     <package name="rumah-sandar-server">
       <metrics statements="15" coveredstatements="15" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
