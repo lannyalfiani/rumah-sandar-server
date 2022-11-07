@@ -11,12 +11,16 @@ class volunteerController {
     try {
       const { fullName, email, password, linkedinUrl, lastEducation } =
         req.body;
+      console.log(req.files);
+      if (!req.files.imageUrl || !req.files.curriculumVitae) {
+        throw { name: "required" };
+      }
+      let imageUrl = req.files.imageUrl[0];
+      let curriculumVitae = req.files.curriculumVitae[0];
+      console.log(imageUrl, curriculumVitae);
 
-      let imageUrl = req.files.imageUrl[0]
-      let curriculumVitae = req.files.curriculumVitae[0]
-
-      let imageTODB = await CloudinaryCloud.uploadImageVolunteer(imageUrl)
-      let CVTODB = await CloudinaryCloud.uploadCV(curriculumVitae)
+      let imageTODB = await CloudinaryCloud.uploadImageVolunteer(imageUrl);
+      let CVTODB = await CloudinaryCloud.uploadCV(curriculumVitae);
 
       let checkOrphanEmail = await Orphan.findOne({ where: { email } });
 
@@ -44,7 +48,7 @@ class volunteerController {
   }
 
   static async loginVolunteer(req, res, next) {
-    console.log(req.body)
+    console.log(req.body);
     try {
       console.log(req.body, "ini di controller");
       const { email, password } = req.body;
