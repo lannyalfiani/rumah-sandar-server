@@ -19,7 +19,7 @@ const AuthorizationVolunteerRequestAndGet = async (req, res, next) => {
   try {
     console.log(req.user);
     let { role, id } = req.user;
-    if (role == "volunteer" || role == "admin") {
+    if (role == "orphan") {
       throw { name: "Forbidden" };
     }
     let LoginVolunteer = await Volunteer.findByPk(id);
