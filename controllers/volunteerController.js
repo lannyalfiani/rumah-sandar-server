@@ -14,12 +14,11 @@ class volunteerController {
 
       // console.log(req.files);
 
-      let imageUrl = req.files.imageUrl[0]
-      let curriculumVitae = req.files.curriculumVitae[0]
+      let imageUrl = req.files.imageUrl[0];
+      let curriculumVitae = req.files.curriculumVitae[0];
 
-      let imageTODB = await CloudinaryCloud.uploadImageVolunteer(imageUrl)
-      let CVTODB = await CloudinaryCloud.uploadCV(curriculumVitae)
-
+      let imageTODB = await CloudinaryCloud.uploadImageVolunteer(imageUrl);
+      let CVTODB = await CloudinaryCloud.uploadCV(curriculumVitae);
 
       // await cloudinary.v2.uploader
       //   .upload(imageUrl.path, { folder: "RumahSandar/Volunteer/Images" })
@@ -66,6 +65,7 @@ class volunteerController {
 
   static async loginVolunteer(req, res, next) {
     try {
+      console.log(req.body, "ini di controller");
       const { email, password } = req.body;
       if (!email || !password) throw { name: "required" };
       let volunteer = await Volunteer.findOne({ where: { email } });
@@ -91,17 +91,17 @@ class volunteerController {
       next(err);
     }
   }
-  static async getVolunteerById(req, res, next) {
-    try {
-      const { id } = req.params;
-      const volunteers = await Volunteer.findByPk(id);
-      if (!volunteers) throw { name: "Not Found" };
+  // static async getVolunteerById(req, res, next) {
+  //   try {
+  //     const { id } = req.params;
+  //     const volunteers = await Volunteer.findByPk(id);
+  //     if (!volunteers) throw { name: "Not Found" };
 
-      res.status(200).json(volunteers);
-    } catch (error) {
-      next(error);
-    }
-  }
+  //     res.status(200).json(volunteers);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
 }
 
 module.exports = volunteerController;
