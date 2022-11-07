@@ -9,13 +9,8 @@ const CloudinaryCloud = require("./CloudinaryCloud");
 class volunteerController {
   static async registerVolunteer(req, res, next) {
     try {
-      const {
-        fullName,
-        email,
-        password,
-        linkedinUrl,
-        lastEducation,
-      } = req.body;
+      const { fullName, email, password, linkedinUrl, lastEducation } =
+        req.body;
 
       // console.log(req.files);
 
@@ -75,7 +70,7 @@ class volunteerController {
       if (!email || !password) throw { name: "required" };
       let volunteer = await Volunteer.findOne({ where: { email } });
       if (!volunteer) throw { name: "Invalid Email/Password" };
-      if (!volunteer.verified) throw { name: "You are not verified" }
+      if (!volunteer.verified) throw { name: "You are not verified" };
       let isValid = compareHashWithPassword(password, volunteer.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
 
@@ -89,6 +84,7 @@ class volunteerController {
         fullName: volunteer.fullName,
         verified: volunteer.verified,
         matchStatus: volunteer.matchStatus,
+        imageUrl: volunteer.imageUrl,
       };
       res.status(200).json({ access_token, sendData });
     } catch (err) {
@@ -97,7 +93,7 @@ class volunteerController {
   }
   static async getVolunteerById(req, res, next) {
     try {
-      const { id } = req.params
+      const { id } = req.params;
       const volunteers = await Volunteer.findByPk(id);
       if (!volunteers) throw { name: "Not Found" };
 

@@ -11,7 +11,6 @@ class categoryController {
       if (!categories) throw { name: "Not Found" };
       res.status(200).json(categories);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }

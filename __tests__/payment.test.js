@@ -3,6 +3,10 @@ const { sequelize } = require("../models")
 const { queryInterface } = sequelize
 const app = require("../app")
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 256f2da6224985ba69a3cd19b6950d61a6125f6e
 let DonationTestData = require("../data/donations.json").map(el => {
   let future = new Date()
   el.createdAt = new Date()
