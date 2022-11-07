@@ -4,6 +4,7 @@ const {
 } = require("../helpers/helpers");
 const { Volunteer, Admin, Orphan, Match } = require("../models");
 const main = require("../helpers/nodemailer");
+const verificationOrphanMail = require("../helpers/verificationOrphanMail");
 
 class adminController {
   static async adminLogin(req, res, next) {
@@ -51,7 +52,7 @@ class adminController {
         { where: { id: orphanId } }
       );
 
-      main(foundOrphan.email, "Verifikasi");
+      verificationOrphanMail(foundOrphan.email, "Verifikasi");
       res.status(200).json({ message: `Verify Success` });
     } catch (error) {
       next(error);

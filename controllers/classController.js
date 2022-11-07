@@ -36,7 +36,13 @@ class classController {
           where: {
             VolunteerId: id,
           },
-          include: [{ model: Class, order: [["date", "DESC"]] }],
+          include: [
+            {
+              model: Class,
+              order: [["date", "DESC"]],
+              include: [ClassCategory],
+            },
+          ],
         });
         res.status(200).json(schedule);
       } else if (role === "orphan") {
