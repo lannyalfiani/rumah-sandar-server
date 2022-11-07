@@ -30,11 +30,9 @@ class adminController {
   static async getVolunteers(req, res, next) {
     try {
       const volunteers = await Volunteer.findAll();
-      if (!volunteers) throw { name: "Not Found" };
 
       res.status(200).json(volunteers);
     } catch (error) {
-      // console.log(error);
       next(error);
     }
   }
