@@ -5,34 +5,39 @@ const {
 const { Volunteer, Orphan } = require("../models");
 const main = require("../helpers/nodemailer");
 const cloudinary = require("cloudinary");
+const CloudinaryCloud = require("./CloudinaryCloud");
 class volunteerController {
   static async registerVolunteer(req, res, next) {
     try {
       const { fullName, email, password, linkedinUrl, lastEducation } =
         req.body;
 
-      let imageUrl = req.files.imageUrl[0];
-      let curriculumVitae = req.files.curriculumVitae[0];
-      let imageTODB = "";
-      let CVTODB = "";
+      // console.log(req.files);
 
-      await cloudinary.v2.uploader
-        .upload(imageUrl.path, { folder: "RumahSandar/Volunteer/Images" })
-        .then((result) => {
-          imageTODB = result.url;
-        })
-        .catch((err) => {
-          throw { name: { err } };
-        });
+      let imageUrl = req.files.imageUrl[0]
+      let curriculumVitae = req.files.curriculumVitae[0]
 
-      await cloudinary.v2.uploader
-        .upload(curriculumVitae.path, { folder: "RumahSandar/Volunteer/CVs" })
-        .then((result) => {
-          CVTODB = result.url;
-        })
-        .catch((err) => {
-          throw { name: { err } };
-        });
+      let imageTODB = await CloudinaryCloud.uploadImageVolunteer(imageUrl)
+      let CVTODB = await CloudinaryCloud.uploadCV(curriculumVitae)
+
+
+      // await cloudinary.v2.uploader
+      //   .upload(imageUrl.path, { folder: "RumahSandar/Volunteer/Images" })
+      //   .then(result => {
+      //     imageTODB = result.url
+      //   })
+      //   .catch(err => {
+      //     throw { name: { err } }
+      //   })
+
+      // await cloudinary.v2.uploader
+      //   .upload(curriculumVitae.path, { folder: "RumahSandar/Volunteer/CVs" })
+      //   .then(result => {
+      //     CVTODB = result.url
+      //   })
+      //   .catch(err => {
+      //     throw { name: { err } }
+      //   })
 
       let checkOrphanEmail = await Orphan.findOne({ where: { email } });
 
@@ -54,7 +59,7 @@ class volunteerController {
       main(email, "Registrasi", fullName);
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
-      // console.log(err);
+      console.log(err);
       next(err);
     }
   }

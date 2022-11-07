@@ -1,8 +1,13 @@
 const request = require(`supertest`);
 const { Volunteer, sequelize } = require("../models");
+const CloudinaryCloud = require("../controllers/CloudinaryCloud")
 const { queryInterface } = sequelize;
 const app = require("../app");
 const { createHashPassword } = require("../helpers/helpers");
+
+beforeEach(() => {
+  jest.restoreAllMocks()
+})
 
 afterAll(async () => {
   await Volunteer.destroy({
@@ -25,6 +30,10 @@ const volunteer1 = {
 describe("Volunteer Routes Test", () => {
   describe("POST /volunteer/register - create new volunteer", () => {
     test("201 Success register - should create new Volunteer", (done) => {
+
+      jest.spyOn(CloudinaryCloud, "uploadImageVolunteer").mockResolvedValue("img.png")
+      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf")
+
       request(app)
         .post("/volunteer/register")
         // .send(volunteer1)
@@ -112,7 +121,7 @@ describe("Volunteer Routes Test", () => {
         });
     });
 
-  
+
     test.skip("400 Failed register - should return error if imageUrl is null", (done) => {
       request(app)
         .post("/volunteer/register")
@@ -123,7 +132,7 @@ describe("Volunteer Routes Test", () => {
         .field("lastEducation", "sma")
         .attach('imageUrl', "")
         .attach('curriculumVitae', "data/hacktiv8-1.png")
-      
+
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
@@ -144,7 +153,7 @@ describe("Volunteer Routes Test", () => {
         .field("lastEducation", "sma")
         .attach('imageUrl', "data/hacktiv8-1.png")
         .attach('curriculumVitae', "data/hacktiv8-1.png")
-       
+
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
