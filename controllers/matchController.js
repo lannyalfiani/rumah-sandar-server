@@ -41,7 +41,6 @@ class matchController {
       });
       res.status(200).json(response);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
@@ -56,9 +55,6 @@ class matchController {
       let volunteerMatch = await Volunteer.findByPk(VolunteerId, {
         include: [Match],
       });
-      // if (volunteerMatch.matchStatus === "alreadyMatch") {
-      //   throw { name: "Kakak already has Adik" };
-      // }
       let matchData = await Match.findByPk(matchId, { transaction: t });
       if (!matchData) {
         throw { name: "Not Found" };

@@ -242,6 +242,16 @@ describe("Match Routes Test", () => {
         });
     });
   });
+  describe("POST /match/ - create new match", () => {
+    test("401 Request Failed - No access_token", () => {
+      return request(app)
+        .post("/match/")
+        .then((result) => {
+          expect(result.status).toBe(401);
+          expect(result.body).toHaveProperty("message", "Invalid Email/Password");
+        });
+    });
+  });
 
   describe("POST /match/ - create new match", () => {
     test("401 Request Failed - Orphan Not Verified", () => {
