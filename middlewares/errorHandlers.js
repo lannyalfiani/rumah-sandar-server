@@ -13,8 +13,8 @@ function errorHandler(err, req, res, next) {
     code = 401;
     msg = `Callback is received but the invoice is not paid`;
   } else if (err.name === `NOT_FROM_XENDIT`) {
-    code = 403
-    msg = `Callback is not from Xendit`
+    code = 403;
+    msg = `Callback is not from Xendit`;
   } else if (err.name == "Not Found") {
     code = 404;
     msg = "Data Not Found";
