@@ -1,6 +1,7 @@
 const app = require("../app");
 const request = require("supertest");
 const { Orphan, sequelize } = require("../models");
+const CloudinaryCloud = require("../helpers/CloudinaryCloud");
 const { queryInterface } = sequelize;
 
 const OrphanagesData = require("../data/orphanages.json").map((el) => {
@@ -13,6 +14,9 @@ beforeAll(async () => {
   await queryInterface.bulkInsert(`Orphanages`, OrphanagesData, {});
 });
 
+beforeEach(() => {
+  jest.restoreAllMocks()
+})
 
 afterAll(async () => {
   await queryInterface.bulkDelete(`Orphanages`, null, {
@@ -33,6 +37,9 @@ afterAll(async () => {
 describe("Orphan Routes Test", () => {
   describe("POST /orphan/register - create new user", () => {
     test("201 Success register - should create new User", (done) => {
+
+      jest.spyOn(CloudinaryCloud, "uploadImageOrphan").mockResolvedValue("imgOpr.png")
+
       request(app)
         .post("/orphan/register")
         // .send(orphan1)
