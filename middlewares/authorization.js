@@ -16,23 +16,22 @@ const AuthorizationRequestMatch = async (req, res, next) => {
   }
 };
 const AuthorizationVolunteerRequestAndGet = async (req, res, next) => {
-  try {
-    console.log(req.user);
-    let { role, id } = req.user;
-    if (role == "volunteer" || role == "admin") {
-      throw { name: "Forbidden" };
+    try {
+      console.log(req.user);
+      let { role, id } = req.user;
+      if (role !== "volunteer") {
+        throw { name: "Forbidden" };
+      }
+      let LoginVolunteer = await Volunteer.findByPk(id);
+      if (LoginVolunteer.matchStatus == "alreadyMatch") {
+        throw { name: "Forbidden" };
+      }
+      next();
+    } catch (error) {
+      next(error);
     }
-    let LoginVolunteer = await Volunteer.findByPk(id);
-    if (LoginVolunteer.matchStatus == "alreadyMatch") {
-      throw { name: "Forbidden" };
-    }
-    next();
-  } catch (error) {
-    next(error);
-  }
-};
+  };
 
 module.exports = {
-  AuthorizationRequestMatch,
-  AuthorizationVolunteerRequestAndGet,
+  AuthorizationRequestMatch, AuthorizationVolunteerRequestAndGet
 };
