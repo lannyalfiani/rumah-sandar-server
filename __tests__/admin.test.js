@@ -62,14 +62,13 @@ describe("Admin Routes Test", () => {
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
-
           expect(status).toBe(200);
           expect(body).toHaveProperty("access_token", expect.any(String));
           return done();
         });
     });
 
-    test("401 Failed login - should return error", (done) => {
+    test("401 Failed login - should return error if email/password are wrong", (done) => {
       request(app)
         .post("/admin/login")
         .send({
@@ -85,7 +84,7 @@ describe("Admin Routes Test", () => {
           return done();
         });
     });
-    test("404 Failed login - should return error if email is null", (done) => {
+    test("401 Failed login - should return error if email is null", (done) => {
       request(app)
         .post("/admin/login")
         .send({
@@ -95,13 +94,13 @@ describe("Admin Routes Test", () => {
           if (err) return done(err);
           const { body, status } = res;
 
-          expect(status).toBe(404);
+          expect(status).toBe(401);
           expect(body).toHaveProperty("message", "All Field Required ");
           return done();
         });
     });
 
-    test("404 Failed login - should return error if password is null", (done) => {
+    test("401 Failed login - should return error if password is null", (done) => {
       request(app)
         .post("/admin/login")
         .send({
@@ -111,7 +110,72 @@ describe("Admin Routes Test", () => {
           if (err) return done(err);
           const { body, status } = res;
 
-          expect(status).toBe(404);
+          expect(status).toBe(401);
+          expect(body).toHaveProperty("message", "All Field Required ");
+          return done();
+        });
+    });
+
+    test("401 Failed login - should return error if password is null & email is null", (done) => {
+      request(app)
+        .post("/admin/login")
+        .send({})
+        .end((err, res) => {
+          if (err) return done(err);
+          const { body, status } = res;
+
+          expect(status).toBe(401);
+          expect(body).toHaveProperty("message", "All Field Required ");
+          return done();
+        });
+    });
+
+    test("401 Failed login - should return error if password is empty & email is empty", (done) => {
+      request(app)
+        .post("/admin/login")
+        .send({
+          email: "",
+          password: "",
+        })
+        .end((err, res) => {
+          if (err) return done(err);
+          const { body, status } = res;
+
+          expect(status).toBe(401);
+          expect(body).toHaveProperty("message", "All Field Required ");
+          return done();
+        });
+    });
+
+    test("401 Failed login - should return error if password is empty ", (done) => {
+      request(app)
+        .post("/admin/login")
+        .send({
+          email: "test.mail.com",
+          password: "",
+        })
+        .end((err, res) => {
+          if (err) return done(err);
+          const { body, status } = res;
+
+          expect(status).toBe(401);
+          expect(body).toHaveProperty("message", "All Field Required ");
+          return done();
+        });
+    });
+
+    test("401 Failed login - should return error if email is empty", (done) => {
+      request(app)
+        .post("/admin/login")
+        .send({
+          email: "",
+          password: "123456",
+        })
+        .end((err, res) => {
+          if (err) return done(err);
+          const { body, status } = res;
+
+          expect(status).toBe(401);
           expect(body).toHaveProperty("message", "All Field Required ");
           return done();
         });
