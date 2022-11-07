@@ -116,6 +116,19 @@ afterAll((done) => {
     });
 });
 
+describe("Get Orphan", () => {
+  describe("success attempts", () => {
+    it("Should return status code 200", async () => {
+      const response = await request(app)
+        .get("/admin/orphans")
+        .set("access_token", validToken);
+      const { body, status } = response;
+      expect(status).toBe(200);
+      expect(body).toBeInstanceOf(Array);
+    });
+  });
+});
+
 describe("GET /volunteers", () => {
   describe("Success attempts", () => {
     describe("Fetching with valid token", () => {
@@ -129,11 +142,6 @@ describe("GET /volunteers", () => {
       });
     });
   });
-  
-
-
-  
-
 
   describe("Failed attempts", () => {
     describe("Fetching with invalid token", () => {
@@ -186,6 +194,53 @@ describe("PATCH /orphan/:orphanId", () => {
       it("Should return status code 404", async () => {
         const response = await request(app)
           .patch("/admin/orphan/10")
+          .set("access_token", invalidToken);
+        const { body, status } = response;
+        expect(status).toBe(401);
+        expect(body).toHaveProperty("message", "Unauthorized");
+      });
+    });
+  });
+});
+// =============================================?
+describe("PATCH /Volunteer/:volunteerId", () => {
+  describe("Success attempt", () => {
+    describe("Updating with valid token", () => {
+      it("Should return status code 200", async () => {
+        const response = await request(app)
+          .patch("/admin/volunteer/1")
+          .set("access_token", validToken);
+        const { body, status } = response;
+        expect(status).toBe(200);
+        expect(body).toHaveProperty("message", expect.any(String));
+      });
+    });
+  });
+  describe("Failed attempt", () => {
+    describe("Updating with invalid token", () => {
+      it("Should return statuc code 401", async () => {
+        const response = await request(app)
+          .patch("/admin/volunteer/1")
+          .set("access_token", invalidToken);
+        expect(response.status).toBe(401);
+        expect(response.body).toHaveProperty("message", "Unauthorized");
+      });
+    });
+    describe("Updating with empty params or the content is not found", () => {
+      it("Should return status code 404", async () => {
+        const response = await request(app)
+          .patch("/admin/volunteer/10")
+          .set("access_token", validToken);
+        const { body, status } = response;
+        expect(status).toBe(404);
+        expect(body).toHaveProperty("message", "Data Not Found");
+      });
+    });
+
+    describe("Updating with empty params or the content is not found or invalid token", () => {
+      it("Should return status code 404", async () => {
+        const response = await request(app)
+          .patch("/admin/volunteer/10")
           .set("access_token", invalidToken);
         const { body, status } = response;
         expect(status).toBe(401);

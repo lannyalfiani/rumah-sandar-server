@@ -57,8 +57,8 @@ class orphanController {
       console.log(isValid);
       if (!isValid) throw { name: "Invalid Email/Password" };
       const access_token = signPayloadToToken({
-          id: orphan.id,
-          role: orphan.role,
+        id: orphan.id,
+        role: orphan.role,
       });
       const sendData = {
         id: orphan.id,
@@ -66,6 +66,7 @@ class orphanController {
         fullName: orphan.fullName,
         verified: orphan.verified,
         matchStatus: orphan.matchStatus,
+        imageUrl: orphan.imageUrl,
       };
       res.status(200).json({ access_token, sendData });
     } catch (err) {
