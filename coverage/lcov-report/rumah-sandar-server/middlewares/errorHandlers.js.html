@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">2.56% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/39</span>
+                <span class='fraction'>1/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.72% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/22</span>
+                <span class='fraction'>0/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">2.56% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/39</span>
+                <span class='fraction'>1/39</span>
             </div>
         
             
@@ -108,22 +108,22 @@
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -147,28 +147,28 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">function errorHandler(err, req, res, next) {
-  console.log(err, `&lt;&lt;&lt; err handler`);
-  let code = 500;
-  let msg = `Internal Server Error`;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "required") {
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">function <span class="fstat-no" title="function not covered" >errorHandler(</span>err, req, res, next) {
+<span class="cstat-no" title="statement not covered" >  console.log(err, `&lt;&lt;&lt; err handler`);</span>
+  let code = <span class="cstat-no" title="statement not covered" >500;</span>
+  let msg = <span class="cstat-no" title="statement not covered" >`Internal Server Error`;</span>
+<span class="cstat-no" title="statement not covered" >  if (err.name === "required") {</span>
 <span class="cstat-no" title="statement not covered" >    code = 401;</span>
 <span class="cstat-no" title="statement not covered" >    msg = "All Field Required ";</span>
-  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "Invalid Email/Password") {
+  } else <span class="cstat-no" title="statement not covered" >if (err.name === "Invalid Email/Password") {</span>
 <span class="cstat-no" title="statement not covered" >    console.log(err)</span>
 <span class="cstat-no" title="statement not covered" >    code = 401;</span>
 <span class="cstat-no" title="statement not covered" >    msg = "Invalid Email/Password";</span>
-  } else if (err.name === `INVOICE_NOT_PAID`) {
-    code = 401;
-    msg = `Callback is received but the invoice is not paid`;
-  } else if (err.name === `NOT_FROM_XENDIT`) {
-    code = 403
-    msg = `Callback is not from Xendit`
-  } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>if (err.name == "Not Found") {</span>
+  } else <span class="cstat-no" title="statement not covered" >if (err.name === `INVOICE_NOT_PAID`) {</span>
+<span class="cstat-no" title="statement not covered" >    code = 401;</span>
+<span class="cstat-no" title="statement not covered" >    msg = `Callback is received but the invoice is not paid`;</span>
+  } else <span class="cstat-no" title="statement not covered" >if (err.name === `NOT_FROM_XENDIT`) {</span>
+<span class="cstat-no" title="statement not covered" >    code = 403</span>
+<span class="cstat-no" title="statement not covered" >    msg = `Callback is not from Xendit`</span>
+  } else <span class="cstat-no" title="statement not covered" >if (err.name == "Not Found") {</span>
 <span class="cstat-no" title="statement not covered" >    code = 404;</span>
 <span class="cstat-no" title="statement not covered" >    msg = "Data Not Found";</span>
   } else <span class="cstat-no" title="statement not covered" >if (err.name == "Adik already been choose by other kakak") {</span>
@@ -191,7 +191,7 @@
 <span class="cstat-no" title="statement not covered" >    msg = "Unauthorized";</span>
   }
 &nbsp;
-  res.status(code).json({ message: msg });
+<span class="cstat-no" title="statement not covered" >  res.status(code).json({ message: msg });</span>
 }
 &nbsp;
 module.exports = errorHandler;
@@ -202,7 +202,7 @@ module.exports = errorHandler;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-07T19:12:10.490Z
+                at 2022-11-07T19:19:42.526Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -35,7 +35,6 @@ let OrphanData = require("../data/orphan.json").map((el) => {
   el.verified = true;
   return el;
 });
-
 let VolunteerTest = {
   email: "volunteer@gmail.com",
   password: "12345",
@@ -44,7 +43,6 @@ let OrphanTest = {
   email: "orphan@gmail.com",
   password: 12345,
 };
-
 let volunteerNotVerified = [
   {
     email: "volunteer2@gmail.com",
@@ -67,7 +65,6 @@ volunteerNotVerified.map((el) => {
   el.verified = false;
   return el;
 });
-
 let OrphanNotVerified = [
   {
     email: "orphan2@gmail.com",
@@ -93,7 +90,6 @@ let OrphanToken;
 let VolunteerNotVerifiedToken;
 let OrphanNotVerifiedToken;
 let VolunteerNotMatchToken;
-let Orphan2Token;
 
 beforeAll(async () => {
   await queryInterface.bulkInsert("Orphanages", OrphanageData, {});
@@ -266,48 +262,9 @@ describe("Class Routes Test", () => {
         .set("access_token", OrphanToken)
         .then((result) => {
           expect(result.status).toBe(200);
-          expect(result.body).toBeInstanceOf(Array);
+          expect(Array.isArray(result.body)).toBeTruthy();
+          expect(result.body.length).toBeGreaterThan(0);
         })
     });
   });
-
-
-
-
 })
-
-
-// describe("Class Routes Test", () => {
-
-//   //! Success with valid token
-//   describe("GET /classes - success", () => {
-//     describe("Fetch all classes for the logged in user", () => {
-//       test("Should return status code 200", () => {
-//         return request(app)
-//           .get("/classes")
-//           .set("access_token", VolunteerToken)
-//           .then((result) => {
-//             expect(result.status).toBe(200);
-//             expect(result.body).toBeInstanceOf(Array);
-//             expect(result.body).toHaveLength(1)
-//           })
-//       });
-//     });
-
-
-//     //! Failed with no token
-//     describe("GET /classes - failed", () => {
-//       describe("Fetch all classes without access token", () => {
-//         test("Should return status code 401", () => {
-//           return request(app)
-//             .get("/classes")
-//             .then((result) => {
-//               expect(result.status).toBe(401);
-//               expect(result.body).toBeInstanceOf(Object);
-//             })
-//         });
-//       });
-//     });
-//   });
-
-// });

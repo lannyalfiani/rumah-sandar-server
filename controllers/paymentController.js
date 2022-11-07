@@ -7,10 +7,9 @@ class paymentController {
       let ourCallbackToken = process.env.XENDITCALLBACKTOKEN
       if (ourCallbackToken === req.headers['x-callback-token']) {
 
-        
         let callback = req.body
         let invoiceStatus = callback.status
-        
+
         if (invoiceStatus === `PAID`) {
           createInvoice(req.body)
           return res.status(200).json({ message: `Callback received!` })
@@ -34,7 +33,6 @@ class paymentController {
       })
       res.status(200).json(data)
     } catch (err) {
-      // console.log(err);
       next(err)
     }
   }
