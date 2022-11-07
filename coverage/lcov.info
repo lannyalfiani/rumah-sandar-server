@@ -25,7 +25,11 @@ BRF:2
 BRH:1
 end_of_record
 TN:
+<<<<<<< HEAD
+SF:controllers/adminController.js
+=======
 SF:controllers\adminController.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:10,(anonymous_0)
 FN:30,(anonymous_1)
 FN:40,(anonymous_2)
@@ -98,7 +102,7 @@ BRF:14
 BRH:12
 end_of_record
 TN:
-SF:controllers\categoryController.js
+SF:controllers/categoryController.js
 FN:4,(anonymous_0)
 FNF:1
 FNH:1
@@ -118,7 +122,11 @@ BRF:2
 BRH:1
 end_of_record
 TN:
+<<<<<<< HEAD
+SF:controllers/classController.js
+=======
 SF:controllers\classController.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:29,(anonymous_0)
 FNF:1
 FNH:1
@@ -213,7 +221,11 @@ BRF:8
 BRH:8
 end_of_record
 TN:
+<<<<<<< HEAD
+SF:controllers/orphanController.js
+=======
 SF:controllers\orphanController.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:11,(anonymous_0)
 FN:42,(anonymous_1)
 FNF:2
@@ -320,21 +332,31 @@ BRF:4
 BRH:4
 end_of_record
 TN:
+<<<<<<< HEAD
+SF:controllers/volunteerController.js
+=======
 SF:controllers\volunteerController.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:10,(anonymous_0)
 FN:46,(anonymous_1)
 FNF:2
 FNH:2
-FNDA:10,(anonymous_0)
+FNDA:12,(anonymous_0)
 FNDA:5,(anonymous_1)
 DA:4,9
 DA:5,9
 DA:6,9
 DA:7,9
 DA:8,9
+<<<<<<< HEAD
+DA:11,12
+DA:13,12
+DA:15,12
+=======
 DA:11,10
 DA:13,10
 DA:15,10
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 DA:16,10
 DA:18,10
 DA:19,10
@@ -344,8 +366,13 @@ DA:24,0
 DA:27,10
 DA:38,1
 DA:39,1
+<<<<<<< HEAD
+DA:41,11
+DA:42,11
+=======
 DA:41,9
 DA:42,9
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 DA:47,5
 DA:48,5
 DA:49,5
@@ -408,7 +435,11 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
+SF:helpers/createInvoice.js
+=======
 SF:helpers\createInvoice.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:3,createInvoice
 FNF:1
 FNH:1
@@ -621,10 +652,51 @@ BRF:8
 BRH:6
 end_of_record
 TN:
-SF:middlewares\errorHandlers.js
+SF:middlewares/errorHandlers.js
 FN:1,errorHandler
 FNF:1
 FNH:1
+<<<<<<< HEAD
+FNDA:54,errorHandler
+DA:2,54
+DA:3,54
+DA:4,54
+DA:5,54
+DA:6,11
+DA:7,11
+DA:8,43
+DA:9,6
+DA:10,6
+DA:11,6
+DA:12,37
+DA:13,1
+DA:14,1
+DA:15,36
+DA:16,1
+DA:17,1
+DA:18,35
+DA:19,3
+DA:20,3
+DA:21,32
+DA:22,1
+DA:23,1
+DA:24,31
+DA:25,10
+DA:26,10
+DA:27,21
+DA:28,2
+DA:29,2
+DA:30,19
+DA:31,3
+DA:32,3
+DA:33,16
+DA:34,6
+DA:35,6
+DA:36,10
+DA:37,8
+DA:38,8
+DA:41,54
+=======
 FNDA:52,errorHandler
 DA:2,52
 DA:3,52
@@ -664,10 +736,32 @@ DA:36,8
 DA:37,8
 DA:38,8
 DA:41,52
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 DA:44,9
 LF:39
 LH:39
 BRDA:5,0,0,11
+<<<<<<< HEAD
+BRDA:5,0,1,43
+BRDA:8,1,0,6
+BRDA:8,1,1,37
+BRDA:12,2,0,1
+BRDA:12,2,1,36
+BRDA:15,3,0,1
+BRDA:15,3,1,35
+BRDA:18,4,0,3
+BRDA:18,4,1,32
+BRDA:21,5,0,1
+BRDA:21,5,1,31
+BRDA:24,6,0,10
+BRDA:24,6,1,21
+BRDA:27,7,0,2
+BRDA:27,7,1,19
+BRDA:30,8,0,3
+BRDA:30,8,1,16
+BRDA:33,9,0,6
+BRDA:33,9,1,10
+=======
 BRDA:5,0,1,41
 BRDA:8,1,0,6
 BRDA:8,1,1,35
@@ -687,13 +781,18 @@ BRDA:30,8,0,3
 BRDA:30,8,1,14
 BRDA:33,9,0,6
 BRDA:33,9,1,8
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 BRDA:36,10,0,8
-BRDA:36,10,1,0
+BRDA:36,10,1,2
 BRF:22
+<<<<<<< HEAD
+BRH:22
+=======
 BRH:21
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 end_of_record
 TN:
-SF:middlewares\multer.js
+SF:middlewares/multer.js
 FNF:0
 FNH:0
 DA:1,9
@@ -708,7 +807,11 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
+SF:models/admin.js
+=======
 SF:models\admin.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:5,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2
@@ -725,7 +828,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:models\class.js
+SF:models/class.js
 FN:5,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2
@@ -744,7 +847,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:models\classcategory.js
+SF:models/classcategory.js
 FN:5,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2
@@ -947,7 +1050,11 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
+SF:routes/category.js
+=======
 SF:routes\category.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FNF:0
 FNH:0
 DA:1,9

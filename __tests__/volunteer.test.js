@@ -192,7 +192,7 @@ describe("Volunteer Routes Test", () => {
         });
     });
 
-    test.skip("400 Failed register - should return error if imageUrl is null", (done) => {
+    test("400 Failed register - should return error if imageUrl is null", (done) => {
       jest
         .spyOn(CloudinaryCloud, "uploadImageVolunteer")
         .mockResolvedValue("img.png");
@@ -242,7 +242,7 @@ describe("Volunteer Routes Test", () => {
         });
     });
 
-    test.skip("400 Failed register - should return error if curriculumVitae is null", (done) => {
+    test("400 Failed register - should return error if curriculumVitae is null", (done) => {
       jest
         .spyOn(CloudinaryCloud, "uploadImageVolunteer")
         .mockResolvedValue("img.png");
