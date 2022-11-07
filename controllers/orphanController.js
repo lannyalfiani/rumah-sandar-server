@@ -12,9 +12,12 @@ class orphanController {
     try {
       const { fullName, email, password, OrphanageId } = req.body;
 
+      if (!req.files.imageUrl) {
+        throw { name: "required" };
+      }
       let imageUrl = req.files.imageUrl[0];
 
-      let imageTODB = await CloudinaryCloud.uploadImageOrphan(imageUrl)
+      let imageTODB = await CloudinaryCloud.uploadImageOrphan(imageUrl);
 
       let checkVolunteerEmail = await Volunteer.findOne({ where: { email } });
 

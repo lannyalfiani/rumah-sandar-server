@@ -109,7 +109,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       role: DataTypes.STRING,
       verified: DataTypes.BOOLEAN,
-      matchStatus: DataTypes.STRING
+      matchStatus: DataTypes.STRING,
     },
     {
       sequelize,

@@ -25,7 +25,11 @@ BRF:2
 BRH:1
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:controllers/adminController.js
+=======
+SF:controllers\adminController.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:10,(anonymous_0)
 FN:30,(anonymous_1)
 FN:40,(anonymous_2)
@@ -118,7 +122,11 @@ BRF:2
 BRH:1
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:controllers/classController.js
+=======
+SF:controllers\classController.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:29,(anonymous_0)
 FNF:1
 FNH:1
@@ -148,7 +156,7 @@ BRF:4
 BRH:3
 end_of_record
 TN:
-SF:controllers/matchController.js
+SF:controllers\matchController.js
 FN:14,(anonymous_0)
 FN:33,(anonymous_1)
 FN:48,(anonymous_2)
@@ -213,7 +221,11 @@ BRF:8
 BRH:8
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:controllers/orphanController.js
+=======
+SF:controllers\orphanController.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:11,(anonymous_0)
 FN:42,(anonymous_1)
 FNF:2
@@ -268,7 +280,7 @@ BRF:12
 BRH:10
 end_of_record
 TN:
-SF:controllers/orphanageController.js
+SF:controllers\orphanageController.js
 FN:4,(anonymous_0)
 FNF:1
 FNH:1
@@ -285,7 +297,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:controllers/paymentController.js
+SF:controllers\paymentController.js
 FN:5,(anonymous_0)
 FN:27,(anonymous_1)
 FNF:2
@@ -320,7 +332,11 @@ BRF:4
 BRH:4
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:controllers/volunteerController.js
+=======
+SF:controllers\volunteerController.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:10,(anonymous_0)
 FN:46,(anonymous_1)
 FNF:2
@@ -332,9 +348,15 @@ DA:5,9
 DA:6,9
 DA:7,9
 DA:8,9
+<<<<<<< HEAD
 DA:11,12
 DA:13,12
 DA:15,12
+=======
+DA:11,10
+DA:13,10
+DA:15,10
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 DA:16,10
 DA:18,10
 DA:19,10
@@ -344,8 +366,13 @@ DA:24,0
 DA:27,10
 DA:38,1
 DA:39,1
+<<<<<<< HEAD
 DA:41,11
 DA:42,11
+=======
+DA:41,9
+DA:42,9
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 DA:47,5
 DA:48,5
 DA:49,5
@@ -380,7 +407,7 @@ BRF:12
 BRH:10
 end_of_record
 TN:
-SF:helpers/CloudinaryCloud.js
+SF:helpers\CloudinaryCloud.js
 FN:5,(anonymous_0)
 FN:16,(anonymous_1)
 FN:26,(anonymous_2)
@@ -408,7 +435,11 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:helpers/createInvoice.js
+=======
+SF:helpers\createInvoice.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:3,createInvoice
 FNF:1
 FNH:1
@@ -428,7 +459,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:helpers/getEach7Day.js
+SF:helpers\getEach7Day.js
 FN:1,getEach7Day
 FN:7,bulkSchedule
 FNF:2
@@ -447,7 +478,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:helpers/helpers.js
+SF:helpers\helpers.js
 FN:6,(anonymous_0)
 FN:7,(anonymous_1)
 FN:10,(anonymous_2)
@@ -474,7 +505,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:helpers/nodemailer.js
+SF:helpers\nodemailer.js
 FN:3,main
 FNF:1
 FNH:1
@@ -511,7 +542,7 @@ BRF:10
 BRH:7
 end_of_record
 TN:
-SF:helpers/verificationOrphanMail.js
+SF:helpers\verificationOrphanMail.js
 FN:5,verificationOrphanMail
 FNF:1
 FNH:1
@@ -526,7 +557,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:middlewares/authentication.js
+SF:middlewares\authentication.js
 FN:5,(anonymous_0)
 FNF:1
 FNH:1
@@ -576,7 +607,7 @@ BRF:16
 BRH:13
 end_of_record
 TN:
-SF:middlewares/authorization.js
+SF:middlewares\authorization.js
 FN:2,(anonymous_0)
 FN:18,(anonymous_1)
 FNF:2
@@ -625,6 +656,7 @@ SF:middlewares/errorHandlers.js
 FN:1,errorHandler
 FNF:1
 FNH:1
+<<<<<<< HEAD
 FNDA:54,errorHandler
 DA:2,54
 DA:3,54
@@ -664,10 +696,52 @@ DA:36,10
 DA:37,8
 DA:38,8
 DA:41,54
+=======
+FNDA:52,errorHandler
+DA:2,52
+DA:3,52
+DA:4,52
+DA:5,52
+DA:6,11
+DA:7,11
+DA:8,41
+DA:9,6
+DA:10,6
+DA:11,6
+DA:12,35
+DA:13,1
+DA:14,1
+DA:15,34
+DA:16,1
+DA:17,1
+DA:18,33
+DA:19,3
+DA:20,3
+DA:21,30
+DA:22,1
+DA:23,1
+DA:24,29
+DA:25,10
+DA:26,10
+DA:27,19
+DA:28,2
+DA:29,2
+DA:30,17
+DA:31,3
+DA:32,3
+DA:33,14
+DA:34,6
+DA:35,6
+DA:36,8
+DA:37,8
+DA:38,8
+DA:41,52
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 DA:44,9
 LF:39
 LH:39
 BRDA:5,0,0,11
+<<<<<<< HEAD
 BRDA:5,0,1,43
 BRDA:8,1,0,6
 BRDA:8,1,1,37
@@ -687,10 +761,35 @@ BRDA:30,8,0,3
 BRDA:30,8,1,16
 BRDA:33,9,0,6
 BRDA:33,9,1,10
+=======
+BRDA:5,0,1,41
+BRDA:8,1,0,6
+BRDA:8,1,1,35
+BRDA:12,2,0,1
+BRDA:12,2,1,34
+BRDA:15,3,0,1
+BRDA:15,3,1,33
+BRDA:18,4,0,3
+BRDA:18,4,1,30
+BRDA:21,5,0,1
+BRDA:21,5,1,29
+BRDA:24,6,0,10
+BRDA:24,6,1,19
+BRDA:27,7,0,2
+BRDA:27,7,1,17
+BRDA:30,8,0,3
+BRDA:30,8,1,14
+BRDA:33,9,0,6
+BRDA:33,9,1,8
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 BRDA:36,10,0,8
 BRDA:36,10,1,2
 BRF:22
+<<<<<<< HEAD
 BRH:22
+=======
+BRH:21
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 end_of_record
 TN:
 SF:middlewares/multer.js
@@ -708,7 +807,11 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:models/admin.js
+=======
+SF:models\admin.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FN:5,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2
@@ -762,7 +865,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:models/donation.js
+SF:models\donation.js
 FN:5,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2
@@ -780,7 +883,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:models/index.js
+SF:models\index.js
 FN:20,(anonymous_0)
 FN:23,(anonymous_1)
 FN:28,(anonymous_2)
@@ -824,7 +927,7 @@ BRF:9
 BRH:6
 end_of_record
 TN:
-SF:models/invoice.js
+SF:models\invoice.js
 FN:5,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2
@@ -842,7 +945,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:models/match.js
+SF:models\match.js
 FN:3,(anonymous_0)
 FN:10,(anonymous_1)
 FNF:2
@@ -862,7 +965,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:models/orphan.js
+SF:models\orphan.js
 FN:6,(anonymous_0)
 FN:13,(anonymous_1)
 FN:96,(anonymous_2)
@@ -887,7 +990,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:models/orphanage.js
+SF:models\orphanage.js
 FN:5,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2
@@ -905,7 +1008,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:models/volunteer.js
+SF:models\volunteer.js
 FN:4,(anonymous_0)
 FN:11,(anonymous_1)
 FN:120,(anonymous_2)
@@ -929,7 +1032,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:routes/admin.js
+SF:routes\admin.js
 FNF:0
 FNH:0
 DA:1,9
@@ -947,7 +1050,11 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:routes/category.js
+=======
+SF:routes\category.js
+>>>>>>> b259d9b6f5b87b5404fabb12d9bf1c7ab144ec66
 FNF:0
 FNH:0
 DA:1,9
@@ -960,7 +1067,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:routes/class.js
+SF:routes\class.js
 FNF:0
 FNH:0
 DA:1,9
@@ -974,7 +1081,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:routes/index.js
+SF:routes\index.js
 FN:14,(anonymous_0)
 FNF:1
 FNH:0
@@ -1008,7 +1115,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:routes/match.js
+SF:routes\match.js
 FNF:0
 FNH:0
 DA:1,9
@@ -1025,7 +1132,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:routes/orphan.js
+SF:routes\orphan.js
 FNF:0
 FNH:0
 DA:1,9
@@ -1041,7 +1148,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:routes/orphanage.js
+SF:routes\orphanage.js
 FNF:0
 FNH:0
 DA:1,9
@@ -1054,7 +1161,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:routes/payments.js
+SF:routes\payments.js
 FNF:0
 FNH:0
 DA:1,9
@@ -1069,7 +1176,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:routes/volunteer.js
+SF:routes\volunteer.js
 FNF:0
 FNH:0
 DA:1,9
