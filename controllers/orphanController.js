@@ -55,8 +55,18 @@ class orphanController {
       if (!orphan.verified) throw { name: "You are not verified" };
       let isValid = compareHashWithPassword(password, orphan.password);
       if (!isValid) throw { name: "Invalid Email/Password" };
-      const access_token = signPayloadToToken({ id: orphan.id });
-      res.status(200).json({ access_token });
+      const access_token = signPayloadToToken({
+          id: orphan.id,
+          role: orphan.role,
+      });
+      const sendData = {
+        id: orphan.id,
+        role: orphan.role,
+        fullName: orphan.fullName,
+        verified: orphan.verified,
+        matchStatus: orphan.matchStatus,
+      };
+      res.status(200).json({ access_token, sendData });
     } catch (err) {
       next(err);
     }

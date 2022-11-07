@@ -8,6 +8,7 @@ async function main(email, subject, message) {
   let testAccount = await nodemailer.createTestAccount();
 
   // create reusable transporter object using the default SMTP transport
+
   let transporter = nodemailer.createTransport({
     service: "gmail", // true for 465, false for other ports
     auth: {
