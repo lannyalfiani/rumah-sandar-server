@@ -81,22 +81,22 @@ describe("GET /categories", () => {
     });
   });
 
-  //! paksa jadi error, blm bisa (larinya ke 500)
-  // describe("Failed to fetch categories", () => {
-  //   test.only("Should return error when hit /categories", (done) => {
-  //     ClassCategory.findAll = jest.fn().mockRejectedValue("Not found");
-  //     request(app)
-  //       .get("/categories")
-  //       .set("access_token", validToken)
-  //       .then((res) => {
-  //         expect(res.status).toBe(404);
-  //         console.log(res);
-  //         // expect(res.body).toHaveProperty("message", "Internal Server Error");
-  //         done();
-  //       })
-  //       .catch((err) => {
-  //         done(err);
-  //       });
-  //   });
-  // })
+  //! paksa jadi error, blm bisa 404 (larinya ke 500)
+  describe("Failed to fetch categories", () => {
+    test("Should return error when hit /categories", (done) => {
+      ClassCategory.findAll = jest.fn().mockRejectedValue("Not found");
+      request(app)
+        .get("/categories")
+        .set("access_token", validToken)
+        .then((res) => {
+          expect(res.status).toBe(500);
+          console.log(res);
+          expect(res.body).toHaveProperty("message", "Internal Server Error");
+          done();
+        })
+        .catch((err) => {
+          done(err);
+        });
+    });
+  })
 });
