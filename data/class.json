@@ -1,32 +1,32 @@
 [
   {
     "MatchId": 1,
-    "description": "This is Bahasa Indonesia Class",
+    "description": "Pelajaran Bahasa Indonesia diberikan sejak kelas 1 SD hingga kelas XII atau kelas 3 SMA kepada para siswa",
     "ClassCategoryId": 1
   },
   {
     "MatchId": 1,
-    "description": "This is Matemathic Class",
+    "description": "Matematika (dari bahasa Yunani Kuno μάθημα (máthēma), berarti pengetahuan, pemikiran, pengkajian, pembelajaran), adalah bidang ilmu, yang mencakup studi tentang topik-topik seperti bilangan (aritmetika dan teori bilangan).",
     "ClassCategoryId": 2
   },
   {
     "MatchId": 1,
-    "description": "This is Physic Class",
+    "description": "Ilmu pengetahuan dimana didalamnya mempelajari tentang sifat dan fenomena alam atau gejala alam dan seluruh interaksi yang terjadi didalamnya",
     "ClassCategoryId": 3
   },
   {
     "MatchId": 1,
-    "description": "This is Pancasila Class",
+    "description": "Pancasila adalah pilar ideologis negara Indonesia. Nama ini terdiri dari dua kata dari bahasa Sanskerta: पञ्च pañca berarti lima dan शीला śīla berarti prinsip atau asas",
     "ClassCategoryId": 4
   },
   {
     "MatchId": 1,
-    "description": "This is History Class",
+    "description": "Sejarah yaitu ilmu yang menyelidiki perkembangan-perkembangan mengenai peristiwa dan kejadian di masa lampau. Sejarah merupakan kejadian dan peristiwa yang berhubungan dengan manusia, yang menyangkut perubahan nyata di dalam kehidupan manusia",
     "ClassCategoryId": 5
   },
   {
     "MatchId": 1,
-    "description": "This is Culture Class",
+    "description": "Pendidikan seni budaya memuat segala aspek kehidupan sesuai dengan susunan kata yang mengandung seni dan budaya. Di berbagai tingkatan sekolah, Mata Pelajaran Seni dan Budaya, merupakan pendidikan untuk menanamkan nilai-nilai keindahan yang terkandung dalam seni berbasis budaya.",
     "ClassCategoryId": 6
   }
 ]
