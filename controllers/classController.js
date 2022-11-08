@@ -60,7 +60,7 @@ class classController {
       //   throw { name: "Data Not Found" };
       // }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       next(error);
     }
   }

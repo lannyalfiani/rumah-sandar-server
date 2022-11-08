@@ -81,7 +81,7 @@ describe("GET /categories", () => {
     });
   });
 
-  //! paksa jadi error, blm bisa 404 (larinya ke 500)
+  //! paksa jadi error
   describe("Failed to fetch categories", () => {
     test("Should return error when hit /categories", (done) => {
       ClassCategory.findAll = jest.fn().mockRejectedValue("Not found");
@@ -90,7 +90,7 @@ describe("GET /categories", () => {
         .set("access_token", validToken)
         .then((res) => {
           expect(res.status).toBe(500);
-          console.log(res);
+
           expect(res.body).toHaveProperty("message", "Internal Server Error");
           done();
         })
