@@ -1,16 +1,27 @@
 const app = require("../app");
 const request = require("supertest");
 const { Orphan, sequelize } = require("../models");
-const CloudinaryCloud = require("../helpers/CloudinaryCloud");
 const { createHashPassword } = require("../helpers/helpers");
 const { queryInterface } = sequelize;
-// require('dotenv').config();
+
+const cloudinary = require("cloudinary")
+jest.mock('cloudinary')
+
+beforeEach(() => {
+  cloudinary.v2.uploader.upload.mockResolvedValue({
+    url: "imgOpr.png"
+  })
+})
 
 const OrphanagesData = require("../data/orphanages.json").map((el) => {
   el.createdAt = new Date();
   el.updatedAt = new Date();
   return el;
 });
+
+afterEach(() => {
+  jest.restoreAllMocks()
+})
 
 const orphanData = [
   {
@@ -32,16 +43,9 @@ let dataSeeding = orphanData.map(el => {
 
 beforeAll(async () => {
   await queryInterface.bulkInsert(`Orphanages`, OrphanagesData, {});
-
-  // await Orphan.create(ophanData)
-
   await queryInterface.bulkInsert(`Orphans`, dataSeeding, {});
-
 });
 
-beforeEach(() => {
-  jest.restoreAllMocks()
-})
 
 afterAll(async () => {
   await queryInterface.bulkDelete(`Orphanages`, null, {
@@ -57,17 +61,12 @@ afterAll(async () => {
   });
 });
 
-
-
 describe("Orphan Routes Test", () => {
   describe("POST /orphan/register - create new user", () => {
     test("201 Success register - should create new User", (done) => {
 
-      jest.spyOn(CloudinaryCloud, "uploadImageOrphan").mockResolvedValue("imgOpr.png")
-
       request(app)
         .post("/orphan/register")
-        // .send(orphan1)
         .field("email", "user.test@mail.com")
         .field("password", "123456")
         .field("fullName", "volunteer1")
@@ -101,10 +100,10 @@ describe("Orphan Routes Test", () => {
         });
     });
 
-    test("400 Failed register - should return error if email is already exists", (done) => {
+    test("400 Failed register - should return error if email already exists", (done) => {
       request(app)
         .post("/orphan/register")
-        .field("email", "user.test@mail.com")
+        .field("email", "orphan21@gmail.com")
         .field("password", "123456")
         .field("fullName", "volunteer1")
         .field("OrphanageId", 1)
@@ -130,11 +129,13 @@ describe("Orphan Routes Test", () => {
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
+
           expect(status).toBe(400);
           expect(body).toHaveProperty("message", "Wrong format");
           return done();
         });
     });
+
     test("400 Failed register - should return error if password less 5 char", (done) => {
       request(app)
         .post("/orphan/register")
@@ -148,6 +149,25 @@ describe("Orphan Routes Test", () => {
           const { body, status } = res;
           expect(status).toBe(400);
           expect(body).toHaveProperty("message", "Password must be at least 5 character");
+          return done();
+        });
+    });
+
+    test("400 Failed register - should return error when faileed upload", (done) => {
+      cloudinary.v2.uploader.upload.mockRejectedValue(new Error("Uploading file failed"))
+      request(app)
+        .post("/orphan/register")
+        .field("email", "user.test@mail.com")
+        .field("password", "123456")
+        .field("fullName", "volunteer1")
+        .field("OrphanageId", 1)
+        .attach('imageUrl', "data/hacktiv8-1.png")
+        .end((err, res) => {
+          if (err) return done(err);
+          const { body, status } = res;
+
+          expect(status).toBe(422);
+          expect(body).toHaveProperty("message", "Uploading file failed");
           return done();
         });
     });
@@ -165,7 +185,7 @@ describe("Orphan Routes Test", () => {
           if (err) return done(err);
           const { body, status } = res;
 
-          // expect(status).toBe(200);
+          expect(status).toBe(200);
           expect(body).toHaveProperty("access_token", expect.any(String));
           return done();
         });
@@ -187,28 +207,6 @@ describe("Orphan Routes Test", () => {
           return done();
         });
     });
-
-
-    // test("401 Failed login - should return error wrong password", (done) => {
-    //   request(app)
-    //     .post("/orphan/login")
-    //     .send({
-    //       email: "user.test@mail.com",
-    //       password: "salahpassword",
-    //     })
-    //     .end((err, res) => {
-    //       if (err) return done(err);
-    //       const { body, status } = res;
-
-    //       expect(status).toBe(401);
-    //       expect(body).toHaveProperty("message", "Invalid Email/Password");
-    //       return done();
-    //     });
-    // });
-
-
-
-
 
     test("401 Failed login - should return error if wrong password/email", (done) => {
       request(app)
@@ -258,39 +256,7 @@ describe("Orphan Routes Test", () => {
           return done();
         });
     });
-
-
-    // describe("GET /orphan/:id", () => {
-    //   describe("Success attempt", () => {
-    //       it("Should return status code 200", async () => {
-    //         const response = await request(app)
-    //           .get("/orphan/1")
-    //         expect(response.status).toBe(200);
-    //         expect(response.body).toHaveProperty("id", expect.any(Number));
-    //       });
-
-    //   });
-    //   describe("Failed attempt", () => {
-    //       it("Should return status code 401", async () => {
-    //         const response = await request(app)
-    //           .get("/orphan/1")
-    //         expect(response.status).toBe(401);
-    //         expect(response.body).toHaveProperty("message", "Unauthorized");
-    //     });
-    //     describe("Content not found", () => {
-    //       it("Should return status code 404", async () => {
-    //         const response = await request(app)
-    //           .get("/orphan/100")
-    //         expect(response.status).toBe(404);
-    //         expect(response.body).toHaveProperty("message", "Content Not Found");
-    //       });
-    //     });
-    //   });
-    // });
-
-
-
-
-
   });
+
+
 });
