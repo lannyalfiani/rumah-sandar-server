@@ -36,6 +36,9 @@ function errorHandler(err, req, res, next) {
   } else if (err.name === "JsonWebTokenError") {
     code = 401;
     msg = "Unauthorized";
+  } else if (err.name === `Upload file failed`) {
+    code = 422
+    msg = "Uploading file failed"
   }
 
   res.status(code).json({ message: msg });

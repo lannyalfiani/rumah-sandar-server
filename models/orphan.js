@@ -20,32 +20,37 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique : true,
+      unique: true,
       validate: {
-        notNull : {
-          msg : "Email required"
+        notNull: {
+          msg: "Email required"
         },
-        notEmpty : {
-          msg : "Email required"
+        notEmpty: {
+          msg: "Email required"
         },
-        isEmail : {
-          msg : "Wrong format"
-        }
-      }
+        isEmail: {
+          msg: "Wrong format"
+        },
+        // customValidator(value) {
+        //   if (!value) {
+        //     throw new Error("Email required")
+        //   }
+        // }
+      },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
-          msg : "Password required"
+        notNull: {
+          msg: "Password required"
         },
-        notEmpty : {
-          msg : "Password required"
+        notEmpty: {
+          msg: "Password required"
         },
         len: {
-          args : [5, 20],
-          msg : "Password must be at least 5 character"
+          args: [5, 20],
+          msg: "Password must be at least 5 character"
         }
       }
     },
@@ -53,11 +58,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
-          msg : "Full Name required"
+        notNull: {
+          msg: "Full Name required"
         },
-        notEmpty : {
-          msg : "Full Name required"
+        notEmpty: {
+          msg: "Full Name required"
         }
       }
     },
@@ -77,11 +82,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        notNull : {
-          msg : "OrphanageId required"
+        notNull: {
+          msg: "OrphanageId required"
         },
-        notEmpty : {
-          msg : "OrphanageId required"
+        notEmpty: {
+          msg: "OrphanageId required"
         }
       }
     },

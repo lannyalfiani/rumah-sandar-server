@@ -5,10 +5,13 @@ const { queryInterface } = sequelize;
 const app = require("../app");
 const { createHashPassword } = require("../helpers/helpers");
 
+const cloudinary = require("cloudinary")
+jest.mock('cloudinary')
+
 beforeEach(() => {
-  // jest.restoreAllMocks()
-  jest.spyOn(CloudinaryCloud, "uploadImageVolunteer").mockResolvedValue("img.png")
-  jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf")
+  cloudinary.v2.uploader.upload.mockResolvedValue({
+    url: "img.png"
+  })
 })
 
 afterEach(() => {
@@ -125,10 +128,10 @@ describe("Volunteer Routes Test", () => {
     });
 
     test("400 Failed register - should return error if fullName is null", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
+      // jest
+      //   .spyOn(CloudinaryCloud, "uploadImageVolunteer")
+      //   .mockResolvedValue("img.png");
+      // jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
       request(app)
         .post("/volunteer/register")
         .field("email", "volunteer12@mail.com")
