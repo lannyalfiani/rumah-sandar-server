@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+require('dotenv').config()
 const secretKey = process.env.JWTSECRETKEY;
 
 const createHashPassword = (password) => bcrypt.hashSync(password);

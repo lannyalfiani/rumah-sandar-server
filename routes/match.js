@@ -18,4 +18,6 @@ router.put(
   matchController.AddVolunteerToMatch
 );
 
+router.get("/:matchId", matchController.fetchMatchById)
+
 module.exports = router;

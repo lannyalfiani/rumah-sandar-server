@@ -33,7 +33,20 @@ class matchController {
   static async getAllMatch(req, res, next) {
     try {
       let response = await Match.findAll({
-        include: [Orphan, Volunteer],
+        include: [
+          {
+            model: Orphan,
+            attributes: {
+              exclude: [`password`]
+            }
+          },
+          {
+            model: Volunteer,
+            attributes: {
+              exclude: [`password`]
+            }
+          }
+        ],
         where: {
           VolunteerId: {
             [Op.is]: null,
@@ -117,6 +130,30 @@ class matchController {
     } catch (error) {
       next(error);
       await t.rollback();
+    }
+  }
+
+  static async fetchMatchById(req, res, next) {
+    try {
+      let data = await Match.findByPk(req.params.matchId, {
+        include: [
+          {
+            model: Orphan,
+            attributes: {
+              exclude: [`password`]
+            }
+          },
+          {
+            model: Volunteer,
+            attributes: {
+              exclude: [`password`]
+            }
+          }
+        ],
+      });
+      res.status(200).json(data);
+    } catch (err) {
+      next(err)
     }
   }
 }

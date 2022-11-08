@@ -61,15 +61,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       imageUrl: {
         type: DataTypes.STRING,
-        // allowNull: false,
-        // validate: {
-        //   notNull: {
-        //     msg: "Image Url required",
-        //   },
-        //   notEmpty: {
-        //     msg: "Image Url required",
-        //   },
-        // },
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Image Url required",
+          },
+          notEmpty: {
+            msg: "Image Url required",
+          },
+        },
       },
       linkedinUrl: {
         type: DataTypes.STRING,
@@ -85,15 +85,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       curriculumVitae: {
         type: DataTypes.STRING,
-        // allowNull: false,
-        // validate: {
-        //   notNull: {
-        //     msg: "Curriculum Vitae required",
-        //   },
-        //   notEmpty: {
-        //     msg: "Curriculum Vitae required",
-        //   },
-        // },
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Curriculum Vitae required",
+          },
+          notEmpty: {
+            msg: "Curriculum Vitae required",
+          },
+        },
       },
       lastEducation: {
         type: DataTypes.STRING,
@@ -109,7 +109,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       role: DataTypes.STRING,
       verified: DataTypes.BOOLEAN,
-      matchStatus: DataTypes.STRING
+      matchStatus: DataTypes.STRING,
     },
     {
       sequelize,

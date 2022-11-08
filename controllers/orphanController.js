@@ -3,25 +3,21 @@ const {
   signPayloadToToken,
 } = require("../helpers/helpers");
 const main = require("../helpers/nodemailer");
-const cloudinary = require("cloudinary");
+// const cloudinary = require("cloudinary");
 const { Orphan, Volunteer } = require("../models");
+const CloudinaryCloud = require("../helpers/CloudinaryCloud");
 
 class orphanController {
   static async registerOrphan(req, res, next) {
     try {
       const { fullName, email, password, OrphanageId } = req.body;
 
+      if (!req.files.imageUrl) {
+        throw { name: "required" };
+      }
       let imageUrl = req.files.imageUrl[0];
-      let imageTODB = "";
 
-      await cloudinary.v2.uploader
-        .upload(imageUrl.path, { folder: "RumahSandar/Orphans" })
-        .then((result) => {
-          imageTODB = result.url;
-        })
-        .catch((err) => {
-          throw { name: { err } };
-        });
+      let imageTODB = await CloudinaryCloud.uploadImageOrphan(imageUrl);
 
       let checkVolunteerEmail = await Volunteer.findOne({ where: { email } });
 
