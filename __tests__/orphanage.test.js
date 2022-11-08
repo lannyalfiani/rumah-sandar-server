@@ -37,4 +37,21 @@ describe("GET /orphanages", () => {
         done(err);
       });
   });
+
+  describe("Failed to fetch orphanages", () => {
+    test("Should return error when hittig /orphanages", (done) => {
+      Orphanage.findAll = jest.fn().mockRejectedValue("Not found");
+      request(app)
+        .get("/orphanages")
+        .then((res) => {
+          expect(res.status).toBe(500);
+
+          expect(res.body).toHaveProperty("message", "Internal Server Error");
+          done();
+        })
+        .catch((err) => {
+          done(err);
+        });
+    });
+  })
 });

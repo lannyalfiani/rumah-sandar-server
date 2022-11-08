@@ -1,5 +1,5 @@
 const request = require(`supertest`)
-const { sequelize } = require("../models")
+const { sequelize, Donation } = require("../models")
 const { queryInterface } = sequelize
 const app = require("../app")
 
@@ -39,6 +39,23 @@ describe("GET /payment/donations", () => {
         done(err);
       });
   });
+
+  describe("Failed GET /payment/donations", () => {
+    test("Should return error when hitting /payment/donations", (done) => {
+      Donation.findAll = jest.fn().mockRejectedValue("Not found");
+      request(app)
+        .get("/payment/donations")
+        .then((res) => {
+          expect(res.status).toBe(500);
+
+          expect(res.body).toHaveProperty("message", "Internal Server Error");
+          done();
+        })
+        .catch((err) => {
+          done(err);
+        });
+    });
+  })
 });
 
 describe("POST /payment/xendit-callback", () => {
