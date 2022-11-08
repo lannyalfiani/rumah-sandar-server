@@ -20,7 +20,12 @@ class adminController {
         id: admin.id,
         role: admin.role,
       });
-      res.status(200).json({ access_token });
+      const sendData = {
+        id: admin.id,
+        email: admin.email,
+        role: admin.role,
+      };
+      res.status(200).json({ access_token, sendData });
     } catch (err) {
       // console.log(err);
       next(err);
@@ -29,7 +34,9 @@ class adminController {
 
   static async getVolunteers(req, res, next) {
     try {
-      const volunteers = await Volunteer.findAll();
+      const volunteers = await Volunteer.findAll({
+        order: [["id", "ASC"]],
+      });
 
       res.status(200).json(volunteers);
     } catch (error) {
@@ -60,6 +67,7 @@ class adminController {
   static async verifyVolunteer(req, res, next) {
     try {
       const { volunteerId } = req.params;
+      console.log(req.params);
       const foundVolunteer = await Volunteer.findByPk(volunteerId);
       if (!foundVolunteer) throw { name: "Not Found" };
 
@@ -75,7 +83,7 @@ class adminController {
       next(error);
     }
   }
-  
+
   static async getOrphans(req, res, next) {
     try {
       const Orphans = await Orphan.findAll();

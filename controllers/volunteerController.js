@@ -8,10 +8,11 @@ const cloudinary = require("cloudinary");
 const CloudinaryCloud = require("../helpers/CloudinaryCloud");
 class volunteerController {
   static async registerVolunteer(req, res, next) {
+    console.log(req.files);
+    console.log(req.body);
     try {
       const { fullName, email, password, linkedinUrl, lastEducation } =
         req.body;
-      console.log(req.files);
       if (!req.files.imageUrl || !req.files.curriculumVitae) {
         throw { name: "required" };
       }
@@ -71,6 +72,7 @@ class volunteerController {
         matchStatus: volunteer.matchStatus,
         imageUrl: volunteer.imageUrl,
       };
+      console.log(access_token);
       res.status(200).json({ access_token, sendData });
     } catch (err) {
       console.log(err);
