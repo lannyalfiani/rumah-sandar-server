@@ -509,7 +509,7 @@ _Response 200 - OK_
     ```
 
 ## 14. GET categories
-
+ 
 ### Description
 - Get the list of all class categories
 
