@@ -28,6 +28,7 @@ class CloudinaryCloud {
       const { url } = await cloudinary.v2.uploader.upload(imageUrl.path, { folder: "RumahSandar/Orphans" })
       return url
     } catch (error) {
+      throw err
     }
   }
 }
