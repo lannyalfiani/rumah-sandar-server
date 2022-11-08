@@ -22,16 +22,22 @@ const AuthorizationVolunteerRequestAndGet = async (req, res, next) => {
     if (role == "orphan") {
       throw { name: "Forbidden" };
     }
-    let LoginVolunteer = await Volunteer.findByPk(id);
-    if (LoginVolunteer.matchStatus == "alreadyMatch") {
-      throw { name: "Forbidden" };
+    if (role == "volunteer") {
+      let LoginVolunteer = await Volunteer.findByPk(id);
+      if (LoginVolunteer.matchStatus == "alreadyMatch") {
+        throw { name: "Forbidden" };
+      } else {
+        next();
+      }
+    } else {
+      next();
     }
-    next();
   } catch (error) {
     next(error);
   }
 };
 
 module.exports = {
-  AuthorizationRequestMatch, AuthorizationVolunteerRequestAndGet
+  AuthorizationRequestMatch,
+  AuthorizationVolunteerRequestAndGet,
 };

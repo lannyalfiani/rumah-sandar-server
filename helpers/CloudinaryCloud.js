@@ -23,7 +23,7 @@ class CloudinaryCloud {
     }
   }
 
-  static async uploadImageOrphan() {
+  static async uploadImageOrphan(imageUrl) {
     try {
       const { url } = await cloudinary.v2.uploader.upload(imageUrl.path, { folder: "RumahSandar/Orphans" })
       return url
