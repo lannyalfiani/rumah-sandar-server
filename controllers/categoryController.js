@@ -2,8 +2,6 @@ const { ClassCategory } = require("../models");
 
 class categoryController {
   static async getCategories(req, res, next) {
-    // console.log(req.user)
-
     try {
       let categories = await ClassCategory.findAll({
         attributes: { exclude: ["createdAt", "updatedAt"] },

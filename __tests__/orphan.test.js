@@ -1,10 +1,8 @@
 const app = require("../app");
 const request = require("supertest");
 const { Orphan, sequelize } = require("../models");
-const CloudinaryCloud = require("../helpers/CloudinaryCloud");
 const { createHashPassword } = require("../helpers/helpers");
 const { queryInterface } = sequelize;
-// require('dotenv').config();
 
 const cloudinary = require("cloudinary")
 jest.mock('cloudinary')
@@ -173,8 +171,6 @@ describe("Orphan Routes Test", () => {
           return done();
         });
     });
-
-
   });
 
   describe("POST /orphan/login - user login", () => {

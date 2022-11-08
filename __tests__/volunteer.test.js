@@ -12,6 +12,10 @@ beforeEach(() => {
   cloudinary.v2.uploader.upload.mockResolvedValue({
     url: "img.png"
   })
+
+  cloudinary.v2.uploader.upload.mockResolvedValue({
+    url: "cv.pdf"
+  })
 })
 
 afterEach(() => {
