@@ -33,6 +33,7 @@ async function createInvoice(payload) {
         id: theDonation.id
       }
     })
+    console.log("masuk tabel invoice");
   } catch (err) {
     console.log(err)
     // next(err) //! next ga kebaca krn ga require errorhandler
