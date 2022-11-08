@@ -11,9 +11,6 @@ class orphanController {
   static async registerOrphan(req, res, next) {
     try {
       const { fullName, email, password, OrphanageId } = req.body;
-      if (!req.files.imageUrl) {
-        throw { name: "required" };
-      }
 
       let imageUrl = req.files.imageUrl[0];
 
