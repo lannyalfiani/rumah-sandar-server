@@ -394,15 +394,16 @@ describe("Match Routes Test", () => {
     });
   });
   describe("PUT /match/:matchId - Approve a request match", () => {
-    test("404 Request Failed - hour not fill", () => {
+    test("401 Request Failed - hour not fill", () => {
       return request(app)
         .put("/match/1")
         .set("access_token", VolunteerNotMatchToken)
         .send({
           startDate: "2022-11-07",
+          hour: ""
         })
         .then((result) => {
-          expect(result.status).toBe(404);
+          expect(result.status).toBe(401);
           expect(result.body).toHaveProperty("message", "All Field Required ");
         });
     });

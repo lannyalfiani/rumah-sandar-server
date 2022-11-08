@@ -9,24 +9,24 @@ const CloudinaryCloud = require("../helpers/CloudinaryCloud");
 
 class orphanController {
   static async registerOrphan(req, res, next) {
-    console.log(req.body);
-    console.log(req.files);
     try {
       const { fullName, email, password, OrphanageId } = req.body;
       if (!req.files.imageUrl) {
         throw { name: "required" };
       }
-      console.log(req.files);
+
       let imageUrl = req.files.imageUrl[0];
 
+      console.log("before upload");
       let imageTODB = await CloudinaryCloud.uploadImageOrphan(imageUrl);
+      console.log("after upload");
 
       let checkVolunteerEmail = await Volunteer.findOne({ where: { email } });
 
       if (checkVolunteerEmail) {
         throw { name: "SequelizeUniqueConstraintError" };
       }
-      console.log(imageTODB);
+
       await Orphan.create({
         fullName,
         email,
@@ -39,7 +39,7 @@ class orphanController {
       main(email, "Registrasi");
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
-      console.log(err);
+      console.log(err , `<<<<<<<<< di controller`);
       next(err);
     }
   }

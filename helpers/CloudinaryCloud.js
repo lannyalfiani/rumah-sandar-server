@@ -3,12 +3,13 @@ const cloudinary = require("cloudinary")
 class CloudinaryCloud {
 
   static async uploadImageVolunteer(imageUrl) {
+    console.log(`masuk`);
     try {
       const { url } = await cloudinary.v2.uploader.upload(imageUrl.path, { folder: "RumahSandar/Volunteer/Images" })
       return url
 
     } catch (err) {
-      throw err
+      throw { name: `Upload file failed` }
     }
 
   }
@@ -19,7 +20,7 @@ class CloudinaryCloud {
       return url
 
     } catch (err) {
-      throw err
+      throw { name: `Upload file failed` }
     }
   }
 
@@ -28,6 +29,7 @@ class CloudinaryCloud {
       const { url } = await cloudinary.v2.uploader.upload(imageUrl.path, { folder: "RumahSandar/Orphans" })
       return url
     } catch (error) {
+      throw { name: `Upload file failed` }
     }
   }
 }
