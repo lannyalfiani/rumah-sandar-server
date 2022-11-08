@@ -9,8 +9,7 @@ module.exports = {
       el.updatedAt = new Date()
       el.password = createHashPassword(`${el.password}`)
       el.role = "volunteer"
-      el.matchStatus = "notMatch"
-      el.verified = true
+        el.curriculumVitae = "https://cdn-images.zety.com/images/zety/landings/examples/academic-cv-example@3x.png"
       return el
     })
 

@@ -9,7 +9,7 @@ module.exports = {
       el.updatedAt = new Date()
       el.password = createHashPassword(`${el.password}`)
       el.role = "orphan"
-      el.matchStatus = "notMatch"
+      // el.matchStatus = "notMatch"
       el.verified = true
       return el
     })
