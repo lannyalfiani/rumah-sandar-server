@@ -93,8 +93,8 @@ describe("Admin Routes Test", () => {
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
-
-          expect(status).toBe(404);
+          // console.log(body);
+          expect(status).toBe(401);
           expect(body).toHaveProperty("message", "All Field Required ");
           return done();
         });
@@ -110,7 +110,7 @@ describe("Admin Routes Test", () => {
           if (err) return done(err);
           const { body, status } = res;
 
-          expect(status).toBe(404);
+          expect(status).toBe(401);
           expect(body).toHaveProperty("message", "All Field Required ");
           return done();
         });
@@ -124,7 +124,7 @@ describe("Admin Routes Test", () => {
           if (err) return done(err);
           const { body, status } = res;
 
-          expect(status).toBe(404);
+          expect(status).toBe(401);
           expect(body).toHaveProperty("message", "All Field Required ");
           return done();
         });
@@ -141,7 +141,7 @@ describe("Admin Routes Test", () => {
           if (err) return done(err);
           const { body, status } = res;
 
-          expect(status).toBe(404);
+          expect(status).toBe(401);
           expect(body).toHaveProperty("message", "All Field Required ");
           return done();
         });
@@ -158,7 +158,7 @@ describe("Admin Routes Test", () => {
           if (err) return done(err);
           const { body, status } = res;
 
-          expect(status).toBe(404);
+          expect(status).toBe(401);
           expect(body).toHaveProperty("message", "All Field Required ");
           return done();
         });
@@ -175,7 +175,7 @@ describe("Admin Routes Test", () => {
           if (err) return done(err);
           const { body, status } = res;
 
-          expect(status).toBe(404);
+          expect(status).toBe(401);
           expect(body).toHaveProperty("message", "All Field Required ");
           return done();
         });

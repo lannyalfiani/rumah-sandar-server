@@ -65,13 +65,9 @@ describe("Volunteer Routes Test", () => {
   describe("POST /volunteer/register - create new volunteer", () => {
     test("201 Success register - should create new Volunteer", (done) => {
 
-      // jest.spyOn(CloudinaryCloud, "uploadImageVolunteer").mockResolvedValue("img.png")
-      // jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf")
-
       request(app)
         .post("/volunteer/register")
-        // .send(volunteer1)
-        .field("email", "volunteer12@mail.com")
+        .field("email", "volunteer122222@mail.com")
         .field("password", "123456")
         .field("fullName", "volunteer1")
         .field("linkedinUrl", "test.com")
@@ -81,6 +77,8 @@ describe("Volunteer Routes Test", () => {
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
+          console.log(body)
+          console.log(status);
           expect(status).toBe(201);
           expect(body).toHaveProperty("message", "Register Success");
           return done();
@@ -88,14 +86,9 @@ describe("Volunteer Routes Test", () => {
     });
 
     test("201 Success register for Not Verified - should create new Volunteer", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
 
       request(app)
         .post("/volunteer/register")
-        // .send(volunteer1)
         .field("email", "volunteer580@mail.com")
         .field("password", "12345")
         .field("fullName", "volunteer1")
@@ -113,15 +106,8 @@ describe("Volunteer Routes Test", () => {
     });
 
     test("400 Failed register - should return error if email is null", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
       request(app)
         .post("/volunteer/register")
-        // .send({
-        //   password: "qweqwe",
-        // })
         .field("email", "")
         .field("password", "123456")
         .field("fullName", "volunteer1")
@@ -145,9 +131,6 @@ describe("Volunteer Routes Test", () => {
       jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
       request(app)
         .post("/volunteer/register")
-        // .send({
-        //   password: "qweqwe",
-        // })
         .field("email", "volunteer12@mail.com")
         .field("password", "123456")
         .field("fullName", "")
@@ -166,15 +149,9 @@ describe("Volunteer Routes Test", () => {
     });
 
     test("400 Failed register - should return error if password is null", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
+
       request(app)
         .post("/volunteer/register")
-        // .send({
-        //   email: "test",
-        // })
         .field("email", "volunteer12@mail.com")
         .field("password", "")
         .field("fullName", "volunteer1")
@@ -192,11 +169,7 @@ describe("Volunteer Routes Test", () => {
         });
     });
 
-    test("400 Failed register - should return error if imageUrl is null", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
+    test("401 Failed register - should return error if imageUrl is null", (done) => {
       request(app)
         .post("/volunteer/register")
         .field("email", "volunteer12@mail.com")
@@ -211,17 +184,13 @@ describe("Volunteer Routes Test", () => {
           if (err) return done(err);
           const { body, status } = res;
 
-          expect(status).toBe(400);
-          expect(body).toHaveProperty("message", "All Field Required");
+          expect(status).toBe(401);
+          expect(body).toHaveProperty("message", "All Field Required ");
           return done();
         });
     });
 
     test("400 Failed register - should return error if linkedIn is null", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
       request(app)
         .post("/volunteer/register")
         .field("email", "volunteer12@mail.com")
@@ -242,31 +211,28 @@ describe("Volunteer Routes Test", () => {
         });
     });
 
-    test("400 Failed register - should return error if curriculumVitae is null", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
+    test("401 Failed register - should return error if curriculumVitae is null", (done) => {
       request(app)
         .post("/volunteer/register")
-        .send({
-          email: "test",
-        })
+        .field("email", "volunteer12@mail.com")
+        .field("password", "123456")
+        .field("fullName", "volunteer1")
+        .field("linkedinUrl", "test.com")
+        .field("lastEducation", "sma")
+        .attach("imageUrl", "")
+        .attach("curriculumVitae", "data/hacktiv8-1.png")
+
         .end((err, res) => {
           if (err) return done(err);
           const { body, status } = res;
 
-          expect(status).toBe(400);
-          expect(body).toHaveProperty("message", "All Field Required");
+          expect(status).toBe(401);
+          expect(body).toHaveProperty("message", "All Field Required ");
           return done();
         });
     });
 
     test("400 Failed register - should return error if lastEducation is null", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
       request(app)
         .post("/volunteer/register")
         // .send({
@@ -290,13 +256,8 @@ describe("Volunteer Routes Test", () => {
     });
 
     test("400 Failed register - should return error if email is already exists", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
       request(app)
         .post("/volunteer/register")
-        // .send(volunteer1)
         .field("email", "volunteer12@mail.com")
         .field("password", "123456")
         .field("fullName", "volunteer1")
@@ -315,21 +276,8 @@ describe("Volunteer Routes Test", () => {
     });
 
     test("400 Failed register - should return error if password less than 5 char", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
       request(app)
         .post("/volunteer/register")
-        // .send({
-        //   email: "volunteer12",
-        //   password: "123456",
-        //   fullName: "volunteer1",
-        //   imageUrl: "https://test.jpg",
-        //   linkedinUrl: "test.com",
-        //   curriculumVitae: "url.com",
-        //   lastEducation: "SMA",
-        // })
         .field("email", "volunteer@hhdh.cjjj")
         .field("password", "123")
         .field("fullName", "volunteer1")
@@ -350,21 +298,8 @@ describe("Volunteer Routes Test", () => {
     });
 
     test("400 Failed register - should return error if wrong email format", (done) => {
-      jest
-        .spyOn(CloudinaryCloud, "uploadImageVolunteer")
-        .mockResolvedValue("img.png");
-      jest.spyOn(CloudinaryCloud, "uploadCV").mockResolvedValue("cv.pdf");
       request(app)
         .post("/volunteer/register")
-        // .send({
-        //   email: "volunteer12",
-        //   password: "123456",
-        //   fullName: "volunteer1",
-        //   imageUrl: "https://test.jpg",
-        //   linkedinUrl: "test.com",
-        //   curriculumVitae: "url.com",
-        //   lastEducation: "SMA",
-        // })
         .field("email", "volunteer")
         .field("password", "123456")
         .field("fullName", "volunteer1")
@@ -383,12 +318,9 @@ describe("Volunteer Routes Test", () => {
   });
 
   describe("POST /volunteer/login - volunteer login", () => {
-    test("200 Success login - should return access_token", () => {
-      return request(app)
+    test("200 Success login - should return access_token", (done) => {
+      request(app)
         .post("/volunteer/login")
-        // .send(volunteer1)
-        // .field("email", "volunteer12@mail.com")
-        // .field("password", "123456")
         .send({
           email: "volunteer12@mail.com",
           password: "123456",
@@ -397,9 +329,8 @@ describe("Volunteer Routes Test", () => {
           if (err) return done(err);
           const { body, status } = res;
           console.log(res.body)
-          expect(true).toBe(true)
-          // expect(status).toBe(200);
-          // expect(body).toHaveProperty("access_token", expect.any(String));
+          expect(status).toBe(200);
+          expect(body).toHaveProperty("access_token", expect.any(String));
           return done();
         });
     });
