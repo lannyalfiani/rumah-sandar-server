@@ -1,4 +1,4 @@
-const { Orphan, Volunteer } = require("../models");
+const { Orphan, Volunteer, Match } = require("../models");
 const AuthorizationRequestMatch = async (req, res, next) => {
   try {
     console.log(req.user);
@@ -8,6 +8,14 @@ const AuthorizationRequestMatch = async (req, res, next) => {
     }
     let LoginOrphan = await Orphan.findByPk(id);
     if (LoginOrphan.matchStatus == "alreadyMatch") {
+      throw { name: "Forbidden" };
+    }
+    let alreadyRequestMatch = await Match.findOne({
+      where: {
+        OrphanId: id,
+      },
+    });
+    if (alreadyRequestMatch) {
       throw { name: "Forbidden" };
     }
     next();
