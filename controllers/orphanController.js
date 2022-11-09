@@ -12,8 +12,11 @@ class orphanController {
     try {
       const { fullName, email, password, OrphanageId } = req.body;
 
+      if (req.files.imageUrl === undefined) {
+        throw { name: "required" };
+      }
       let imageUrl = req.files.imageUrl[0];
-
+      
       console.log("before upload");
       let imageTODB = await CloudinaryCloud.uploadImageOrphan(imageUrl);
       console.log("after upload");
