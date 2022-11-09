@@ -4,7 +4,6 @@ const { Volunteer, Orphan, Admin } = require("../models");
 
 const authentication = async (req, res, next) => {
   try {
-    console.log(req.headers);
     const { access_token } = req.headers;
     if (!access_token) throw { name: "Invalid Email/Password" };
     const payload = verifyTokenToPayload(access_token);

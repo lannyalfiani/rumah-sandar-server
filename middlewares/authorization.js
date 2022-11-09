@@ -1,7 +1,7 @@
 const { Orphan, Volunteer, Match } = require("../models");
 const AuthorizationRequestMatch = async (req, res, next) => {
   try {
-    console.log(req.user);
+    // console.log(req.user);
     let { role, id } = req.user;
     if (role !== "orphan") {
       throw { name: "Forbidden" };
