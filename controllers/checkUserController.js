@@ -26,8 +26,6 @@ class checkUserController {
           },
         });
         res.status(200).json(userLogin);
-      } else {
-        throw { name: "Forbidden" };
       }
     } catch (error) {
       next(error);

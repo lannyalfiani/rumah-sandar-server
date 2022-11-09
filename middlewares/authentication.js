@@ -13,6 +13,7 @@ const authentication = async (req, res, next) => {
       if (!volunteer) throw { name: "Invalid Email/Password" };
       if (!volunteer.verified) throw { name: "You are not verified" };
       // di ubah ke req user biar general, karna hanya bisa satu login
+      console.log(volunteer, "ini di authen volun");
       req.user = {
         id: volunteer.id,
         fullname: volunteer.fullName,
@@ -24,6 +25,7 @@ const authentication = async (req, res, next) => {
       if (!orphan) throw { name: "Invalid Email/Password" };
       if (!orphan.verified) throw { name: "You are not verified" };
       // di ubah ke req user biar general, karna hanya bisa satu login
+      console.log(orphan, "ini di authen orphan");
       req.user = {
         id: orphan.id,
         fullname: orphan.fullName,
