@@ -17,6 +17,7 @@ class checkUserController {
             exclude: ["password"],
           },
         });
+        console.log(userLogin, "--------------------------------");
         res.status(200).json(userLogin);
       } else if (role === "volunteer") {
         let userLogin = await Volunteer.findByPk(id, {
@@ -36,13 +37,16 @@ class checkUserController {
     try {
       let { id, role } = req.user;
       let today = new Date();
-      console.log(id, res);
+      //   console.log(id, res);
       if (role === "volunteer") {
-        let findMatch = await Match.findOne({
+        let findMatch = await Match.findAll({
           where: {
             VolunteerId: id,
             endDate: {
-              [Op.gt]: today,
+              [Op.or]: {
+                [Op.gt]: today,
+                [Op.eq]: null,
+              },
             },
           },
           include: [
@@ -60,18 +64,16 @@ class checkUserController {
             },
           ],
         });
-        console.log(findMatch);
-        if (!findMatch) {
-          throw { name: "Not Found" };
-        }
         res.status(200).json(findMatch);
-        console.log(findMatch);
       } else if (role === "orphan") {
-        let findMatch = await Match.findOne({
+        let findMatch = await Match.findAll({
           where: {
             OrphanId: id,
             endDate: {
-              [Op.gt]: today,
+              [Op.or]: {
+                [Op.gt]: today,
+                [Op.eq]: null,
+              },
             },
           },
           include: [
@@ -89,16 +91,15 @@ class checkUserController {
             },
           ],
         });
-        console.log(findMatch);
-        if (!findMatch) {
-          throw { name: "Not Found" };
-        }
         res.status(200).json(findMatch);
       } else {
         let findMatch = await Match.findAll({
           where: {
             endDate: {
-              [Op.gt]: today,
+              [Op.or]: {
+                [Op.gt]: today,
+                [Op.eq]: null,
+              },
             },
           },
           include: [
@@ -116,10 +117,7 @@ class checkUserController {
             },
           ],
         });
-        console.log(findMatch);
-        if (!findMatch) {
-          throw { name: "Not Found" };
-        }
+
         res.status(200).json(findMatch);
       }
     } catch (error) {
