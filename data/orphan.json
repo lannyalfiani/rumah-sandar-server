@@ -5,7 +5,8 @@
     "fullName": "Eleven",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943273/RumahSandar/Orphans/el_astf74.webp",
     "OrphanageId": 1,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": true
   },
   {
     "email": "two@gmail.com",
@@ -13,7 +14,8 @@
     "fullName": "Eleven",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943273/RumahSandar/Orphans/el_astf74.webp",
     "OrphanageId": 1,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": true
   },
   {
     "email": "one@gmail.com",
@@ -21,7 +23,8 @@
     "fullName": "Eleven",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943273/RumahSandar/Orphans/el_astf74.webp",
     "OrphanageId": 1,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": true
   },
   {
     "email": "three@gmail.com",
@@ -29,7 +32,8 @@
     "fullName": "Eleven",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943273/RumahSandar/Orphans/el_astf74.webp",
     "OrphanageId": 1,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": true
   },
   {
     "email": "four@gmail.com",
@@ -37,7 +41,8 @@
     "fullName": "Max Mayfield",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943273/RumahSandar/Orphans/max_mrzkrv.jpg",
     "OrphanageId": 2,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": true
   },
   {
     "email": "max@gmail.com",
@@ -45,7 +50,8 @@
     "fullName": "Max Mayfield",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943273/RumahSandar/Orphans/max_mrzkrv.jpg",
     "OrphanageId": 2,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": true
   },
   {
     "email": "will@gmail.com",
@@ -53,7 +59,8 @@
     "fullName": "Will Byers",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943273/RumahSandar/Orphans/will_ldfgif.webp",
     "OrphanageId": 3,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": false
   },
   {
     "email": "otis@gmail.com",
@@ -61,7 +68,8 @@
     "fullName": "Otis Milburn",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943274/RumahSandar/Orphans/otis_d1wecw.webp",
     "OrphanageId": 3,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": false
   },
   {
     "email": "dustin@gmail.com",
@@ -69,7 +77,8 @@
     "fullName": "Dustin Mayfield",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943273/RumahSandar/Orphans/dustin_xnfrvw.jpg",
     "OrphanageId": 4,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": false
   },
   {
     "email": "mike@gmail.com",
@@ -77,7 +86,8 @@
     "fullName": "Mike Wheeler",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943451/RumahSandar/Orphans/mike_y2btun.webp",
     "OrphanageId": 1,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": false
   },
   {
     "email": "elouise@gmail.com",
@@ -85,7 +95,8 @@
     "fullName": "Elouise",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943660/RumahSandar/Orphans/elouise_ul60m3.jpg",
     "OrphanageId": 2,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": false
   },
   {
     "email": "budi@gmail.com",
@@ -93,7 +104,8 @@
     "fullName": "Ini Budi",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943825/RumahSandar/Orphans/budi_dbc9vc.jpg",
     "OrphanageId": 2,
-    "matchStatus": "notMatch"
+    "matchStatus": "notMatch",
+    "verified": false
   },
   {
     "email": "erica@gmail.com",
@@ -101,7 +113,8 @@
     "fullName": "Erica",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943892/RumahSandar/Orphans/erica_usczg5.webp",
     "OrphanageId": 2,
-    "matchStatus": "alreadyMatch"
+    "matchStatus": "alreadyMatch",
+    "verified": false
   },
   {
     "email": "ellie@gmail.com",
@@ -109,7 +122,8 @@
     "fullName": "Ellie",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667943825/RumahSandar/Orphans/budi_dbc9vc.jpg",
     "OrphanageId": 2,
-    "matchStatus": "alreadyMatch"
+    "matchStatus": "alreadyMatch",
+    "verified": false
   },
   {
     "email": "casey@gmail.com",
@@ -117,6 +131,7 @@
     "fullName": "Ini Budi",
     "imageUrl": "https://res.cloudinary.com/dnp1u4pgv/image/upload/v1667944128/RumahSandar/Orphans/lucas_ndlwrn.webp",
     "OrphanageId": 2,
-    "matchStatus": "alreadyMatch"
+    "matchStatus": "alreadyMatch",
+    "verified": false
   }
 ]

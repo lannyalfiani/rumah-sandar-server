@@ -8,8 +8,9 @@ module.exports = {
       el.createdAt = new Date()
       el.updatedAt = new Date()
       el.password = createHashPassword(`${el.password}`)
-      el.role = "volunteer"
-        el.curriculumVitae = "https://cdn-images.zety.com/images/zety/landings/examples/academic-cv-example@3x.png"
+      el.role = "volunteer",
+      el.matchStatus = "notMatch"
+      el.curriculumVitae = "https://cdn-images.zety.com/images/zety/landings/examples/academic-cv-example@3x.png"
       return el
     })
 
