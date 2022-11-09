@@ -39,10 +39,8 @@ class matchController {
             model: Orphan,
             attributes: {
               exclude: [`password`]
-            }
-          },
-          {
-            model: Orphanage
+            },
+            include : [Orphanage]
           },
           {
             model: Volunteer,
@@ -59,6 +57,7 @@ class matchController {
       });
       res.status(200).json(response);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }
