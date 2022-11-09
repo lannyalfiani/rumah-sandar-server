@@ -1,6 +1,6 @@
 const { Op } = require("sequelize");
 const { bulkSchedule, getEach7Day } = require("../helpers/getEach7Day");
-const main = require("../helpers/nodemailer");
+const nodeMailer = require("../helpers/nodemailer");
 const {
   Match,
   Class,
@@ -38,16 +38,16 @@ class matchController {
           {
             model: Orphan,
             attributes: {
-              exclude: [`password`]
+              exclude: [`password`],
             },
-            include : [Orphanage]
+            include: [Orphanage],
           },
           {
             model: Volunteer,
             attributes: {
-              exclude: [`password`]
-            }
-          }
+              exclude: [`password`],
+            },
+          },
         ],
         where: {
           VolunteerId: {
@@ -64,8 +64,10 @@ class matchController {
   static async AddVolunteerToMatch(req, res, next) {
     const t = await sequelize.transaction();
     try {
+      console.log(req.body)
       let { matchId } = req.params;
       let VolunteerId = req.user.id;
+      console.log(matchId)
       let { startDate, hour } = req.body;
       if (!startDate || !hour) throw { name: "required" };
       let endDate = getEach7Day(startDate, 11);
@@ -76,9 +78,11 @@ class matchController {
       if (!matchData) {
         throw { name: "Not Found" };
       }
+      console.log(matchData, "ini matchnya")
       let orphanMatch = await Orphan.findByPk(matchData.OrphanId, {
         transaction: t,
       });
+      console.log(orphanMatch, "ini orphannya")
       if (orphanMatch.matchStatus === "alreadyMatch") {
         throw { name: "Adik already been choose by other kakak" };
       }
@@ -117,15 +121,15 @@ class matchController {
       await Class.bulkCreate(schedule, { transaction: t });
       await t.commit();
 
-      main(
+      nodeMailer(
         volunteerMatch.email,
-        "Match Success",
-        `volunteer ${volunteerMatch.fullName} anda telah memiliki adik ajar bernama ${orphanMatch.fullName} semoga kalian dapat berkembang dengan baik`
+        "Kamu Telah Memilih Adik Ajar",
+        `Kakak Ajar ${volunteerMatch.fullName} anda telah memiliki Adik Ajar bernama ${orphanMatch.fullName} semoga kalian dapat berkembang dengan baik`
       );
-      main(
+      nodeMailer(
         orphanMatch.email,
-        "Match Success",
-        `volunteer ${volunteerMatch.fullName} anda telah memiliki adik ajar bernama ${orphanMatch.fullName} semoga kalian dapat berkembang dengan baik`
+        "Kamu Telah Mendapatkan Kakak Ajar",
+        `Adik Ajar ${orphanMatch.fullName} anda telah memiliki Kakak Ajar bernama ${volunteerMatch.fullName} semoga kalian dapat berkembang dengan baik`
       );
       res
         .status(201)
@@ -143,20 +147,20 @@ class matchController {
           {
             model: Orphan,
             attributes: {
-              exclude: [`password`]
-            }
+              exclude: [`password`],
+            },
           },
           {
             model: Volunteer,
             attributes: {
-              exclude: [`password`]
-            }
-          }
+              exclude: [`password`],
+            },
+          },
         ],
       });
       res.status(200).json(data);
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 }

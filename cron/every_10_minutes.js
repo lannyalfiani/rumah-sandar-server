@@ -1,13 +1,13 @@
 const { Op } = require("sequelize");
-const main = require("../helpers/nodemailer");
+const dayjs = require("dayjs");
+const nodeMailer = require("../helpers/nodemailer");
 let { Match, Orphan, Volunteer, Class, ClassCategory } = require("../models");
 const CronJob = require("cron").CronJob;
 // cron jangan lupa di require di appjs
 let job = new CronJob(
   // sec, minute, hour, day of month, month, day of week
-  "* * */23 * * *",
+  " 0 6 * * *",
   async function () {
-    console.log("tes")
     let today = new Date();
     let tesEndDay = new Date("2023-01-21 08:00:00.000 +0700");
     let AllMatch = await Match.findAll({
@@ -50,17 +50,14 @@ let job = new CronJob(
       let OneDayBefore = new Date(element.date);
       OneDayBefore.setDate(element.date.getDate() - 1);
       if (OneDayBefore < today && today < element.date) {
-        console.log(element.date);
-        console.log(today);
-        console.log(OneDayBefore);
-        let message = `Jangan Lupa pada tanggal ${element.date} terdapat mata pembelajaran : ${element.ClassCategory.name} mohon untuk dapat hadir`;
-        main(element.Match.Orphan.email, "Schedule-Orphan", message);
-        main(element.Match.Volunteer.email, "Schedule-Volunteer", message);
-        console.log();
+        let dateFormat = dayjs(element.date).format("DD/MM/YYYY");
+        let message = `Jangan Lupa pada tanggal ${dateFormat} terdapat mata pembelajaran : ${element.ClassCategory.name} mohon untuk dapat hadir`;
+        nodeMailer(element.Match.Orphan.email, "Jadwal Adik Ajar", message);
+        nodeMailer(element.Match.Volunteer.email, "Jadwal Kakak Ajar", message);
       }
     });
   }
 );
 // Use this if the 4th param is default value(false)
-job.start();
-module.exports = job
+
+module.exports = job;

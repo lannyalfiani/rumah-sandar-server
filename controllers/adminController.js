@@ -2,9 +2,9 @@ const {
   compareHashWithPassword,
   signPayloadToToken,
 } = require("../helpers/helpers");
-const { Volunteer, Admin, Orphan, Match } = require("../models");
-const main = require("../helpers/nodemailer");
+const { Volunteer, Admin, Orphan, Match, Orphanage } = require("../models");
 const verificationOrphanMail = require("../helpers/verificationOrphanMail");
+const nodeMailer = require("../helpers/nodemailer");
 
 class adminController {
   static async adminLogin(req, res, next) {
@@ -35,7 +35,7 @@ class adminController {
   static async getVolunteers(req, res, next) {
     try {
       const volunteers = await Volunteer.findAll({
-        order: [["id", "ASC"]],
+        order: [["verified", "ASC"]],
       });
 
       res.status(200).json(volunteers);
@@ -57,7 +57,11 @@ class adminController {
         { where: { id: orphanId } }
       );
 
-      verificationOrphanMail(foundOrphan.email, "Verifikasi");
+      verificationOrphanMail(
+        foundOrphan.email,
+        "Verifikasi Adik Asuh",
+        foundOrphan.fullName
+      );
       res.status(200).json({ message: `Verify Success` });
     } catch (error) {
       next(error);
@@ -77,7 +81,11 @@ class adminController {
         },
         { where: { id: volunteerId } }
       );
-      main(foundVolunteer.email, "Verifikasi");
+      nodeMailer(
+        foundVolunteer.email,
+        "Verifikasi Reralawan",
+        foundVolunteer.fullName
+      );
       res.status(200).json({ message: `Verify Success` });
     } catch (error) {
       next(error);
@@ -86,7 +94,10 @@ class adminController {
 
   static async getOrphans(req, res, next) {
     try {
-      const Orphans = await Orphan.findAll();
+      const Orphans = await Orphan.findAll({
+        include: ["Orphanage"],
+        order: [["verified", "ASC"]],
+      });
       if (!Orphans) throw { name: "Not Found" };
 
       res.status(200).json(Orphans);

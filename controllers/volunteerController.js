@@ -3,9 +3,9 @@ const {
   signPayloadToToken,
 } = require("../helpers/helpers");
 const { Volunteer, Orphan } = require("../models");
-const main = require("../helpers/nodemailer");
 const cloudinary = require("cloudinary");
 const CloudinaryCloud = require("../helpers/CloudinaryCloud");
+const nodeMailer = require("../helpers/nodemailer");
 class volunteerController {
   static async registerVolunteer(req, res, next) {
     console.log(req.files);
@@ -40,7 +40,7 @@ class volunteerController {
         lastEducation,
         matchStatus: "notMatch",
       });
-      main(email, "Registrasi", fullName);
+      nodeMailer(email, "Pendaftaran Kakak Ajar", fullName);
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
       console.log(err);
