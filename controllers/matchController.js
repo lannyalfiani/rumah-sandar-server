@@ -6,6 +6,7 @@ const {
   Class,
   ClassCategory,
   Orphan,
+  Orphanage,
   sequelize,
   Volunteer,
 } = require("../models/");
@@ -38,7 +39,8 @@ class matchController {
             model: Orphan,
             attributes: {
               exclude: [`password`]
-            }
+            },
+            include : [Orphanage]
           },
           {
             model: Volunteer,
@@ -55,6 +57,7 @@ class matchController {
       });
       res.status(200).json(response);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }
