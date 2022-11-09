@@ -2,10 +2,10 @@ const {
   compareHashWithPassword,
   signPayloadToToken,
 } = require("../helpers/helpers");
-const main = require("../helpers/nodemailer");
 // const cloudinary = require("cloudinary");
 const { Orphan, Volunteer } = require("../models");
 const CloudinaryCloud = require("../helpers/CloudinaryCloud");
+const nodeMailer = require("../helpers/nodemailer");
 
 class orphanController {
   static async registerOrphan(req, res, next) {
@@ -36,7 +36,7 @@ class orphanController {
         OrphanageId,
         matchStatus: "notMatch",
       });
-      main(email, "Registrasi");
+      nodeMailer(email, "Pendaftaran Adik Ajar", fullName);
       res.status(201).json({ message: "Register Success" });
     } catch (err) {
       console.log(err , `<<<<<<<<< di controller`);

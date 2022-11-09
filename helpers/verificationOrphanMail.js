@@ -2,7 +2,7 @@
 const nodemailer = require("nodemailer");
 
 // async..await is not allowed in global scope, must use a wrapper
-function verificationOrphanMail(email, subject) {
+function verificationOrphanMail(email, subject, additionalData) {
   // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing
   // nodemailer.createTestAccount();
@@ -18,8 +18,8 @@ function verificationOrphanMail(email, subject) {
     to: email, // list of receivers
     subject: subject, // Subject line
     html: ` <div>
-      <h1> Selamat Anda Telah Terverifikasi</h1>
-      <p>Silahkan Klik Link ini untuk bisa login : <span><a href="https://google.com">Rumah Sandar</a></span></p>
+      <h1> Selamat ${additionalData} Anda Telah Terverifikasi</h1>
+      <p>Silahkan Klik Link ini untuk bisa login : <span><a href="https://rumah-sandar.web.app/login">Login Rumah Sandar</a></span></p>
   </div>`,
   });
 }
