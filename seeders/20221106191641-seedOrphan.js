@@ -9,8 +9,7 @@ module.exports = {
       el.updatedAt = new Date()
       el.password = createHashPassword(`${el.password}`)
       el.role = "orphan"
-      // el.matchStatus = "notMatch"
-      el.verified = true
+      el.matchStatus = "notMatch"
       return el
     })
     await queryInterface.bulkInsert('Orphans', data, {})
