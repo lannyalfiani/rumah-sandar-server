@@ -52,9 +52,11 @@ class classController {
             OrphanId: id,
           },
           include: [Class],
+          order: [["date", "DESC"]],
+          include: [ClassCategory],
         });
         res.status(200).json(schedule);
-      } 
+      }
       //! admin harusnya bisa liat semua
       // else {
       //   throw { name: "Data Not Found" };
