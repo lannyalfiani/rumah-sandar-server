@@ -51,9 +51,13 @@ class classController {
           where: {
             OrphanId: id,
           },
-          include: [Class],
-          order: [["date", "DESC"]],
-          include: [ClassCategory],
+          include: [
+            {
+              model: Class,
+              order: [["date", "DESC"]],
+              include: [ClassCategory],
+            },
+          ],
         });
         res.status(200).json(schedule);
       }
