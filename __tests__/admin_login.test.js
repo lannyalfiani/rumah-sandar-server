@@ -156,6 +156,24 @@ describe("GET /volunteers", () => {
   });
 });
 
+describe("Failed to fetch categories", () => {
+  test("Should return error when hitting /categories", (done) => {
+    Volunteer.findAll = jest.fn().mockRejectedValue("Not found");
+    request(app)
+      .get("/admin/volunteers")
+      .set("access_token", validToken)
+      .then((res) => {
+        expect(res.status).toBe(500);
+
+        expect(res.body).toHaveProperty("message", "Internal Server Error");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+})
+
 describe("PATCH /orphan/:orphanId", () => {
   describe("Success attempt", () => {
     describe("Updating with valid token", () => {
@@ -164,11 +182,13 @@ describe("PATCH /orphan/:orphanId", () => {
           .patch("/admin/orphan/1")
           .set("access_token", validToken);
         const { body, status } = response;
+        console.log(response, "<<<<<<<INI");
         expect(status).toBe(200);
         expect(body).toHaveProperty("message", expect.any(String));
       });
     });
   });
+  
   describe("Failed attempt", () => {
     describe("Updating with invalid token", () => {
       it("Should return statuc code 401", async () => {

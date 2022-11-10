@@ -83,7 +83,7 @@ describe("GET /categories", () => {
 
   //! paksa jadi error
   describe("Failed to fetch categories", () => {
-    test("Should return error when hit /categories", (done) => {
+    test("Should return error when hitting /categories", (done) => {
       ClassCategory.findAll = jest.fn().mockRejectedValue("Not found");
       request(app)
         .get("/categories")
