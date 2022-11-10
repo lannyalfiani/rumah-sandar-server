@@ -1,0 +1,30 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "rumah_sandar_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "port": 5433
+  },
+  "test": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "rumah_sandar_db_TEST",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "port": 5433
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "ssl": true,
+    "dialect": "postgres",
+    "protocol": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  }
+}
