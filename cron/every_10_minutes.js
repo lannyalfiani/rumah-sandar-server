@@ -4,6 +4,9 @@ const nodeMailer = require("../helpers/nodemailer");
 let { Match, Orphan, Volunteer, Class, ClassCategory } = require("../models");
 const CronJob = require("cron").CronJob;
 // cron jangan lupa di require di appjs
+
+
+
 let jobTask = async () => {
   let today = new Date();
   let tesEndDay = new Date("2023-01-21 08:00:00.000 +0700");
@@ -57,6 +60,7 @@ let jobTask = async () => {
       nodeMailer(element.Match.Volunteer.email, "Jadwal Kakak Ajar", message);
     }
   });
+  return "completed"
 }
 let job = new CronJob(
   // sec, minute, hour, day of month, month, day of week
