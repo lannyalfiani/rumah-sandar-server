@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
 const handlebars = require("handlebars");
 const { promisify } = require("util");
-const path = require('path')
+const path = require("path");
 const fs = require("fs");
 
 async function nodeMailer(email, subject, additionalData) {
@@ -64,52 +64,70 @@ async function nodeMailer(email, subject, additionalData) {
       console.log(response);
       //! Schedule - ORPHAN
     } else if (subject === "Jadwal Adik Ajar") {
+      const filePath = path.join(
+        __dirname,
+        "../assets/reminder_besok_ada_class.html"
+      );
+      const source = fs.readFileSync(filePath, "utf-8").toString();
+      const template = handlebars.compile(source);
+      // const replacements = {
+      //   username: "Darth Vader",
+      // };
+      const htmlToSend = template();
       await transporter.sendMail({
         from: process.env.EMAIL, // sender address
         to: email, // list of receivers
-        subject: subject, // Subject line
-        html: ` <div>
-      <h1> Reminder </h1>
-      <p>${additionalData}</p>
-      <p>silahkan klik link :<span><a href="https://rumah-sandar.web.app/schedule">Jadwal Kelas</a></span></p>
-  </div>`,
+        subject: "Besok Ada Kelas", // Subject line
+        html: htmlToSend,
       });
 
       //! Schedule - VOLUNTEER
     } else if (subject === "Jadwal Kakak Ajar") {
+      const filePath = path.join(
+        __dirname,
+        "../assets/reminder_besok_ada_class.html"
+      );
+      const source = fs.readFileSync(filePath, "utf-8").toString();
+      const template = handlebars.compile(source);
+      // const replacements = {
+      //   username: "Darth Vader",
+      // };
+      const htmlToSend = template();
       await transporter.sendMail({
         from: process.env.EMAIL, // sender address
         to: email, // list of receivers
-        subject: subject, // Subject line
-        html: ` <div>
-      <h1> Reminder </h1>
-      <p>${additionalData}</p>
-      <p>silahkan klik link :<span><a href="https://rumah-sandar.web.app/schedule">Jadwal Kelas</a></span></p>
-  </div>`,
+        subject: "Besok Ada Kelas", // Subject line
+        html: htmlToSend,
       });
 
       //! Schedule - MATCH success
     } else if (subject === "Kamu Telah Memilih Adik Ajar") {
+      const filePath = path.join(__dirname, "../assets/match_Kakak.html");
+      const source = fs.readFileSync(filePath, "utf-8").toString();
+      const template = handlebars.compile(source);
+      // const replacements = {
+      //   username: "Darth Vader",
+      // };
+      const htmlToSend = template();
       await transporter.sendMail({
         from: process.env.EMAIL, // sender address
         to: email, // list of receivers
-        subject: subject, // Subject line
-        html: ` <div>
-      <h1> Selamat </h1>
-      <p>${additionalData}</p>
-      <p>untuk daftar jadwal pelajaran dapat mengklik Link berikut: <span><a href="https://rumah-sandar.web.app/schedule">Jadwal Kelas</a> </p>
-  </div>`,
+        subject: "Kamu Telah Memilih Adik Asuh", // Subject line
+        html: htmlToSend,
       });
     } else if (subject === "Kamu Telah Mendapatkan Kakak Ajar") {
+      const filePath = path.join(__dirname, "../assets/match_Adik.html");
+      const source = fs.readFileSync(filePath, "utf-8").toString();
+      const template = handlebars.compile(source);
+      // const replacements = {
+      //   username: "Darth Vader",
+      // };
+      const htmlToSend = template();
       await transporter.sendMail({
         from: process.env.EMAIL, // sender address
         to: email, // list of receivers
-        subject: subject, // Subject line
-        html: ` <div>
-      <h1> Selamat </h1>
-      <p>${additionalData}</p>
-      <p>untuk daftar jadwal pelajaran dapat mengklik Link berikut: <span><a href="https://rumah-sandar.web.app/schedule">Jadwal Kelas</a> </p> 
-  </div>`,
+        subject: "Kamu Telah Mendapatkan Kakak Asuh", // Subject line
+        html: htmlToSend,
       });
     }
   } catch (err) {
