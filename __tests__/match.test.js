@@ -208,7 +208,10 @@ describe("Match Routes Test", () => {
         .post("/match/")
         .then((result) => {
           expect(result.status).toBe(401);
-          expect(result.body).toHaveProperty("message", "Invalid Email/Password");
+          expect(result.body).toHaveProperty(
+            "message",
+            "Invalid Email/Password"
+          );
         });
     });
   });
@@ -360,7 +363,7 @@ describe("Match Routes Test", () => {
         .set("access_token", VolunteerNotMatchToken)
         .send({
           startDate: "2022-11-07",
-          hour: ""
+          hour: "",
         })
         .then((result) => {
           expect(result.status).toBe(401);
@@ -397,6 +400,29 @@ describe("Match Routes Test", () => {
           expect(status).toBe(201);
           expect(body).toHaveProperty("message", "Create Request Success");
           return done();
+        });
+    });
+  });
+  describe("GET /match/:matchid - fetch match By Id", () => {
+    test("200 Request Success - should Fetch match By Id", () => {
+      return request(app)
+        .get("/match/1")
+        .set("access_token", VolunteerToken)
+        .then((result) => {
+          expect(result.status).toBe(200);
+          expect(result.body).toBeInstanceOf(Object);
+          expect(result.body).toHaveProperty("id", 1);
+          expect(result.body.Orphan).toBeInstanceOf(Object);
+          expect(result.body.Volunteer).toBeInstanceOf(Object);
+        });
+    });
+    test("404 Request Failed - Data Not Found", () => {
+      return request(app)
+        .get("/match/100")
+        .set("access_token", VolunteerToken)
+        .then((result) => {
+          expect(result.status).toBe(404);
+          expect(result.body).toHaveProperty("message", "Data Not Found");
         });
     });
   });

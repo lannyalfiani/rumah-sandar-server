@@ -4,7 +4,7 @@
   "description": "Final Project Hacktiv8",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --verbose --coverage",
+    "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --verbose --coverage --silent",
     "start": "node ./bin/www",
     "redoMigration": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
     "db:test": "cross-env NODE_ENV=test npx sequelize-cli db:drop && cross-env NODE_ENV=test npx sequelize-cli db:create && cross-env NODE_ENV=test npx sequelize-cli db:migrate",
