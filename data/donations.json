@@ -2,31 +2,36 @@
   {
     "name": "Alat Sekolah Adik Asuh",
     "imgUrl": "https://images.unsplash.com/photo-1471970471555-19d4b113e9ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80",
-    "on_demand_link": "rs-01",
-    "paymentLinkURL": "https://invoice-staging.xendit.co/donation/rs-01"
+    "on_demand_link": "rumah-sandar-001",
+    "paymentLinkURL": "https://invoice-staging.xendit.co/donation/rumah-sandar-001",
+    "totalAmount": 300000
   },
   {
     "name": "Bantuan Bencana Alam",
     "imgUrl": "https://images.unsplash.com/photo-1600336153113-d66c79de3e91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-    "on_demand_link": "rs-02",
-    "paymentLinkURL": "https://invoice-staging.xendit.co/donation/rs-02"
+    "on_demand_link": "rumah-sandar-002",
+    "paymentLinkURL": "https://invoice-staging.xendit.co/donation/rumah-sandar-002",
+    "totalAmount": 100000
   },
   {
     "name": "Stok Makanan Panti Asuhan",
     "imgUrl": "https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    "on_demand_link": "rs-03",
-    "paymentLinkURL": "https://invoice-staging.xendit.co/donation/rs-03"
+    "on_demand_link": "rumah-sandar-003",
+    "paymentLinkURL": "https://invoice-staging.xendit.co/donation/rumah-sandar-003",
+    "totalAmount": 1000000
   },
   {
     "name": "Pembelian Al-Quran",
     "imgUrl": "https://images.unsplash.com/photo-1589995635011-078e0bb91d11?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
-    "on_demand_link": "rs-04",
-    "paymentLinkURL": "https://invoice-staging.xendit.co/donation/rs-04"
+    "on_demand_link": "rumah-sandar-004",
+    "paymentLinkURL": "hhttps://invoice-staging.xendit.co/donation/rumah-sandar-004",
+    "totalAmount": 50000
   },
   {
     "name": "Renovasi Sekolah",
     "imgUrl": "https://images.unsplash.com/flagged/photo-1559425844-a7f1392592bd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fHNjaG9vbHxlbnwwfDJ8MHx8&auto=format&fit=crop&w=600&q=60",
-    "on_demand_link": "rs-05",
-    "paymentLinkURL": "https://invoice-staging.xendit.co/donation/rs-05"
+    "on_demand_link": "rumah-sandar-005",
+    "paymentLinkURL": "https://invoice-staging.xendit.co/donation/rumah-sandar-005",
+    "totalAmount": 1780000
   }
 ]
