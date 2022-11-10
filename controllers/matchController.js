@@ -64,10 +64,10 @@ class matchController {
   static async AddVolunteerToMatch(req, res, next) {
     const t = await sequelize.transaction();
     try {
-      console.log(req.body)
+      console.log(req.body);
       let { matchId } = req.params;
       let VolunteerId = req.user.id;
-      console.log(matchId)
+      console.log(matchId);
       let { startDate, hour } = req.body;
       if (!startDate || !hour) throw { name: "required" };
       let endDate = getEach7Day(startDate, 11);
@@ -78,11 +78,11 @@ class matchController {
       if (!matchData) {
         throw { name: "Not Found" };
       }
-      console.log(matchData, "ini matchnya")
+      console.log(matchData, "ini matchnya");
       let orphanMatch = await Orphan.findByPk(matchData.OrphanId, {
         transaction: t,
       });
-      console.log(orphanMatch, "ini orphannya")
+      console.log(orphanMatch, "ini orphannya");
       if (orphanMatch.matchStatus === "alreadyMatch") {
         throw { name: "Adik already been choose by other kakak" };
       }
@@ -158,6 +158,9 @@ class matchController {
           },
         ],
       });
+      if (!data) {
+        throw { name: "Not Found" };
+      }
       res.status(200).json(data);
     } catch (err) {
       next(err);
